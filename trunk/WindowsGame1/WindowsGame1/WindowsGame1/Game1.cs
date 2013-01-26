@@ -1,6 +1,8 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -11,6 +13,7 @@ using Microsoft.Xna.Framework.Media;
 using WindowsGame1.Particle;
 using System.Threading;
 using WindowsGame1.View;
+
 
 namespace WindowsGame1
 {
@@ -46,6 +49,8 @@ namespace WindowsGame1
         Direction Movement;
         int GravityValue;
         Camera camera;
+        System.Drawing.Color[] Collisionmap;
+        Bitmap Collisionbmp;
 
         //Particle land
         ParticleSquirter particleEngine;
@@ -98,6 +103,7 @@ namespace WindowsGame1
             map = new Map1();
             Movement = Direction.None;
             GravityValue = 5;
+            
             base.Initialize();
         }
 
@@ -115,6 +121,12 @@ namespace WindowsGame1
             maxSpriteNum = 100;
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Collisionmap = new System.Drawing.Color[5000 * 5000];
+            DirectoryInfo DI = new DirectoryInfo(Environment.CurrentDirectory);
+            string bmpPath = DI.FullName.Remove(DI.FullName.Length - 27) + "/WindowsGame1Content/backgrounds/TutorialMap_CollideZone.jpg";
+            Collisionbmp = new Bitmap(bmpPath);
+            Collisionmap[1] = Collisionbmp.GetPixel(0, 0);
+
             txture = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
             Black = Content.Load<Texture2D>("black");
             txtAnim.Initialize(txture, txVect,200, 200, ScreenWidth, ScreenHeight, 4, 150, Color.White, true, 100);
@@ -232,12 +244,12 @@ namespace WindowsGame1
             
             // TODO: Add your update logic here
 
-            Rectangle CharRect = new Rectangle((int)txVect.X, (int)txVect.Y, txture.Width/4, txture.Height);
+            Microsoft.Xna.Framework.Rectangle CharRect = new Microsoft.Xna.Framework.Rectangle((int)txVect.X, (int)txVect.Y, txture.Width/4, txture.Height);
 
             
             for (int i = 0; i < map.Wall.Count(); i++)
             {
-                Rectangle MapRect = new Rectangle((int)map.Wall[i].X, (int)map.Wall[i].Y, Black.Width, Black.Height);
+                Microsoft.Xna.Framework.Rectangle MapRect = new Microsoft.Xna.Framework.Rectangle((int)map.Wall[i].X, (int)map.Wall[i].Y, Black.Width, Black.Height);
                 if (CharRect.Intersects(MapRect))
                 {
                     if (MapRect.X> CharRect.X&&Movement == Direction.Right)
@@ -256,7 +268,7 @@ namespace WindowsGame1
             }
             for (int i = 0; i < map.Ground.Count(); i++)
             {
-                Rectangle MapRect = new Rectangle((int)map.Ground[i].X, (int)map.Ground[i].Y, Black.Width, Black.Height);
+                Microsoft.Xna.Framework.Rectangle MapRect = new Microsoft.Xna.Framework.Rectangle((int)map.Ground[i].X, (int)map.Ground[i].Y, Black.Width, Black.Height);
                 if (CharRect.Intersects(MapRect))
                 {
                     if ((CharRect.Y + CharRect.Height) > MapRect.Y)
@@ -495,17 +507,17 @@ namespace WindowsGame1
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend,
                 SamplerState.AnisotropicClamp, DepthStencilState.Default, RasterizerState.CullNone);
                        
-            //spriteBatch.Draw(txture, t//xVect, Color.White);
+            //spriteBatch.Draw(txture, t//xVect, Microsoft.Xna.Framework.Color.White);
             if (playState == state.menu)
             {
-                GraphicsDevice.Clear(Color.Black);
-                spriteBatch.Draw(play, new Rectangle(900, 500, 100, 100), Color.White);
-                spriteBatch.Draw(play, new Rectangle(mouseX, mouseY, 20, 20), Color.White);
+                GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
+                spriteBatch.Draw(play, new Microsoft.Xna.Framework.Rectangle(900, 500, 100, 100), Microsoft.Xna.Framework.Color.White);
+                spriteBatch.Draw(play, new Microsoft.Xna.Framework.Rectangle(mouseX, mouseY, 20, 20), Microsoft.Xna.Framework.Color.White);
             }
 
             if (playState == state.playing)
             {
-                GraphicsDevice.Clear(Color.Gray);
+                GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Gray);
                 
                 particleEngine.Draw(spriteBatch);
                 p1.Draw(spriteBatch);
@@ -513,12 +525,12 @@ namespace WindowsGame1
                 p3.Draw(spriteBatch);
                 p4.Draw(spriteBatch);
                 
-                GraphicsDevice.Clear(Color.CornflowerBlue);
+                GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
                 particleEngine.Draw(spriteBatch);
                 // TODO: Add your drawing code here
-                //spriteBatch.Draw(txture, t//xVect, Color.White);
+                //spriteBatch.Draw(txture, t//xVect, Microsoft.Xna.Framework.Color.White);
                 //txtAnim.Draw(camera);
-                //spriteBatch.Draw(foreground, new Vector2(2, 2), Color.White);
+                //spriteBatch.Draw(foreground, new Vector2(2, 2), Microsoft.Xna.Framework.Color.White);
 
                 txtAnim.Draw(spriteBatch);
                 map.Draw(spriteBatch);
