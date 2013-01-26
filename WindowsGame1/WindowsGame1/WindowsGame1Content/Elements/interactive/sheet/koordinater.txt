@@ -5,3 +5,4 @@ Her finner du ca.koordinater for hvor elementene skal stå.
 vine-wall: 	1240x280
 fruit-water: 	3750x620
 water: 		3300x2200
+firemonster:	2800x420
