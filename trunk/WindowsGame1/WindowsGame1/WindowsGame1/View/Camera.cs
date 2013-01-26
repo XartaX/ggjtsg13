@@ -10,7 +10,7 @@ namespace WindowsGame1.View
     public class Camera
     {
         private SpriteBatch spriteRenderer;
-        private Vector2 cameraPosition; // top left corner of the camera
+        public Vector2 cameraPosition; // top left corner of the camera
 
         public Vector2 Position
         {
