@@ -46,6 +46,7 @@ namespace WindowsGame1
         Keys Movement;
         int GravityValue;
         Camera camera;
+        bool[] Crashdirection;
         System.Drawing.Color[] Collisionmap;
         System.Drawing.Bitmap Collisionbmp;
 
@@ -99,7 +100,7 @@ namespace WindowsGame1
             map = new Map1();
             Movement = Keys.None;
             GravityValue = 5;
-            
+            Crashdirection = new bool[4] {false, false, false, false};
             base.Initialize();
         }
 
@@ -242,44 +243,54 @@ namespace WindowsGame1
 
             //Collision detection
             Microsoft.Xna.Framework.Rectangle CharRect = new Microsoft.Xna.Framework.Rectangle((int)txtAnim.Position.X, (int)txtAnim.Position.Y, txture.Width/4, txture.Height);
-            bool Collision = false;
+            for (int i = 0; i < Crashdirection.Length; i++)
+            {
+                Crashdirection[i] = false;
+            }
+            //0     Upwards
+            //1     Right
+            //2     Downwards
+            //3     Letf
 
             if(CollisionDetection(CharRect.X,CharRect.Y))//Upper left
             {
-
+                Crashdirection[0] = true;
+                Crashdirection[3] = true;
 
             }
             if (CollisionDetection(CharRect.X+(CharRect.Width/2), CharRect.Y))//Upper Mid
             {
-
+                Crashdirection[0] = true;
 
             }
             if (CollisionDetection(CharRect.X + CharRect.Width, CharRect.Y))//Upper right
             {
-                //Keyboard.
+                Crashdirection[0] = true;
+                Crashdirection[1] = true;
             }
             if (CollisionDetection(CharRect.X, CharRect.Y+(CharRect.Height/2)))//middle left
             {
-
+                Crashdirection[3] = true;
             }
             if (CollisionDetection(CharRect.X + CharRect.Width, CharRect.Y + (CharRect.Height / 2)))//middle right
             {
-
+                Crashdirection[1] = true;
 
             }
             if (CollisionDetection(CharRect.X, CharRect.Y + CharRect.Height))//bottom left
             {
-
-
+                Crashdirection[2] = true;
+                Crashdirection[3] = true;
 
             }
             if (CollisionDetection(CharRect.X + (CharRect.Width / 2), CharRect.Y + CharRect.Height))//Bottom mid
             {
-
+                Crashdirection[2] = true;
             }
             if (CollisionDetection(CharRect.X + CharRect.Width, CharRect.Y + CharRect.Height))//bottom right
             {
-
+                Crashdirection[2] = true;
+                Crashdirection[1] = true;
 
             }
 
@@ -367,17 +378,17 @@ namespace WindowsGame1
 
             IsGravity = true;
 
-            if (key.IsKeyDown(Keys.Right))
+            if      (key.IsKeyDown(Keys.Right)&&!Crashdirection[1])
             {
                 txtAnim.Position.Y += 1;
                 txtAnim.Update(gameTime, true);
             }
-            else if (key.IsKeyDown(Keys.Left))
+            else if (key.IsKeyDown(Keys.Left)&&!Crashdirection[3])
             {
                 txtAnim.Position.X -= 1;
                 txtAnim.Update(gameTime, true);
             }
-            else if (key.IsKeyDown(Keys.Up))
+            else if (key.IsKeyDown(Keys.Up)&&!Crashdirection[0])
             {
                 IsGravity = false;
                 txtAnim.Position.Y -= 2.5f;
@@ -436,7 +447,7 @@ namespace WindowsGame1
         }
         public void Gravity(bool fall)
         {
-            if (fall)
+            if (fall && !Crashdirection[2])
             {
                 txtAnim.Position.Y += GravityValue;//Gravity
             }
