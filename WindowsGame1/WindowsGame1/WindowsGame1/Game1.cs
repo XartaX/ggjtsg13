@@ -27,7 +27,7 @@ namespace WindowsGame1
         state playState = state.menu;
         int mouseX;
         int mouseY;
-        Backgrounds splitter = new Backgrounds();
+        //Backgrounds splitter = new Backgrounds();
 
         //Menu buttons
         Texture2D play;
@@ -36,11 +36,14 @@ namespace WindowsGame1
         SpriteFont spriteFont;
 
         SpriteBatch spriteBatch;
-        Texture2D foreground;
         Texture2D txture;
+        Texture2D vineWall;
         Texture2D Black;
+        Vector2 vineWallVect;
+        Vector2 vineWallVect2;
         Boolean IsJumping;
         Animation txtAnim;
+        Animation vineWallAnim;
         Map1 map;
         bool IsGravity;
         Keys Movement;
@@ -98,8 +101,10 @@ namespace WindowsGame1
             pst10Xangle = ScreenWidth * 0.1f;
             pst10Yangle = ScreenHeight * 0.1f;
             // TODO: Add your initialization logic here
+            vineWallVect = new Vector2(1240, 285);
             IsJumping = false;
             txtAnim = new Animation();
+            vineWallAnim = new Animation();
             map = new Map1();
             Movement = Keys.None;
             GravityValue = 5;
@@ -128,9 +133,11 @@ namespace WindowsGame1
             Collisionmap[1] = Collisionbmp.GetPixel(0, 0);
 
             txture = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
+            vineWall = Content.Load<Texture2D>("Elements/interactive/sheet/object__01");
             Black = Content.Load<Texture2D>("black");
             txtAnim.Initialize(txture, new Vector2(150, 375), 200, 200, ScreenWidth, ScreenHeight, 4, 150, Microsoft.Xna.Framework.Color.White, true, 100);
-            map.Initialize(Black);
+            vineWallAnim.Initialize(vineWall, vineWallVect, 204, 320, ScreenWidth, ScreenHeight, 10, 100, Microsoft.Xna.Framework.Color.White, false, 100);
+            map.Initialize(Black, Content, ScreenWidth, ScreenHeight);
             // TODO: use this.Content to load your game content here
             knappImg = Content.Load<Texture2D>("Solids/Square");
             //Particle
@@ -153,7 +160,7 @@ namespace WindowsGame1
             camera.Position = new Vector2(0, 0);
 
             //Load terrain
-            splitter.Initialize(Content, "Foreground_tutorial/TutorialMap-foreground__", ScreenWidth, 0, 16);
+            //splitter.Initialize(Content, "Foreground_tutorial/TutorialMap-foreground__", ScreenWidth, 0, 16);
             //foreground = Content.Load<Texture2D>("backgrounds/TutorialMap-Foreground");
 
             //Menu buttons
@@ -183,6 +190,9 @@ namespace WindowsGame1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            vineWallVect2 = camera.ApplyTransformations(vineWallVect);
+            vineWallAnim.updatePos(vineWallVect2);
+            
             // move camera with keyboard
             MoveCamera();
             // cap the camera to the world width/height.
@@ -444,9 +454,10 @@ namespace WindowsGame1
                 //spriteBatch.Draw(foreground, new Vector2(2, 2), Microsoft.Xna.Framework.Color.White);
 
                 txtAnim.Draw(spriteBatch);
-                map.Draw(spriteBatch);
+                vineWallAnim.Draw(spriteBatch);
+                map.Draw(spriteBatch, camera);
 
-                splitter.Draw(camera);
+                //splitter.Draw(camera);
                 foreach (SceneNode node in nodeList)
                 {
                     camera.DrawNode(node);

@@ -114,6 +114,7 @@
     <Compile Include="Animation.cs" />
     <Compile Include="Background.cs" />
     <Compile Include="Map1.cs" />
+    <Compile Include="Objects.cs" />
     <Compile Include="Particle\ParticleSquirter.cs" />
     <Compile Include="Particle\ParticleStat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

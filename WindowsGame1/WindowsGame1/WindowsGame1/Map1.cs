@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using WindowsGame1.View;
 
 namespace WindowsGame1
 {
@@ -12,13 +14,23 @@ namespace WindowsGame1
         public List<Vector2> Ground;
         public List<Vector2> Wall;
         Texture2D Black;
-        public void Initialize(Texture2D Black)
+        Backgrounds splitter = new Backgrounds();
+        Objects staticObjects = new Objects();
+
+
+        public void Initialize(Texture2D Black, ContentManager Content, int ScreenWidth, int ScreenHeight)
         {
             this.Black = Black;
             int StartX=50;
             int StartY=600;
             Ground = new List<Vector2>();
             Wall = new List<Vector2>();
+
+            //vineWall = Content.Load<Texture2D>("vine-wall_204x320");
+            splitter.Initialize(Content, "Foreground_tutorial/TutorialMap-foreground__", ScreenWidth, 0, 16);
+            staticObjects.Initialize(0, 1);
+            staticObjects.addObject(Content, "Elements/interactive/sheet/object__01", 1240, 280, ScreenWidth, ScreenHeight);
+
             for (int i = 0; i < 100; i++)
             {
                 Ground.Add(new Vector2(StartX, StartY));
@@ -46,17 +58,10 @@ namespace WindowsGame1
 
         }
 
-        public void Draw(SpriteBatch spritebatch)
+        public void Draw(SpriteBatch spritebatch, Camera camera)
         {
-           
-                  for (int i = 0; i < Ground.Count; i++)
-            {
-                      spritebatch.Draw(Black, Ground[i], Color.White);
-            }
-                  for (int i = 0; i < Wall.Count; i++)
-                  {
-                      spritebatch.Draw(Black, Wall[i], Color.White);
-                  }
+            splitter.Draw(camera);
+            staticObjects.Draw(camera, spritebatch);
         }
     }
 }

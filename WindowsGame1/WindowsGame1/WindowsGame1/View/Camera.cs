@@ -25,13 +25,20 @@ namespace WindowsGame1.View
         }
 
         public void DrawNode(SceneNode node)
-        {   
+        {
             // get the screen position of the node
             Vector2 drawPosition = ApplyTransformations(node.Position);
             node.Draw(spriteRenderer, drawPosition);
         }
+        public void DrawNode(SceneNode node,int width, int height)
+        {
+            // get the screen position of the node
+            Vector2 drawPosition = ApplyTransformations(node.Position);
+            node.Draw(spriteRenderer, drawPosition, width, height);
+        }
 
-        private Vector2 ApplyTransformations(Vector2 nodePosition)
+
+        public Vector2 ApplyTransformations(Vector2 nodePosition)
         {
             // apply translation
             Vector2 finalPosition = nodePosition - cameraPosition;
