@@ -10,6 +10,7 @@ namespace WindowsGame1
     class Map1
     {
         public List<Vector2> Ground;
+        public List<Vector2> Wall;
         Texture2D Black;
         public void Initialize(Texture2D Black)
         {
@@ -17,13 +18,22 @@ namespace WindowsGame1
             int StartX=50;
             int StartY=400;
             Ground = new List<Vector2>();
-            for (int i = 0; i < 10; i++)
+            Wall = new List<Vector2>();
+            for (int i = 0; i < 49; i++)
             {
                 Ground.Add(new Vector2(StartX, StartY));
-                StartX += 30;
-                StartY -= 31;
+                StartX += 5;
+                StartY -= 5;
             }
 
+            StartX = 300;
+            StartY = 300;
+            for (int i = 0; i < 60; i++)
+            {
+                Wall.Add(new Vector2(StartX, StartY));
+                StartY -= 5;
+                
+            }
 
         }
 
@@ -32,9 +42,12 @@ namespace WindowsGame1
            
                   for (int i = 0; i < Ground.Count; i++)
             {
-                //Ground[i]
                       spritebatch.Draw(Black, Ground[i], Color.White);
             }
+                  for (int i = 0; i < Wall.Count; i++)
+                  {
+                      spritebatch.Draw(Black, Wall[i], Color.White);
+                  }
         }
     }
 }

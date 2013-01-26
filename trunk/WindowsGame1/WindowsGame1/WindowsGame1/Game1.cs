@@ -114,42 +114,64 @@ namespace WindowsGame1
 
             Rectangle CharRect = new Rectangle((int)txVect.X, (int)txVect.Y, txture.Width/4, txture.Height);
 
+            
+            for (int i = 0; i < map.Wall.Count(); i++)
+            {
+                Rectangle MapRect = new Rectangle((int)map.Wall[i].X, (int)map.Wall[i].Y, Black.Width, Black.Height);
+                if (CharRect.Intersects(MapRect))
+                {
+                    if (MapRect.X> CharRect.X&&Movement == Direction.Right)
+                    {
+                        Movement = Direction.None;
+
+                    }
+                    if (MapRect.X < CharRect.X && Movement == Direction.Left)
+                    {
+                        Movement = Direction.None;
+
+                    }
+                    
+                }
+
+            }
             for (int i = 0; i < map.Ground.Count(); i++)
             {
                 Rectangle MapRect = new Rectangle((int)map.Ground[i].X, (int)map.Ground[i].Y, Black.Width, Black.Height);
                 if (CharRect.Intersects(MapRect))
                 {
-                    if ((CharRect.Y + CharRect.Height - (GravityValue) > MapRect.Y) && (Movement == Direction.Right))
+                    if ((CharRect.Y + CharRect.Height) > MapRect.Y)
                     {
-                        Console.WriteLine("HammerTime!" + gameTime.TotalGameTime.Seconds);
+                        txVect.Y = MapRect.Y - txture.Height;
+                        if ((CharRect.Y + CharRect.Height + (GravityValue * 2) < MapRect.Y + MapRect.Height) && (Movement == Direction.Right))
+                        {
+                            Console.WriteLine("HammerTime!" + gameTime.TotalGameTime.Seconds);
+                            Movement = Direction.None;
+                        }
+                        IsGravity = false;
+
+
+                    }
+                    else if ((CharRect.Y + CharRect.Height - (GravityValue) > MapRect.Y) && (Movement == Direction.Right))
+                    {
+                        Console.WriteLine("puoajøheøhush!" + gameTime.TotalGameTime.Seconds);
                         Movement = Direction.None;
                         IsGravity = true;
+                        //  txVect.X--;
                     }
-                    if ((CharRect.Y+CharRect.Height) > MapRect.Y)
-                    {
-                        //txVect.Y = MapRect.Y- txture.Height;
-                        //if ((CharRect.Y + CharRect.Height+ (GravityValue*2) < MapRect.Y + MapRect.Height)&&(Movement==Direction.Right))
-                        //{
-                        //    Console.WriteLine("HammerTime!" + gameTime.TotalGameTime.Seconds);
-                        //    Movement = Direction.None;
-                        //}
-                        IsGravity = false;
-                        
-                    }
+
                     else
                     {
                         IsGravity = true;
                     }
 
-                    
-                    if ((CharRect.X < MapRect.X)&&(CharRect.Y>MapRect.Y))
+
+                    if ((CharRect.X < MapRect.X) && (CharRect.Y > MapRect.Y))
                     {
-                        
+
                         //Movement = Direction.None;
                     }
                 }
             }
-
             switch (Movement)
             {
                 case Direction.Left:
