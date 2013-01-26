@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using WindowsGame1.Particle;
+using System.Threading;
 
 namespace WindowsGame1
 {
@@ -72,6 +73,8 @@ namespace WindowsGame1
             graphics.PreferredBackBufferWidth = ScreenWidth;
             graphics.PreferredBackBufferHeight = ScreenHeight;
             graphics.IsFullScreen = bFullScreen;
+            graphics.PreferMultiSampling = true;
+
             graphics.ApplyChanges();
         }
 
@@ -97,6 +100,7 @@ namespace WindowsGame1
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
+        Texture2D knappImg;
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -106,7 +110,7 @@ namespace WindowsGame1
             txtAnim.Initialize(txture, txVect, 100, 100, 4, 500, Color.White, true);
             map.Initialize(Black);
             // TODO: use this.Content to load your game content here
-
+            knappImg = Content.Load<Texture2D>("Solids/Square");
             //Particle
             ParticleTex.Add(Content.Load<Texture2D>("Elements/Particles/Water/DarkBlue"));
             ParticleTex.Add(Content.Load<Texture2D>("Elements/Particles/Water/Blue"));
@@ -131,7 +135,40 @@ namespace WindowsGame1
         {
             // TODO: Unload any non ContentManager content here
         }
+        ParticleSquirter p1, p2, p3, p4;
+        private void runFaun()
+        {
+            p1 = new ParticleSquirter(ParticleTex, new Vector3(200, 300, 0));
+            p1.Shei = ScreenHeight;
+            p1.Swid = ScreenWidth;
+            p1.emitFlag = true;
 
+        }
+        private void runFaun2()
+        {
+            p2 = new ParticleSquirter(ParticleTex, new Vector3(400, 500, 0));
+            p2.Shei = ScreenHeight;
+            p2.Swid = ScreenWidth;
+            p2.emitFlag = true;
+
+        }
+        private void runFaun3()
+        {
+            p3 = new ParticleSquirter(ParticleTex, new Vector3(600, 450, 0));
+            p3.Shei = ScreenHeight;
+            p3.Swid = ScreenWidth;
+            p3.emitFlag = true;
+
+        }
+        private void runFaun4()
+        {
+            p4 = new ParticleSquirter(ParticleTex, new Vector3(900, 300, 0));
+            p4.Shei = ScreenHeight;
+            p4.Swid = ScreenWidth;
+            p4.emitFlag = true;
+
+        }
+        bool once = false;
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -139,6 +176,26 @@ namespace WindowsGame1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if (p1 != null)
+                p1.Update();
+            if (p2 != null)
+                p2.Update();
+            if (p3 != null)
+                p3.Update();
+            if (p4 != null)
+                p4.Update();
+            if (!once)
+            {
+                Thread th = new Thread(new ThreadStart(runFaun));
+                th.Start();
+                Thread th2 = new Thread(new ThreadStart(runFaun2));
+                th2.Start();
+                Thread th3 = new Thread(new ThreadStart(runFaun3));
+                th3.Start();
+                Thread th4 = new Thread(new ThreadStart(runFaun4));
+                th4.Start();
+                once = true;
+            }
             UpdateInput();
             
             // TODO: Add your update logic here
@@ -259,8 +316,8 @@ namespace WindowsGame1
                     playState = state.playing;
                 }
             }
-
-            if (key.IsKeyDown(Keys.Escape))
+<<<<<<< .mine=======
+>>>>>>> .theirs            if (key.IsKeyDown(Keys.Escape))
             { this.Exit(); }
             IsGravity = true;
             if (key.IsKeyDown(Keys.Right))
@@ -306,18 +363,10 @@ namespace WindowsGame1
                     y1 -= SpeedEmiter;
                 if (key.IsKeyDown(Keys.S))
                     y1 += SpeedEmiter;
-                if (key.IsKeyDown(Keys.Up))
-                    y2 -= SpeedBox;
-                if (key.IsKeyDown(Keys.Down))
-                    y2 += SpeedBox;
                 if (key.IsKeyDown(Keys.D))
                     x1 += SpeedEmiter;
                 if (key.IsKeyDown(Keys.A))
                     x1 -= SpeedEmiter;
-                if (key.IsKeyDown(Keys.Right))
-                    x2 += SpeedBox;
-                if (key.IsKeyDown(Keys.Left))
-                    x2 -= SpeedBox;
                 SpritePosi += new Vector3(x1, y1, 0.0f);
             
             if (SpritePosi.X >= ScreenWidth)
@@ -356,6 +405,15 @@ namespace WindowsGame1
         protected override void Draw(GameTime gameTime)
         {
 
+            particleEngine.Draw(spriteBatch);
+            p1.Draw(spriteBatch);
+            p2.Draw(spriteBatch);
+            p3.Draw(spriteBatch);
+            p4.Draw(spriteBatch);
+            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            //spriteBatch.Draw(txture, t//xVect, Color.White);
+            txtAnim.Draw(spriteBatch);
             if (playState == state.menu)
             {
                 GraphicsDevice.Clear(Color.Black);
@@ -364,7 +422,8 @@ namespace WindowsGame1
                 spriteBatch.Draw(play, new Rectangle(mouseX, mouseY, 20, 20), Color.White);
                 spriteBatch.End();
             }
-
+<<<<<<< .mine            map.Draw(spriteBatch);
+=======>>>>>>> .theirs
             if (playState == state.playing)
             {
                 GraphicsDevice.Clear(Color.CornflowerBlue);
