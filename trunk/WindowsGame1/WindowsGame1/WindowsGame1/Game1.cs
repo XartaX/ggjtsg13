@@ -19,7 +19,14 @@ namespace WindowsGame1
     {
         Random random = new Random();
         GraphicsDeviceManager graphics;
+        enum state {playing, pause, menu, gameOver};
+        state playState = state.menu;
+        int mouseX;
+        int mouseY;
 
+        //Menu buttons
+        Texture2D play;
+       
         //Sprite Text
         SpriteFont spriteFont;
 
@@ -31,7 +38,7 @@ namespace WindowsGame1
         Animation txtAnim;
         Map1 map;
         bool IsGravity;
-        enum Direction { Left, Right,Up, None };
+        enum Direction { Left, Right, Up, None };
         Direction Movement;
         int GravityValue;
 
@@ -105,6 +112,9 @@ namespace WindowsGame1
             ParticleTex.Add(Content.Load<Texture2D>("Elements/Particles/Water/Blue"));
             ParticleTex.Add(Content.Load<Texture2D>("Elements/Particles/Water/LightBlue"));
             ParticleTex.Add(Content.Load<Texture2D>("Solids/Square"));
+
+            //Menu buttons
+            play = Content.Load<Texture2D>("Elements/Particles/Water/DarkBlue");
 
             particleEngine = new ParticleSquirter(ParticleTex, new Vector3((float)random.Next(500), (float)random.Next(500), (float)random.Next(500)));
             /*
@@ -238,6 +248,17 @@ namespace WindowsGame1
         protected void UpdateInput()
         {
             KeyboardState key = Keyboard.GetState();
+            MouseState mouse = Mouse.GetState();
+            mouseX = mouse.X;
+            mouseY = mouse.Y;
+
+            if (mouse.LeftButton == ButtonState.Pressed)
+            {
+                if (mouse.X > 900 && mouse.X < 1000 && mouse.Y > 500 && mouse.Y < 600)
+                {
+                    playState = state.playing;
+                }
+            }
 
             if (key.IsKeyDown(Keys.Escape))
             { this.Exit(); }
@@ -334,18 +355,30 @@ namespace WindowsGame1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            particleEngine.Draw(spriteBatch);
-            // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            //spriteBatch.Draw(txture, t//xVect, Color.White);
-            txtAnim.Draw(spriteBatch);
-            map.Draw(spriteBatch);
+            if (playState == state.menu)
+            {
+                GraphicsDevice.Clear(Color.Black);
+                spriteBatch.Begin(); 
+                spriteBatch.Draw(play, new Rectangle(900, 500, 100, 100), Color.White);
+                spriteBatch.Draw(play, new Rectangle(mouseX, mouseY, 20, 20), Color.White);
+                spriteBatch.End();
+            }
 
-            spriteBatch.End();
+            if (playState == state.playing)
+            {
+                GraphicsDevice.Clear(Color.CornflowerBlue);
+                particleEngine.Draw(spriteBatch);
+                // TODO: Add your drawing code here
+                spriteBatch.Begin();
+                //spriteBatch.Draw(txture, t//xVect, Color.White);
+                txtAnim.Draw(spriteBatch);
+                map.Draw(spriteBatch);
 
-            base.Draw(gameTime);
+                spriteBatch.End();
+
+                base.Draw(gameTime);
+            }
         }
     }
 }
