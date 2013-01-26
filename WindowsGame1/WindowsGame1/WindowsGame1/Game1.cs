@@ -24,6 +24,7 @@ namespace WindowsGame1
         state playState = state.menu;
         int mouseX;
         int mouseY;
+        Backgrounds splitter = new Backgrounds();
 
         //Menu buttons
         Texture2D play;
@@ -32,6 +33,7 @@ namespace WindowsGame1
         SpriteFont spriteFont;
 
         SpriteBatch spriteBatch;
+        Texture2D foreground;
         Texture2D txture;
         Texture2D Black;
         Vector2 txVect;
@@ -116,6 +118,10 @@ namespace WindowsGame1
             ParticleTex.Add(Content.Load<Texture2D>("Elements/Particles/Water/Blue"));
             ParticleTex.Add(Content.Load<Texture2D>("Elements/Particles/Water/LightBlue"));
             ParticleTex.Add(Content.Load<Texture2D>("Solids/Square"));
+
+            //Load terrain
+            splitter.Initialize(Content, "Foreground_tutorial/TutorialMap-foreground__0", ScreenWidth, 0, 4);
+            //foreground = Content.Load<Texture2D>("backgrounds/TutorialMap-Foreground");
 
             //Menu buttons
             play = Content.Load<Texture2D>("Elements/Particles/Water/DarkBlue");
@@ -423,27 +429,28 @@ namespace WindowsGame1
             txtAnim.Draw(spriteBatch);
             if (playState == state.menu)
             {
-                GraphicsDevice.Clear(Color.Black);
-                spriteBatch.Begin(); 
+                GraphicsDevice.Clear(Color.Black); 
                 spriteBatch.Draw(play, new Rectangle(900, 500, 100, 100), Color.White);
                 spriteBatch.Draw(play, new Rectangle(mouseX, mouseY, 20, 20), Color.White);
-                spriteBatch.End();
+               
             }
 
             if (playState == state.playing)
             {
-                GraphicsDevice.Clear(Color.CornflowerBlue);
-                particleEngine.Draw(spriteBatch);
+                GraphicsDevice.Clear(Color.Gray);
+                //particleEngine.Draw(spriteBatch);
                 // TODO: Add your drawing code here
-                spriteBatch.Begin();
                 //spriteBatch.Draw(txture, t//xVect, Color.White);
+                //spriteBatch.Draw(foreground, new Vector2(2, 2), Color.White);
+                
                 txtAnim.Draw(spriteBatch);
                 map.Draw(spriteBatch);
-            
-                spriteBatch.End();
-
-                base.Draw(gameTime);
+           
+                splitter.Draw(spriteBatch);
             }
+
+            spriteBatch.End();
+            base.Draw(gameTime);
         }
     }
 }

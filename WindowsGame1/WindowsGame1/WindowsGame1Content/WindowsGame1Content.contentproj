@@ -94,6 +94,88 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__01.png">
+      <Name>TutorialMap-foreground__01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__02.png">
+      <Name>TutorialMap-foreground__02</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__03.png">
+      <Name>TutorialMap-foreground__03</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__04.png">
+      <Name>TutorialMap-foreground__04</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__05.png">
+      <Name>TutorialMap-foreground__05</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__06.png">
+      <Name>TutorialMap-foreground__06</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__07.png">
+      <Name>TutorialMap-foreground__07</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__08.png">
+      <Name>TutorialMap-foreground__08</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__09.png">
+      <Name>TutorialMap-foreground__09</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__10.png">
+      <Name>TutorialMap-foreground__10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__11.png">
+      <Name>TutorialMap-foreground__11</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__12.png">
+      <Name>TutorialMap-foreground__12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__13.png">
+      <Name>TutorialMap-foreground__13</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__14.png">
+      <Name>TutorialMap-foreground__14</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__15.png">
+      <Name>TutorialMap-foreground__15</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Foreground_tutorial\TutorialMap-foreground__16.png">
+      <Name>TutorialMap-foreground__16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
