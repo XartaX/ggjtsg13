@@ -73,6 +73,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="backgrounds\" />
     <Folder Include="Elements\Particles\Fire\" />
   </ItemGroup>
   <ItemGroup>
