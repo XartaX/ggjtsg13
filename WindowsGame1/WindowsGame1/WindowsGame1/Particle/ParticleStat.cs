@@ -96,7 +96,7 @@ namespace WindowsGame1.Particle
                         Texture = textures[2];
                         p2 = true;
                     }
-                    Size += 0.3f;
+                    //Size += 0.3f;
                     int gamble = random.Next(1, 10);
                     
                     if (gamble == 2)
@@ -123,8 +123,7 @@ namespace WindowsGame1.Particle
         }
         public List<Texture2D> textures;
         Random random = new Random();
-        public SpriteBatch spriteBatch;
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
 
             spriteBatch.Draw(Texture, new Vector2(Position.X, Position.Y), new Rectangle(0, 0, 1, 1), color,
