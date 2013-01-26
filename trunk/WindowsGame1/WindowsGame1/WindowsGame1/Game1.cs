@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
-using System.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -48,7 +47,7 @@ namespace WindowsGame1
         int GravityValue;
         Camera camera;
         System.Drawing.Color[] Collisionmap;
-        Bitmap Collisionbmp;
+        System.Drawing.Bitmap Collisionbmp;
 
         //Particle land
         ParticleSquirter particleEngine;
@@ -121,7 +120,7 @@ namespace WindowsGame1
             Collisionmap = new System.Drawing.Color[5000 * 5000];
             DirectoryInfo DI = new DirectoryInfo(Environment.CurrentDirectory);
             string bmpPath = DI.FullName.Remove(DI.FullName.Length - 27) + "/WindowsGame1Content/backgrounds/TutorialMap_CollideZone.jpg";
-            Collisionbmp = new Bitmap(bmpPath);
+            Collisionbmp = new System.Drawing.Bitmap(bmpPath);
             Collisionmap[1] = Collisionbmp.GetPixel(0, 0);
 
             txture = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
@@ -241,79 +240,67 @@ namespace WindowsGame1
             
             // TODO: Add your update logic here
 
-            Microsoft.Xna.Framework.Rectangle CharRect = new Microsoft.Xna.Framework.Rectangle((int)txtAnim.Position.X, (int)txtAnim.Position.Y, txture.Width / 4, txture.Height);
+            //Collision detection
+            Microsoft.Xna.Framework.Rectangle CharRect = new Microsoft.Xna.Framework.Rectangle((int)txtAnim.Position.X, (int)txtAnim.Position.Y, txture.Width/4, txture.Height);
+            bool Collision = false;
 
-            
-            for (int i = 0; i < map.Wall.Count(); i++)
+            if(CollisionDetection(CharRect.X,CharRect.Y))//Upper left
             {
-                Microsoft.Xna.Framework.Rectangle MapRect = new Microsoft.Xna.Framework.Rectangle((int)map.Wall[i].X, (int)map.Wall[i].Y, Black.Width, Black.Height);
-                if (CharRect.Intersects(MapRect))
-                {
-                    if (MapRect.X> CharRect.X&&Movement == Keys.Right)
-                    {
-                        Movement = Keys.None;
 
-                    }
-                    if (MapRect.X < CharRect.X && Movement == Keys.Left)
-                    {
-                        Movement = Keys.None;
-
-                    }
-                    
-                }
 
             }
-            for (int i = 0; i < map.Ground.Count(); i++)
+            if (CollisionDetection(CharRect.X+(CharRect.Width/2), CharRect.Y))//Upper Mid
             {
-                Microsoft.Xna.Framework.Rectangle MapRect = new Microsoft.Xna.Framework.Rectangle((int)map.Ground[i].X, (int)map.Ground[i].Y, Black.Width, Black.Height);
-                if (CharRect.Intersects(MapRect))
-                {
-                    if ((CharRect.Y + CharRect.Height) > MapRect.Y)
-                    {
-                        
-                        if (Movement == Keys.Up)
-                        {
-                            Movement = Keys.None;
-                        }
-                        else
-                        {
-                            txtAnim.Position.Y = MapRect.Y - txture.Height;    
-                        }
-                        if ((CharRect.Y + CharRect.Height + (GravityValue * 2) < MapRect.Y + MapRect.Height) && (Movement == Keys.Right))
-                        {
-                            Console.WriteLine("HammerTime!" + gameTime.TotalGameTime.Seconds);
-                            Movement = Keys.None;
-                        }
-                        IsGravity = false;
 
 
-                    }
-                    else if ((CharRect.Y + CharRect.Height - (GravityValue) > MapRect.Y) && (Movement == Keys.Right))
-                    {
-                        Console.WriteLine("puoajøheøhush!" + gameTime.TotalGameTime.Seconds);
-                        Movement = Keys.None;
-                        IsGravity = true;
-                        //  txVect.X--;
-                    }
+            }
+            if (CollisionDetection(CharRect.X + CharRect.Width, CharRect.Y))//Upper right
+            {
+                //Keyboard.
+            }
+            if (CollisionDetection(CharRect.X, CharRect.Y+(CharRect.Height/2)))//middle left
+            {
 
-                    else
-                    {
-                        IsGravity = true;
-                    }
+            }
+            if (CollisionDetection(CharRect.X + CharRect.Width, CharRect.Y + (CharRect.Height / 2)))//middle right
+            {
 
 
-                    if ((CharRect.X < MapRect.X) && (CharRect.Y > MapRect.Y))
-                    {
+            }
+            if (CollisionDetection(CharRect.X, CharRect.Y + CharRect.Height))//bottom left
+            {
 
-                        //Movement = Keys.None;
-                    }
-                }
+
+
+            }
+            if (CollisionDetection(CharRect.X + (CharRect.Width / 2), CharRect.Y + CharRect.Height))//Bottom mid
+            {
+
+            }
+            if (CollisionDetection(CharRect.X + CharRect.Width, CharRect.Y + CharRect.Height))//bottom right
+            {
+
+
             }
 
             Gravity(IsGravity);
 
 
             base.Update(gameTime);
+        }
+        private bool CollisionDetection(int PosX, int PosY)
+        {
+            if (Collisionmap[PosX + (PosY * 5000)].R == 0 &&
+                Collisionmap[PosX + (PosY * 5000)].G == 0 &&
+                Collisionmap[PosX + (PosY * 5000)].B == 0
+                )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         private void CapCameraPosition()
         {
