@@ -13,7 +13,6 @@ using WindowsGame1.Particle;
 using System.Threading;
 using WindowsGame1.View;
 
-
 namespace WindowsGame1
 {
     /// <summary>
@@ -146,6 +145,7 @@ namespace WindowsGame1
             ParticleTex.Add(Content.Load<Texture2D>("Elements/Particles/Water/LightBlue"));
             ParticleTex.Add(Content.Load<Texture2D>("Solids/Square"));
 
+
             camera = new Camera(spriteBatch);
             nodeList = new List<SceneNode>();
             worldHeight = 5000;
@@ -164,7 +164,7 @@ namespace WindowsGame1
             //foreground = Content.Load<Texture2D>("backgrounds/TutorialMap-Foreground");
 
             //Menu buttons
-            play = Content.Load<Texture2D>("Elements/Particles/Water/DarkBlue");
+            play = Content.Load<Texture2D>("TEST");
 
             particleEngine = new ParticleSquirter(ParticleTex, new Vector3((float)random.Next(500), (float)random.Next(500), (float)random.Next(500)));
             
@@ -431,7 +431,6 @@ namespace WindowsGame1
             frameCounter++;
             spriteBatch.Begin();
 
-            //spriteBatch.Draw(txture, t//xVect, Microsoft.Xna.Framework.Color.White);
             if (playState == state.menu)
             {
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
