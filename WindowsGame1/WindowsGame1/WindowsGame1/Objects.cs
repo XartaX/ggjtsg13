@@ -12,72 +12,57 @@ namespace WindowsGame1
     class Objects
     {
 
-        Texture2D[] texture;
-        Vector2[] positions;
-        Animation[] animations;
-        bool[] exists;
-        Animation test = new Animation();
+        List<Texture2D> texture = new List<Texture2D>();
+        List<Vector2> positions = new List<Vector2>();
+        List<Animation> animations = new List<Animation>();
+        List<bool> exists = new List<bool>();
+        
+        Vector2 temp = new Vector2();
 
         public int speed;
         public int counter=0;
-        public int count;
-        
-
-        public void Initialize(int speed, int count)
-        {
-
-            this.count = count;
-            texture = new Texture2D[count];
-            positions = new Vector2[count];
-            animations = new Animation[count];
-            exists = new bool[count];
-
-            //for (int i = 0; i < count; i++)
-            //{
-            //    texture[i] = content.Load<Texture2D>(texturePath + (i + 1).ToString().PadLeft(2, '0'));
-            //}
-
-            this.speed = speed;
-
-            //int counter = -1, mult = 0;
-            //for (int i = 0; i < count; i++)
-            //{
-            //    if (counter == 3)
-            //    {
-            //        mult++;
-            //        counter = -1;
-            //    }
-            //    counter++;
-            //    positions[i] = new Vector2(counter * texture[i].Width, mult * texture[i].Height);
-            //    Console.WriteLine(("Y: " + mult * texture[i].Height).PadRight(8, ' ') + "X: " + counter * texture[i].Width);
-            }
-
+      
          public void addObject(ContentManager content, String texturePath, int x, int y, int ScreenWidth, int ScreenHeight)
          {
-             if(counter < count)
-             {
-                 texture[counter] = content.Load<Texture2D>("Elements/interactive/sheet/object__01");
-                 positions[counter] = new Vector2(x, y);
-                 animations[counter] = new Animation();
+            
+                 texture.Add(content.Load<Texture2D>("Elements/interactive/sheet/object__01"));
+                 positions.Add(new Vector2(x, y));
+                 animations.Add(new Animation());
                  animations[counter].Initialize(texture[counter], positions[counter], 204, 320, ScreenWidth, ScreenHeight, 10, 100, Microsoft.Xna.Framework.Color.White, true, 100);
-                 exists[counter] = true;
+                 exists.Add(true);
                  counter++;
-             }
+            
         }
 
         public void Update()
         {
+
+
+
+        }
+        public void updatePos(Camera cam)
+        {
+
+            for (int i = 0; i < texture.Count; i++)
+            {
+
+                temp = cam.ApplyTransformations(positions[i]);
+                animations[i].updatePos(temp);
+                
+            }
+
         }
 
         public void Draw(Camera spriteBatch, SpriteBatch SP)
         {
 
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < texture.Count; i++)
             {
-                Vector2 t = spriteBatch.ApplyTransformations(positions[i]);
+                updatePos(spriteBatch);
+                //Vector2 t = spriteBatch.ApplyTransformations(positions[i]);
                 //positions[i] = spriteBatch.ApplyTransformations(positions[i]);
-                //animations[i].Draw(SP);
-                SP.Draw(texture[i], new Rectangle((int)t.X,(int)t.Y, 200,320 ), Microsoft.Xna.Framework.Color.White);
+                animations[i].Draw(SP);
+                //SP.Draw(texture[i], new Rectangle((int)t.X,(int)t.Y, 200,320 ), Microsoft.Xna.Framework.Color.White);
             }
 
 

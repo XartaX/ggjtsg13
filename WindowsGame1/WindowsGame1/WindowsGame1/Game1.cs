@@ -63,7 +63,7 @@ namespace WindowsGame1
         //Location of Emitter
         Vector3 SpritePosi = Vector3.Zero;
 
-        bool bFullScreen = true;
+        bool bFullScreen =false;
         public int ScreenHeight, ScreenWidth;
         int frameRate = 0, frameCounter = 0;
         TimeSpan elapsedTime = TimeSpan.Zero;
@@ -136,7 +136,7 @@ namespace WindowsGame1
             vineWall = Content.Load<Texture2D>("Elements/interactive/sheet/object__01");
             Black = Content.Load<Texture2D>("black");
             txtAnim.Initialize(txture, new Vector2(150, 375), 200, 200, ScreenWidth, ScreenHeight, 4, 150, Microsoft.Xna.Framework.Color.White, true, 100);
-            vineWallAnim.Initialize(vineWall, vineWallVect, 204, 320, ScreenWidth, ScreenHeight, 10, 100, Microsoft.Xna.Framework.Color.White, false, 100);
+            //vineWallAnim.Initialize(vineWall, vineWallVect, 204, 320, ScreenWidth, ScreenHeight, 10, 100, Microsoft.Xna.Framework.Color.White, false, 100);
             map.Initialize(Black, Content, ScreenWidth, ScreenHeight);
             // TODO: use this.Content to load your game content here
             knappImg = Content.Load<Texture2D>("Solids/Square");
@@ -454,7 +454,7 @@ namespace WindowsGame1
                 //spriteBatch.Draw(foreground, new Vector2(2, 2), Microsoft.Xna.Framework.Color.White);
 
                 txtAnim.Draw(spriteBatch);
-                vineWallAnim.Draw(spriteBatch);
+                //vineWallAnim.Draw(spriteBatch);
                 map.Draw(spriteBatch, camera);
 
                 //splitter.Draw(camera);
