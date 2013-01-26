@@ -86,7 +86,7 @@ namespace WindowsGame1
             graphics.PreferredBackBufferHeight = ScreenHeight;
             
             graphics.PreferMultiSampling = true;
-            graphics.ApplyChanges();
+            //graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -344,7 +344,7 @@ namespace WindowsGame1
             {
                         camera.Translate(new Vector2(speed, 0));
                 txtAnim.Position.X += 1;
-                txtAnim.Update(gameTime, true);
+                txtAnim.Update(gameTime);
             }
             else if (key.IsKeyDown(Keys.A))
             {
@@ -352,7 +352,7 @@ namespace WindowsGame1
                 txtAnim.Position.X -= 1;
                 txtAnim.Animate = true;
                 txtAnim.Update(gameTime);
-                }
+                
             }
             else if (key.IsKeyDown(Keys.W))
             {
@@ -360,14 +360,14 @@ namespace WindowsGame1
                 IsGravity = false;
                 txtAnim.Position.Y -= 2.5f;
                 txtAnim.Update(gameTime);
-                }
+                
             }
             else if (key.IsKeyDown(Keys.Down) && !Crashdirection[2])
             {
                 camera.Translate(new Vector2(0, speed));
                 IsGravity = false;
                 txtAnim.Position.Y -= 2.5f;
-                txtAnim.Update(gameTime, false);
+                txtAnim.Update(gameTime);
             }
             else
                 txtAnim.Animate = false;

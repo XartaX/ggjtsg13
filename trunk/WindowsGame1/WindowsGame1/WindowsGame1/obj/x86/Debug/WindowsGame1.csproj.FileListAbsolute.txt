@@ -1,47 +1,3 @@
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\texture.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\black.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.exe
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.pdb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.csprojResolveAssemblyReference.cache
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.exe
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\DarkBlue.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\Blue.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\LightBlue.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Solids\Square.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\texture.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\black.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\DarkBlue.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\Blue.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\LightBlue.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Solids\Square.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.exe
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.pdb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.csprojResolveAssemblyReference.cache
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.exe
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\spritesheets\base_Jump_200x200px.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\spritesheets\base_Walk_200x200px.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__01.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__02.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__03.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__04.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__05.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__06.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__07.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__08.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__09.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__10.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__11.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__12.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__13.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__14.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__15.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__16.xnb
-C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.exe
-C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb
 C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\texture.xnb
 C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\black.xnb
 C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\DarkBlue.xnb
@@ -66,45 +22,19 @@ C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\
 C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__14.xnb
 C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__15.xnb
 C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__16.xnb
+C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\fruit-fire123x128.xnb
+C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\fruit-plant125x126.xnb
+C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\fruit-water100x106.xnb
+C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\monster_fire.xnb
+C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\object__01.xnb
+C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\vine-wall_204x320.xnb
+C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\Vine-wall.xnb
+C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\water_1604x433.xnb
+C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Fonts\Lucida Console.xnb
+C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Fonts\TestFont.xnb
 C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.exe
 C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.pdb
 C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\spritesheets\base_Jump_200x200px.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\spritesheets\base_Walk_200x200px.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__01.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__02.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__03.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__04.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__05.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__06.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__07.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__08.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__09.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__10.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__11.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__12.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__13.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__14.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__15.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__16.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Fonts\Lucida Console.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Fonts\TestFont.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Fonts\Lucida Console.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Fonts\TestFont.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\fruit-fire123x128.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\fruit-plant125x126.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\fruit-water100x106.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\monster_fire.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\object__01.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\vine-wall_204x320.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\Vine-wall.xnb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\water_1604x433.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\fruit-fire123x128.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\fruit-plant125x126.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\fruit-water100x106.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\monster_fire.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\object__01.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\vine-wall_204x320.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\Vine-wall.xnb
-C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\water_1604x433.xnb
+C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.exe
+C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb
