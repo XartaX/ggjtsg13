@@ -117,7 +117,7 @@ namespace WindowsGame1
             spriteBatch = new SpriteBatch(GraphicsDevice);
             txture = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
             Black = Content.Load<Texture2D>("black");
-            txtAnim.Initialize(txture, txVect,200, 200, ScreenWidth, ScreenHeight, 4, 150, Color.White, true, 1 100);
+            txtAnim.Initialize(txture, txVect,200, 200, ScreenWidth, ScreenHeight, 4, 150, Color.White, true, 100);
             map.Initialize(Black);
             // TODO: use this.Content to load your game content here
             knappImg = Content.Load<Texture2D>("Solids/Square");
@@ -129,8 +129,8 @@ namespace WindowsGame1
 
             camera = new Camera(spriteBatch);
             nodeList = new List<SceneNode>();
-            worldHeight = 4000;
-            worldWidth = 4000;
+            worldHeight = 5000;
+            worldWidth = 5000;
             Random randNums = new Random();
             for (int i = 0; i < maxSpriteNum; i++)
             {
@@ -141,7 +141,7 @@ namespace WindowsGame1
             camera.Position = new Vector2(0, 0);
 
             //Load terrain
-            splitter.Initialize(Content, "Foreground_tutorial/TutorialMap-foreground__0", ScreenWidth, 0, 4);
+            splitter.Initialize(Content, "Foreground_tutorial/TutorialMap-foreground__", ScreenWidth, 0, 16);
             //foreground = Content.Load<Texture2D>("backgrounds/TutorialMap-Foreground");
 
             //Menu buttons
@@ -523,7 +523,7 @@ namespace WindowsGame1
                 txtAnim.Draw(spriteBatch);
                 map.Draw(spriteBatch);
            
-                splitter.Draw(spriteBatch);
+                splitter.Draw(camera);
             }
 
                 foreach (SceneNode node in nodeList)

@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\texture.xnb</Output>
-      <Time>2013-01-26T01:31:04.2324973+01:00</Time>
+      <Time>2013-01-26T14:43:18.527103+01:00</Time>
     </Item>
     <Item>
       <Source>black.PNG</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\black.xnb</Output>
-      <Time>2013-01-26T03:30:32.5357205+01:00</Time>
+      <Time>2013-01-26T14:43:18.4489732+01:00</Time>
     </Item>
     <Item>
       <Source>Elements\Particles\Water\DarkBlue.png</Source>
@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\DarkBlue.xnb</Output>
-      <Time>2013-01-26T02:36:06.6520293+01:00</Time>
+      <Time>2013-01-26T14:43:18.3083411+01:00</Time>
     </Item>
     <Item>
       <Source>Elements\Particles\Water\Blue.png</Source>
@@ -35,7 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\Blue.xnb</Output>
-      <Time>2013-01-26T02:36:06.662023+01:00</Time>
+      <Time>2013-01-26T14:43:18.323968+01:00</Time>
     </Item>
     <Item>
       <Source>Elements\Particles\Water\LightBlue.png</Source>
@@ -44,7 +44,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\LightBlue.xnb</Output>
-      <Time>2013-01-26T02:36:06.662023+01:00</Time>
+      <Time>2013-01-26T14:43:18.3083411+01:00</Time>
     </Item>
     <Item>
       <Source>Solids\Square.png</Source>
@@ -53,7 +53,169 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Solids\Square.xnb</Output>
-      <Time>2013-01-26T03:10:02.8815958+01:00</Time>
+      <Time>2013-01-26T14:43:18.323968+01:00</Time>
+    </Item>
+    <Item>
+      <Source>spritesheets\base_Jump_200x200px.png</Source>
+      <Name>spritesheets\base_Jump_200x200px</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\spritesheets\base_Jump_200x200px.xnb</Output>
+      <Time>2013-01-26T14:43:18.4802262+01:00</Time>
+    </Item>
+    <Item>
+      <Source>spritesheets\base_Walk_200x200px.png</Source>
+      <Name>spritesheets\base_Walk_200x200px</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\spritesheets\base_Walk_200x200px.xnb</Output>
+      <Time>2013-01-26T14:43:18.4645993+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__01.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__01.xnb</Output>
+      <Time>2013-01-26T14:43:18.3395923+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__02.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__02</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__02.xnb</Output>
+      <Time>2013-01-26T14:43:18.3552196+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__03.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__03</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__03.xnb</Output>
+      <Time>2013-01-26T14:43:18.3708439+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__04.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__04</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__04.xnb</Output>
+      <Time>2013-01-26T15:57:09.9008305+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__05.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__05</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__05.xnb</Output>
+      <Time>2013-01-26T15:57:09.9008305+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__06.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__06</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__06.xnb</Output>
+      <Time>2013-01-26T14:43:18.4020973+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__07.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__07</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__07.xnb</Output>
+      <Time>2013-01-26T15:57:09.9164556+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__08.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__08</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__08.xnb</Output>
+      <Time>2013-01-26T14:43:18.4333485+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__09.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__09</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__09.xnb</Output>
+      <Time>2013-01-26T14:43:18.4489732+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__10.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__10.xnb</Output>
+      <Time>2013-01-26T14:43:18.3395923+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__11.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__11</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__11.xnb</Output>
+      <Time>2013-01-26T15:57:09.8852107+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__12.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__12.xnb</Output>
+      <Time>2013-01-26T14:43:18.3708439+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__13.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__13</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__13.xnb</Output>
+      <Time>2013-01-26T14:43:18.38647+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__14.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__14</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__14.xnb</Output>
+      <Time>2013-01-26T14:43:18.4020973+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__15.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__15</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__15.xnb</Output>
+      <Time>2013-01-26T15:57:09.9164556+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Foreground_tutorial\TutorialMap-foreground__16.png</Source>
+      <Name>Foreground_tutorial\TutorialMap-foreground__16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__16.xnb</Output>
+      <Time>2013-01-26T14:43:18.4333485+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
