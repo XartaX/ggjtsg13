@@ -164,7 +164,7 @@ namespace WindowsGame1
             //foreground = Content.Load<Texture2D>("backgrounds/TutorialMap-Foreground");
 
             //Menu buttons
-            play = Content.Load<Texture2D>("TEST");
+            play = Content.Load<Texture2D>("Solids/Square");
 
             particleEngine = new ParticleSquirter(ParticleTex, new Vector3((float)random.Next(500), (float)random.Next(500), (float)random.Next(500)));
             
@@ -193,8 +193,6 @@ namespace WindowsGame1
             vineWallVect2 = camera.ApplyTransformations(vineWallVect);
             vineWallAnim.updatePos(vineWallVect2);
             
-            // move camera with keyboard
-            MoveCamera();
             // cap the camera to the world width/height.
             CapCameraPosition();
 
@@ -212,7 +210,7 @@ namespace WindowsGame1
             // TODO: Add your update logic here
 
             //Collision detection
-            Microsoft.Xna.Framework.Rectangle CharRect = new Microsoft.Xna.Framework.Rectangle((int)txtAnim.Position.X, (int)txtAnim.Position.Y, txture.Width/4, txture.Height);
+            Microsoft.Xna.Framework.Rectangle CharRect = new Microsoft.Xna.Framework.Rectangle((int)(txtAnim.Position.X+camera.Position.X), (int)(txtAnim.Position.Y+camera.Position.Y), txture.Width/4, txture.Height);
             for (int i = 0; i < Crashdirection.Length; i++)
             {
                 Crashdirection[i] = false;
@@ -305,31 +303,6 @@ namespace WindowsGame1
         }
 
         float speed = 5.0f;
-        private void MoveCamera()
-        {
-            // make keyboard move the camera
-            KeyboardState ks = Keyboard.GetState();
-            Keys[] keys = ks.GetPressedKeys();
-            foreach (Keys key in keys)
-            {
-                switch (key)
-                {
-                    case Keys.W:
-                        camera.Translate(new Vector2(0, -speed));
-                        break;
-                    case Keys.D:
-                        camera.Translate(new Vector2(speed, 0));
-                        break;
-                    case Keys.S:
-                        camera.Translate(new Vector2(0, speed));
-                        break;
-                    case Keys.A:
-                        camera.Translate(new Vector2(-speed, 0));
-                        break;
-                }
-            }
-        }
-
         protected void UpdateInput(GameTime gameTime)
         {
             KeyboardState key = Keyboard.GetState();
@@ -347,24 +320,49 @@ namespace WindowsGame1
 
             IsGravity = true;
 
-            if (key.IsKeyDown(Keys.Right)&&!Crashdirection[1])
+            if (key.IsKeyDown(Keys.D))
             {
-                txtAnim.Position.Y += 1;
-                txtAnim.Update(gameTime, true);
+                if (Crashdirection[1])
+                {
+                camera.Translate(new Vector2(speed, 0));
+                txtAnim.Position.X += 1;
+                txtAnim.Animate = true;
+                txtAnim.Update(gameTime);
+                Console.WriteLine("1");
+                }
             }
-            else if (key.IsKeyDown(Keys.Left)&&!Crashdirection[3])
+            else if (key.IsKeyDown(Keys.A))
             {
+                if (Crashdirection[3])
+                {
+                camera.Translate(new Vector2(-speed, 0));
                 txtAnim.Position.X -= 1;
-                txtAnim.Update(gameTime, true);
+                txtAnim.Animate = true;
+                txtAnim.Update(gameTime);
+                }
             }
-            else if (key.IsKeyDown(Keys.Up)&&!Crashdirection[0])
+            else if (key.IsKeyDown(Keys.W))
             {
-                IsGravity = false;
+                if (Crashdirection[2])
+                {
+                camera.Translate(new Vector2(0, -speed));
+                txtAnim.Animate = false;
                 txtAnim.Position.Y -= 2.5f;
-                txtAnim.Update(gameTime, false);
+                txtAnim.Update(gameTime);
+                }
+            }
+            else if (key.IsKeyDown(Keys.S))
+            {
+                if (Crashdirection[0])
+                {
+                    camera.Translate(new Vector2(0, speed));
+                    txtAnim.Animate = false;
+                    txtAnim.Position.Y += 5f;
+                    txtAnim.Update(gameTime);
+                }
             }
             else
-                txtAnim.Update(gameTime, false);
+                txtAnim.Animate = false;
 
             // Allows the game to exit
             if (key.IsKeyDown(Keys.Escape))

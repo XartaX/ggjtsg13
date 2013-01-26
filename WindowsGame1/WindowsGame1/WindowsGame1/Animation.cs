@@ -44,14 +44,13 @@ namespace WindowsGame1
             sourceRect = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeigth);
             destRect = new Rectangle((int)Position.X, (int)Position.Y, (int)(ScreenWidth * 0.01 * Percentage), (int)(ScreenHeigth * 0.01 * Percentage));
         }
-
-        public void Update(GameTime gameTime, bool Animate)
+        public bool Animate = false;
+        public void Update(GameTime gameTime)
         {
             if (!Active)
             {
                 return;
             }
-
             if (Animate)
             {
                 elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
