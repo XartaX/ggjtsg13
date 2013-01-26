@@ -119,9 +119,20 @@ namespace WindowsGame1
                 Rectangle MapRect = new Rectangle((int)map.Ground[i].X, (int)map.Ground[i].Y, Black.Width, Black.Height);
                 if (CharRect.Intersects(MapRect))
                 {
+                    if ((CharRect.Y + CharRect.Height - (GravityValue) > MapRect.Y) && (Movement == Direction.Right))
+                    {
+                        Console.WriteLine("HammerTime!" + gameTime.TotalGameTime.Seconds);
+                        Movement = Direction.None;
+                        IsGravity = true;
+                    }
                     if ((CharRect.Y+CharRect.Height) > MapRect.Y)
                     {
                         //txVect.Y = MapRect.Y- txture.Height;
+                        //if ((CharRect.Y + CharRect.Height+ (GravityValue*2) < MapRect.Y + MapRect.Height)&&(Movement==Direction.Right))
+                        //{
+                        //    Console.WriteLine("HammerTime!" + gameTime.TotalGameTime.Seconds);
+                        //    Movement = Direction.None;
+                        //}
                         IsGravity = false;
                         
                     }
@@ -129,9 +140,12 @@ namespace WindowsGame1
                     {
                         IsGravity = true;
                     }
-                    if (CharRect.X + CharRect.Width < MapRect.X)
+
+                    
+                    if ((CharRect.X < MapRect.X)&&(CharRect.Y>MapRect.Y))
                     {
-                        Movement = Direction.None;
+                        
+                        //Movement = Direction.None;
                     }
                 }
             }
@@ -150,7 +164,7 @@ namespace WindowsGame1
                     break;
                 case Direction.None:
                     txtAnim.Position = txVect;
-                    Console.WriteLine("HammerTime!"+gameTime.TotalGameTime.Seconds);
+                    
                     txtAnim.UpdateNotChangeFrame(gameTime);
                     break;
                 case Direction.Up:
