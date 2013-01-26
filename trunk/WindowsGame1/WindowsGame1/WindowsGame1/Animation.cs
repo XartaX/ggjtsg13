@@ -46,50 +46,29 @@ namespace WindowsGame1
             destRect = new Rectangle((int)Position.X, (int)Position.Y, (int)(ScreenWidth * 0.01 * Percentage), (int)(ScreenHeigth * 0.01 * Percentage));
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, bool Animate)
         {
             if (!Active)
             {
                 return;
             }
 
-            //Vil mulig gjøre denne om til TimeSpan
-            elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (elapsedTime > frameTime)
+            if (Animate)
             {
-                currentFrame++;
-                if (currentFrame == frameCount)
+                elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (elapsedTime > frameTime)
                 {
-                    currentFrame = 0;
-                    //if (!Looping) //er ikke i bruk
-                    //{
-                    //    Active = false;
-                    //}
+                    currentFrame++;
+                    if (currentFrame == frameCount)
+                    {
+                        currentFrame = 0;
+                    }
+                    elapsedTime = 0;
                 }
-                elapsedTime = 0;
             }
             sourceRect.X = currentFrame * frameWidth;
             sourceRect.Width = frameWidth;
             sourceRect.Height = frameHeigth;
-
-            destRect.X = (int)Position.X;
-            destRect.Y = (int)Position.Y;
-            destRect.Width =  frameWidth;
-            destRect.Height = frameHeigth;
-
-
-        }
-
-        public void UpdateNotChangeFrame(GameTime gameTime)
-        {
-            sourceRect.X = currentFrame * frameWidth;
-            sourceRect.Width = frameWidth;
-            sourceRect.Height = frameHeigth;
-
-            destRect.X = (int)Position.X;
-            destRect.Y = (int)Position.Y;
-            destRect.Width = frameWidth;
-            destRect.Height = frameHeigth;
         }
 
         public void ChangeFrame()
@@ -102,39 +81,14 @@ namespace WindowsGame1
             if (currentFrame == frameCount)
             {
                 currentFrame = 0;
-                //if (!Looping) //er ikke i bruk
-                //{
-                //    Active = false;
-                //}
             }
-
-
             sourceRect = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeigth);
-
-            destRect = new Rectangle((int)Position.X, (int)Position.Y, frameWidth, frameHeigth);
-
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
-
             if (Active)
-            {
-
                 spritebatch.Draw(Spritestrip, Position, sourceRect, Color.White, 0, new Vector2(0, 0), Scale, SpriteEffects.None, 1);
-            }
-
-        }
-        public void Draw1(Camera spritebatch)
-        {
-
-            if (Active)
-            {
-                SceneNode node = new SceneNode(Spritestrip,Position);
-                spritebatch.DrawNode(node);
-                
-            }
-
         }
     }
 }

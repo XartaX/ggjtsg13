@@ -317,24 +317,22 @@ namespace WindowsGame1
                 case Direction.Left:
                     txVect.X--;
                     txtAnim.Position = txVect;
-                    txtAnim.Update(gameTime);
+                    txtAnim.Update(gameTime, true);
                     break;
                 case Direction.Right:
                     txVect.X++;
                     txtAnim.Position = txVect;
-                    txtAnim.Update(gameTime);
+                    txtAnim.Update(gameTime, true);
                     break;
                 case Direction.None:
                     txtAnim.Position = txVect;
-                    
-                    txtAnim.UpdateNotChangeFrame(gameTime);
+                    txtAnim.Update(gameTime, false);
                     break;
                 case Direction.Up:
                     txVect.Y -= 2.5f;
                     IsGravity = false;
                     txtAnim.Position = txVect;
-                    
-                    txtAnim.UpdateNotChangeFrame(gameTime);
+                    txtAnim.Update(gameTime, false);
                     break;
 
             }
@@ -343,12 +341,8 @@ namespace WindowsGame1
             {
                 txVect.Y -= 2.5f;
                 IsGravity = false;
-                //bool
             }
-            else if (txVect.Y < 400)
-            {
-               
-            }
+
             Gravity(IsGravity);
 
 
@@ -376,12 +370,12 @@ namespace WindowsGame1
             camera.Position = cameraPosition;
         }
 
+        float speed = 5.0f;
         private void MoveCamera()
         {
             // make keyboard move the camera
             KeyboardState ks = Keyboard.GetState();
             Keys[] keys = ks.GetPressedKeys();
-            float speed = 5.0f;
             foreach (Keys key in keys)
             {
                 switch (key)
