@@ -1,0 +1,12 @@
+C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\texture.xnb
+C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\black.xnb
+C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.exe
+C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.pdb
+C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.csprojResolveAssemblyReference.cache
+C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.exe
+C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb
+C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\DarkBlue.xnb
+C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\Blue.xnb
+C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\LightBlue.xnb
+C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Solids\Square.xnb

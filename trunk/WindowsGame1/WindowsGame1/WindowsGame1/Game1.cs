@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using WindowsGame1.Particle;
 
 namespace WindowsGame1
 {
@@ -16,7 +17,12 @@ namespace WindowsGame1
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        Random random = new Random();
         GraphicsDeviceManager graphics;
+
+        //Sprite Text
+        SpriteFont spriteFont;
+
         SpriteBatch spriteBatch;
         Texture2D txture;
         Texture2D Black;
@@ -29,10 +35,37 @@ namespace WindowsGame1
         Direction Movement;
         int GravityValue;
 
+        //Particle land
+        ParticleSquirter particleEngine;
+        List<Texture2D> ParticleTex = new List<Texture2D>();
+        //Sound Engine
+        SoundEffectInstance soundEffectInstance;
+        //Sounds
+        SoundEffect SoundEmber;
+        //Location of Emitter
+        Vector3 SpritePosi = Vector3.Zero;
+
+        bool bFullScreen = false;
+        public int ScreenHeight, ScreenWidth;
+        int frameRate = 0, frameCounter = 0;
+        TimeSpan elapsedTime = TimeSpan.Zero;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            InitGraphicsMode();
+        }
+
+        private void InitGraphicsMode()
+        {
+            DisplayMode dm = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode;
+            ScreenHeight = dm.Height;
+            ScreenWidth = dm.Width;
+            graphics.PreferredBackBufferWidth = ScreenWidth;
+            graphics.PreferredBackBufferHeight = ScreenHeight;
+            graphics.IsFullScreen = bFullScreen;
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -66,6 +99,18 @@ namespace WindowsGame1
             txtAnim.Initialize(txture, txVect, 100, 100, 4, 500, Color.White, true);
             map.Initialize(Black);
             // TODO: use this.Content to load your game content here
+
+            //Particle
+            ParticleTex.Add(Content.Load<Texture2D>("Elements/Particles/Water/DarkBlue"));
+            ParticleTex.Add(Content.Load<Texture2D>("Elements/Particles/Water/Blue"));
+            ParticleTex.Add(Content.Load<Texture2D>("Elements/Particles/Water/LightBlue"));
+            ParticleTex.Add(Content.Load<Texture2D>("Solids/Square"));
+
+            particleEngine = new ParticleSquirter(ParticleTex, new Vector3((float)random.Next(500), (float)random.Next(500), (float)random.Next(500)));
+            /*
+            spriteFont = Content.Load<SpriteFont>("Fonts/TestFont");
+            SoundEmber = Content.Load<SoundEffect>("Sound/Ember");
+            soundEffectInstance = SoundEmber.CreateInstance();*/
         }
 
         /// <summary>
@@ -84,31 +129,7 @@ namespace WindowsGame1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-            { this.Exit(); }
-            IsGravity=true;
-            if(Keyboard.GetState().IsKeyDown(Keys.Right))
-            {
-                Movement = Direction.Right;
-                
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Left))
-            {
-                Movement = Direction.Left;
-                
-            }
-            else if(Keyboard.GetState().IsKeyDown(Keys.Up))
-            {
-                Movement = Direction.Up;
-                
-                //bool
-            }
-            else
-            {
-                Movement = Direction.None;
-               
-            }
-
+            UpdateInput();
             
             // TODO: Add your update logic here
 
@@ -214,7 +235,92 @@ namespace WindowsGame1
 
             base.Update(gameTime);
         }
+        protected void UpdateInput()
+        {
+            KeyboardState key = Keyboard.GetState();
 
+            if (key.IsKeyDown(Keys.Escape))
+            { this.Exit(); }
+            IsGravity = true;
+            if (key.IsKeyDown(Keys.Right))
+            {
+                Movement = Direction.Right;
+
+            }
+            else if (key.IsKeyDown(Keys.Left))
+            {
+                Movement = Direction.Left;
+
+            }
+            else if (key.IsKeyDown(Keys.Up))
+            {
+                Movement = Direction.Up;
+
+                //bool
+            }
+            else
+            {
+                Movement = Direction.None;
+
+            }
+
+            // Allows the game to exit
+            if (key.IsKeyDown(Keys.Escape))
+            {
+                particleEngine.exit = true;
+                this.Exit();
+            }
+
+            if (key.IsKeyDown(Keys.Space))
+            {
+                particleEngine.emitFlag = true;
+            }
+            else
+            {
+                particleEngine.emitFlag = false;
+            }
+                float SpeedEmiter = 5, SpeedBox = 10;
+                float x1 = 0, x2 = 0, y1 = 0, y2 = 0;
+                if (key.IsKeyDown(Keys.W))
+                    y1 -= SpeedEmiter;
+                if (key.IsKeyDown(Keys.S))
+                    y1 += SpeedEmiter;
+                if (key.IsKeyDown(Keys.Up))
+                    y2 -= SpeedBox;
+                if (key.IsKeyDown(Keys.Down))
+                    y2 += SpeedBox;
+                if (key.IsKeyDown(Keys.D))
+                    x1 += SpeedEmiter;
+                if (key.IsKeyDown(Keys.A))
+                    x1 -= SpeedEmiter;
+                if (key.IsKeyDown(Keys.Right))
+                    x2 += SpeedBox;
+                if (key.IsKeyDown(Keys.Left))
+                    x2 -= SpeedBox;
+                SpritePosi += new Vector3(x1, y1, 0.0f);
+            
+            if (SpritePosi.X >= ScreenWidth)
+            {
+                SpritePosi = new Vector3(0.0f, SpritePosi.Y, 0.0f);
+            }
+            else if (SpritePosi.X <= 0)
+            {
+                SpritePosi = new Vector3((float)ScreenWidth, SpritePosi.Y, 0.0f);
+            }
+            if (SpritePosi.Y >= ScreenHeight)
+            {
+                SpritePosi = new Vector3(SpritePosi.X, 0.0f, 0.0f);
+            }
+            else if (SpritePosi.Y <= 0)
+            {
+                SpritePosi = new Vector3(SpritePosi.X, (float)ScreenHeight, 0.0f);
+            }
+            particleEngine.EmitterLocation = SpritePosi;
+            particleEngine.frameRate = frameRate;
+            particleEngine.Update();
+            particleEngine.Shei = ScreenHeight;
+            particleEngine.Swid = ScreenWidth;
+        }
         public void Gravity(bool fall)
         {
             if (fall)
@@ -230,6 +336,7 @@ namespace WindowsGame1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            particleEngine.Draw(spriteBatch);
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             //spriteBatch.Draw(txture, t//xVect, Color.White);
