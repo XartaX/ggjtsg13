@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\texture.xnb</Output>
-      <Time>2013-01-26T03:36:37.976795+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\texture.xnb</Output>
+      <Time>2013-01-25T23:24:25.71875+01:00</Time>
     </Item>
     <Item>
       <Source>black.PNG</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\black.xnb</Output>
-      <Time>2013-01-26T03:36:38.0217976+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\black.xnb</Output>
+      <Time>2013-01-26T02:17:04.015625+01:00</Time>
     </Item>
     <Item>
       <Source>Elements\Particles\Water\DarkBlue.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\DarkBlue.xnb</Output>
-      <Time>2013-01-26T03:36:38.0127971+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\DarkBlue.xnb</Output>
+      <Time>2013-01-26T03:33:27.8125+01:00</Time>
     </Item>
     <Item>
       <Source>Elements\Particles\Water\Blue.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\Blue.xnb</Output>
-      <Time>2013-01-26T03:36:38.0097969+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\Blue.xnb</Output>
+      <Time>2013-01-26T03:33:27.796875+01:00</Time>
     </Item>
     <Item>
       <Source>Elements\Particles\Water\LightBlue.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\LightBlue.xnb</Output>
-      <Time>2013-01-26T03:36:38.0057967+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Water\LightBlue.xnb</Output>
+      <Time>2013-01-26T03:33:27.796875+01:00</Time>
     </Item>
     <Item>
       <Source>Solids\Square.png</Source>
@@ -52,8 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Solids\Square.xnb</Output>
-      <Time>2013-01-26T03:36:38.0187974+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Solids\Square.xnb</Output>
+      <Time>2013-01-26T03:33:27.890625+01:00</Time>
     </Item>
     <Item>
       <Source>spritesheets\base_Jump_200x200px.png</Source>
@@ -61,8 +61,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\spritesheets\base_Jump_200x200px.xnb</Output>
-      <Time>2013-01-26T05:11:42.3820684+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\spritesheets\base_Jump_200x200px.xnb</Output>
+      <Time>2013-01-26T04:11:14+01:00</Time>
     </Item>
     <Item>
       <Source>spritesheets\base_Walk_200x200px.png</Source>
@@ -70,8 +70,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\spritesheets\base_Walk_200x200px.xnb</Output>
-      <Time>2013-01-26T05:11:42.3880687+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\spritesheets\base_Walk_200x200px.xnb</Output>
+      <Time>2013-01-26T04:11:14.015625+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__01.png</Source>
@@ -79,8 +79,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__01.xnb</Output>
-      <Time>2013-01-26T13:49:14.3828953+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__01.xnb</Output>
+      <Time>2013-01-26T14:09:38.265625+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__02.png</Source>
@@ -88,8 +88,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__02.xnb</Output>
-      <Time>2013-01-26T13:49:14.4689002+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__02.xnb</Output>
+      <Time>2013-01-26T14:09:38.3125+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__03.png</Source>
@@ -97,8 +97,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__03.xnb</Output>
-      <Time>2013-01-26T13:49:14.4719004+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__03.xnb</Output>
+      <Time>2013-01-26T14:09:38.390625+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__04.png</Source>
@@ -106,8 +106,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__04.xnb</Output>
-      <Time>2013-01-26T13:49:14.4749005+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__04.xnb</Output>
+      <Time>2013-01-26T14:09:38.4375+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__05.png</Source>
@@ -115,8 +115,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__05.xnb</Output>
-      <Time>2013-01-26T13:49:14.4779007+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__05.xnb</Output>
+      <Time>2013-01-26T14:09:38.46875+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__06.png</Source>
@@ -124,8 +124,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__06.xnb</Output>
-      <Time>2013-01-26T13:49:14.4799008+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__06.xnb</Output>
+      <Time>2013-01-26T14:09:38.515625+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__07.png</Source>
@@ -133,8 +133,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__07.xnb</Output>
-      <Time>2013-01-26T13:49:14.482901+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__07.xnb</Output>
+      <Time>2013-01-26T14:09:38.53125+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__08.png</Source>
@@ -142,8 +142,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__08.xnb</Output>
-      <Time>2013-01-26T13:49:14.4849011+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__08.xnb</Output>
+      <Time>2013-01-26T14:09:38.546875+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__09.png</Source>
@@ -151,8 +151,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__09.xnb</Output>
-      <Time>2013-01-26T13:49:14.4869012+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__09.xnb</Output>
+      <Time>2013-01-26T14:09:38.546875+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__10.png</Source>
@@ -160,8 +160,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__10.xnb</Output>
-      <Time>2013-01-26T13:49:14.4899014+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__10.xnb</Output>
+      <Time>2013-01-26T14:09:38.28125+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__11.png</Source>
@@ -169,8 +169,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__11.xnb</Output>
-      <Time>2013-01-26T13:49:14.4929016+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__11.xnb</Output>
+      <Time>2013-01-26T14:09:38.328125+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__12.png</Source>
@@ -178,8 +178,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__12.xnb</Output>
-      <Time>2013-01-26T13:49:14.4959017+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__12.xnb</Output>
+      <Time>2013-01-26T14:09:38.375+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__13.png</Source>
@@ -187,8 +187,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__13.xnb</Output>
-      <Time>2013-01-26T13:49:14.4989019+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__13.xnb</Output>
+      <Time>2013-01-26T14:09:38.40625+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__14.png</Source>
@@ -196,8 +196,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__14.xnb</Output>
-      <Time>2013-01-26T13:49:14.500902+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__14.xnb</Output>
+      <Time>2013-01-26T14:09:38.453125+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__15.png</Source>
@@ -205,8 +205,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__15.xnb</Output>
-      <Time>2013-01-26T13:49:14.5029021+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__15.xnb</Output>
+      <Time>2013-01-26T14:09:38.484375+01:00</Time>
     </Item>
     <Item>
       <Source>Foreground_tutorial\TutorialMap-foreground__16.png</Source>
@@ -214,8 +214,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__16.xnb</Output>
-      <Time>2013-01-26T13:49:14.3808952+01:00</Time>
+      <Output>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__16.xnb</Output>
+      <Time>2013-01-26T14:09:38.53125+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -223,39 +223,39 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1Content\</RootDirectory>
-      <LoggerRootDirectory>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\</LoggerRootDirectory>
-      <IntermediateDirectory>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1Content\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1Content\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Programmering\c#\GGj13Project\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
         <Value>2010-08-23T13:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
         <Value>2010-08-23T13:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
         <Value>2010-08-23T13:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
         <Value>2010-08-23T13:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
         <Value>2010-08-23T13:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
         <Value>2010-08-23T13:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2013-01-25T23:48:05.0684615+01:00</Value>
+        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2011-11-28T13:47:04.953125+01:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

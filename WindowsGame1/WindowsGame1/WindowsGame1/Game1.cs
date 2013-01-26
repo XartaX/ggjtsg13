@@ -45,6 +45,7 @@ namespace WindowsGame1
         enum Direction { Left, Right, Up, None };
         Direction Movement;
         int GravityValue;
+        Camera camera;
 
         //Particle land
         ParticleSquirter particleEngine;
@@ -60,6 +61,7 @@ namespace WindowsGame1
         public int ScreenHeight, ScreenWidth;
         int frameRate = 0, frameCounter = 0;
         TimeSpan elapsedTime = TimeSpan.Zero;
+
 
         public Game1()
         {
@@ -115,7 +117,7 @@ namespace WindowsGame1
             spriteBatch = new SpriteBatch(GraphicsDevice);
             txture = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
             Black = Content.Load<Texture2D>("black");
-            txtAnim.Initialize(txture, txVect,200, 200, ScreenWidth, ScreenHeight, 4, 150, Color.White, true, 500);
+            txtAnim.Initialize(txture, txVect,200, 200, ScreenWidth, ScreenHeight, 4, 150, Color.White, true, 100);
             map.Initialize(Black);
             // TODO: use this.Content to load your game content here
             knappImg = Content.Load<Texture2D>("Solids/Square");
@@ -518,7 +520,7 @@ namespace WindowsGame1
                 txtAnim.Draw(camera);
                 //spriteBatch.Draw(foreground, new Vector2(2, 2), Color.White);
                 
-                txtAnim.Draw(spriteBatch);
+                //txtAnim.Draw(spriteBatch);
                 map.Draw(spriteBatch);
            
                 splitter.Draw(spriteBatch);
@@ -528,11 +530,12 @@ namespace WindowsGame1
                 {
                     camera.DrawNode(node);
                 }
-            }
-            spriteBatch.End();
-            base.Draw(gameTime);
+                spriteBatch.End();
+                base.Draw(gameTime);    
+        }
+            
         }
         
-        private Camera camera;
+        //private Camera camera;
     }
-}
+
