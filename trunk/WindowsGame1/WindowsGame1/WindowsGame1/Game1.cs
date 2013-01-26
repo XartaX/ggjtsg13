@@ -40,13 +40,11 @@ namespace WindowsGame1
         Texture2D foreground;
         Texture2D txture;
         Texture2D Black;
-        Vector2 txVect;
         Boolean IsJumping;
         Animation txtAnim;
         Map1 map;
         bool IsGravity;
-        enum Direction { Left, Right, Up, None };
-        Direction Movement;
+        Keys Movement;
         int GravityValue;
         Camera camera;
         System.Drawing.Color[] Collisionmap;
@@ -97,11 +95,10 @@ namespace WindowsGame1
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            txVect = new Vector2(150, 375);
             IsJumping = false;
             txtAnim = new Animation();
             map = new Map1();
-            Movement = Direction.None;
+            Movement = Keys.None;
             GravityValue = 5;
             
             base.Initialize();
@@ -129,7 +126,7 @@ namespace WindowsGame1
 
             txture = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
             Black = Content.Load<Texture2D>("black");
-            txtAnim.Initialize(txture, txVect,200, 200, ScreenWidth, ScreenHeight, 4, 150, Microsoft.Xna.Framework.Color.White, true, 100);
+            txtAnim.Initialize(txture, new Vector2(150, 375), 200, 200, ScreenWidth, ScreenHeight, 4, 150, Microsoft.Xna.Framework.Color.White, true, 100);
             map.Initialize(Black);
             // TODO: use this.Content to load your game content here
             knappImg = Content.Load<Texture2D>("Solids/Square");
@@ -240,11 +237,11 @@ namespace WindowsGame1
                 th4.Start();
                 once = true;
             }
-            UpdateInput();
+            UpdateInput(gameTime);
             
             // TODO: Add your update logic here
 
-            Microsoft.Xna.Framework.Rectangle CharRect = new Microsoft.Xna.Framework.Rectangle((int)txVect.X, (int)txVect.Y, txture.Width/4, txture.Height);
+            Microsoft.Xna.Framework.Rectangle CharRect = new Microsoft.Xna.Framework.Rectangle((int)txtAnim.Position.X, (int)txtAnim.Position.Y, txture.Width / 4, txture.Height);
 
             
             for (int i = 0; i < map.Wall.Count(); i++)
@@ -252,14 +249,14 @@ namespace WindowsGame1
                 Microsoft.Xna.Framework.Rectangle MapRect = new Microsoft.Xna.Framework.Rectangle((int)map.Wall[i].X, (int)map.Wall[i].Y, Black.Width, Black.Height);
                 if (CharRect.Intersects(MapRect))
                 {
-                    if (MapRect.X> CharRect.X&&Movement == Direction.Right)
+                    if (MapRect.X> CharRect.X&&Movement == Keys.Right)
                     {
-                        Movement = Direction.None;
+                        Movement = Keys.None;
 
                     }
-                    if (MapRect.X < CharRect.X && Movement == Direction.Left)
+                    if (MapRect.X < CharRect.X && Movement == Keys.Left)
                     {
-                        Movement = Direction.None;
+                        Movement = Keys.None;
 
                     }
                     
@@ -274,27 +271,27 @@ namespace WindowsGame1
                     if ((CharRect.Y + CharRect.Height) > MapRect.Y)
                     {
                         
-                        if (Movement == Direction.Up)
+                        if (Movement == Keys.Up)
                         {
-                            Movement = Direction.None;
+                            Movement = Keys.None;
                         }
                         else
                         {
-                            txVect.Y = MapRect.Y - txture.Height;    
+                            txtAnim.Position.Y = MapRect.Y - txture.Height;    
                         }
-                        if ((CharRect.Y + CharRect.Height + (GravityValue * 2) < MapRect.Y + MapRect.Height) && (Movement == Direction.Right))
+                        if ((CharRect.Y + CharRect.Height + (GravityValue * 2) < MapRect.Y + MapRect.Height) && (Movement == Keys.Right))
                         {
                             Console.WriteLine("HammerTime!" + gameTime.TotalGameTime.Seconds);
-                            Movement = Direction.None;
+                            Movement = Keys.None;
                         }
                         IsGravity = false;
 
 
                     }
-                    else if ((CharRect.Y + CharRect.Height - (GravityValue) > MapRect.Y) && (Movement == Direction.Right))
+                    else if ((CharRect.Y + CharRect.Height - (GravityValue) > MapRect.Y) && (Movement == Keys.Right))
                     {
                         Console.WriteLine("puoajøheøhush!" + gameTime.TotalGameTime.Seconds);
-                        Movement = Direction.None;
+                        Movement = Keys.None;
                         IsGravity = true;
                         //  txVect.X--;
                     }
@@ -308,39 +305,9 @@ namespace WindowsGame1
                     if ((CharRect.X < MapRect.X) && (CharRect.Y > MapRect.Y))
                     {
 
-                        //Movement = Direction.None;
+                        //Movement = Keys.None;
                     }
                 }
-            }
-            switch (Movement)
-            {
-                case Direction.Left:
-                    txVect.X--;
-                    txtAnim.Position = txVect;
-                    txtAnim.Update(gameTime, true);
-                    break;
-                case Direction.Right:
-                    txVect.X++;
-                    txtAnim.Position = txVect;
-                    txtAnim.Update(gameTime, true);
-                    break;
-                case Direction.None:
-                    txtAnim.Position = txVect;
-                    txtAnim.Update(gameTime, false);
-                    break;
-                case Direction.Up:
-                    txVect.Y -= 2.5f;
-                    IsGravity = false;
-                    txtAnim.Position = txVect;
-                    txtAnim.Update(gameTime, false);
-                    break;
-
-            }
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
-            {
-                txVect.Y -= 2.5f;
-                IsGravity = false;
             }
 
             Gravity(IsGravity);
@@ -396,7 +363,7 @@ namespace WindowsGame1
             }
         }
 
-        protected void UpdateInput()
+        protected void UpdateInput(GameTime gameTime)
         {
             KeyboardState key = Keyboard.GetState();
             MouseState mouse = Mouse.GetState();
@@ -410,30 +377,27 @@ namespace WindowsGame1
                     playState = state.playing;
                 }
             }
-      if (key.IsKeyDown(Keys.Escape))
-            { this.Exit(); }
+
             IsGravity = true;
+
             if (key.IsKeyDown(Keys.Right))
             {
-                Movement = Direction.Right;
-
+                txtAnim.Position.Y += 1;
+                txtAnim.Update(gameTime, true);
             }
             else if (key.IsKeyDown(Keys.Left))
             {
-                Movement = Direction.Left;
-
+                txtAnim.Position.X -= 1;
+                txtAnim.Update(gameTime, true);
             }
             else if (key.IsKeyDown(Keys.Up))
             {
-                Movement = Direction.Up;
-
-                //bool
+                IsGravity = false;
+                txtAnim.Position.Y -= 2.5f;
+                txtAnim.Update(gameTime, false);
             }
             else
-            {
-                Movement = Direction.None;
-
-            }
+                txtAnim.Update(gameTime, false);
 
             // Allows the game to exit
             if (key.IsKeyDown(Keys.Escape))
@@ -450,8 +414,7 @@ namespace WindowsGame1
             {
                 particleEngine.emitFlag = false;
             }
-                float SpeedEmiter = 5, SpeedBox = 10;
-                float x1 = 0, x2 = 0, y1 = 0, y2 = 0;
+                float SpeedEmiter = 5, x1 = 0, y1 = 0;
                 if (key.IsKeyDown(Keys.W))
                     y1 -= SpeedEmiter;
                 if (key.IsKeyDown(Keys.S))
@@ -488,7 +451,7 @@ namespace WindowsGame1
         {
             if (fall)
             {
-                txVect.Y += GravityValue;//Gravity
+                txtAnim.Position.Y += GravityValue;//Gravity
             }
         }
         /// <summary>
