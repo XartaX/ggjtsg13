@@ -115,8 +115,17 @@ namespace WindowsGame1
 
         }
 
+        public void Draw(SpriteBatch spritebatch)
+        {
 
-        public void Draw(Camera spritebatch)
+            if (Active)
+            {
+
+                spritebatch.Draw(Spritestrip, Position, sourceRect, Color.White, 0, new Vector2(0, 0), Scale, SpriteEffects.None, 1);
+            }
+
+        }
+        public void Draw1(Camera spritebatch)
         {
 
             if (Active)

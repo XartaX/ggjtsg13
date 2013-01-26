@@ -117,7 +117,7 @@ namespace WindowsGame1
             spriteBatch = new SpriteBatch(GraphicsDevice);
             txture = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
             Black = Content.Load<Texture2D>("black");
-            txtAnim.Initialize(txture, txVect,200, 200, ScreenWidth, ScreenHeight, 4, 150, Color.White, true, 100);
+            txtAnim.Initialize(txture, txVect,200, 200, ScreenWidth, ScreenHeight, 4, 150, Color.White, true, 1 100);
             map.Initialize(Black);
             // TODO: use this.Content to load your game content here
             knappImg = Content.Load<Texture2D>("Solids/Square");
@@ -517,10 +517,10 @@ namespace WindowsGame1
                 particleEngine.Draw(spriteBatch);
                 // TODO: Add your drawing code here
                 //spriteBatch.Draw(txture, t//xVect, Color.White);
-                txtAnim.Draw(camera);
+                //txtAnim.Draw(camera);
                 //spriteBatch.Draw(foreground, new Vector2(2, 2), Color.White);
-                
-                //txtAnim.Draw(spriteBatch);
+
+                txtAnim.Draw(spriteBatch);
                 map.Draw(spriteBatch);
            
                 splitter.Draw(spriteBatch);
