@@ -107,7 +107,7 @@ namespace WindowsGame1
             spriteBatch = new SpriteBatch(GraphicsDevice);
             txture = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
             Black = Content.Load<Texture2D>("black");
-            txtAnim.Initialize(txture, txVect,200, 200, ScreenWidth, ScreenHeight, 4, 150, Color.White, true, 40);
+            txtAnim.Initialize(txture, txVect,200, 200, ScreenWidth, ScreenHeight, 4, 150, Color.White, true, 500);
             map.Initialize(Black);
             // TODO: use this.Content to load your game content here
             knappImg = Content.Load<Texture2D>("Solids/Square");
