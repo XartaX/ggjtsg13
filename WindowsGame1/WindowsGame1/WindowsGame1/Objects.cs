@@ -22,11 +22,11 @@ namespace WindowsGame1
         public int speed;
         public int counter=0;
       
-         public void addObject(ContentManager content, String texturePath, int x, int y, int ScreenWidth, int ScreenHeight)
+         public void addObject(ContentManager content, String texturePath, int locationX, int locationY, int ScreenWidth, int ScreenHeight)
          {
             
                  texture.Add(content.Load<Texture2D>("Elements/interactive/sheet/object__01"));
-                 positions.Add(new Vector2(x, y));
+                 positions.Add(new Vector2(locationX, locationY));
                  animations.Add(new Animation());
                  animations[counter].Initialize(texture[counter], positions[counter], 204, 320, ScreenWidth, ScreenHeight, 10, 100, Microsoft.Xna.Framework.Color.White, true, 100);
                  exists.Add(true);
