@@ -324,8 +324,7 @@ namespace WindowsGame1
                     playState = state.playing;
                 }
             }
-<<<<<<< .mine=======
->>>>>>> .theirs            if (key.IsKeyDown(Keys.Escape))
+      if (key.IsKeyDown(Keys.Escape))
             { this.Exit(); }
             IsGravity = true;
             if (key.IsKeyDown(Keys.Right))
@@ -430,8 +429,7 @@ namespace WindowsGame1
                 spriteBatch.Draw(play, new Rectangle(mouseX, mouseY, 20, 20), Color.White);
                 spriteBatch.End();
             }
-<<<<<<< .mine            map.Draw(spriteBatch);
-=======>>>>>>> .theirs
+
             if (playState == state.playing)
             {
                 GraphicsDevice.Clear(Color.CornflowerBlue);
