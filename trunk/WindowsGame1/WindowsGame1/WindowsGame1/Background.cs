@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using WindowsGame1.View;
 
 namespace WindowsGame1
 {
@@ -20,16 +21,24 @@ namespace WindowsGame1
             texture = new Texture2D[count];
             positions = new Vector2[count];
 
-            for (int i = 0; i < positions.Length; i++)
+            for (int i = 0; i < count; i++)
             {
-                texture[i] = content.Load<Texture2D>(texturePath+(i+1));
+                texture[i] = content.Load<Texture2D>(texturePath+(i+1).ToString().PadLeft(2,'0'));
             }
 
             this.speed = speed;
 
-            for (int i = 0; i < positions.Length; i++)
+            int counter = -1, mult = 0;
+            for (int i = 0; i < count; i++)
             {
-                positions[i] = new Vector2(i * texture[i].Width, 0);
+                if (counter == 3)
+                {
+                    mult++;
+                    counter = -1;
+                }
+                counter++;
+                positions[i] = new Vector2(counter * texture[i].Width, mult * texture[i].Height);
+                Console.WriteLine(("Y: " + mult * texture[i].Height).PadRight(8,' ') + "X: " + counter * texture[i].Width);
             }
 
 
@@ -67,11 +76,12 @@ namespace WindowsGame1
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(Camera spriteBatch)
         {
             for (int i = 0; i < positions.Length; i++)
             {
-                spriteBatch.Draw(texture[i], positions[i], Color.White);
+                SceneNode node = new SceneNode(texture[i], positions[i]);
+                spriteBatch.DrawNode(node);
             }
 
 
