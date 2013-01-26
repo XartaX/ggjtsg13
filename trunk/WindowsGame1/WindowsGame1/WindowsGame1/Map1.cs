@@ -16,15 +16,24 @@ namespace WindowsGame1
         {
             this.Black = Black;
             int StartX=50;
-            int StartY=400;
+            int StartY=600;
             Ground = new List<Vector2>();
             Wall = new List<Vector2>();
-            for (int i = 0; i < 49; i++)
+            for (int i = 0; i < 100; i++)
             {
                 Ground.Add(new Vector2(StartX, StartY));
                 StartX += 5;
-                StartY -= 5;
+                //StartY -= 5;
             }
+            StartX = 50;
+            StartY = 350;
+            for (int i = 0; i < 100; i++)
+            {
+                Ground.Add(new Vector2(StartX, StartY));
+                StartX += 5;
+                //StartY -= 5;
+            }
+
 
             StartX = 300;
             StartY = 300;

@@ -87,7 +87,7 @@ namespace WindowsGame1
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            txVect = new Vector2(150, 70);
+            txVect = new Vector2(150, 375);
             IsJumping = false;
             txtAnim = new Animation();
             map = new Map1();
@@ -105,9 +105,9 @@ namespace WindowsGame1
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            txture = Content.Load<Texture2D>("texture");
+            txture = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
             Black = Content.Load<Texture2D>("black");
-            txtAnim.Initialize(txture, txVect, 100, 100, 4, 500, Color.White, true);
+            txtAnim.Initialize(txture, txVect,200, 200, ScreenWidth, ScreenHeight, 4, 150, Color.White, true, 40);
             map.Initialize(Black);
             // TODO: use this.Content to load your game content here
             knappImg = Content.Load<Texture2D>("Solids/Square");
@@ -229,7 +229,15 @@ namespace WindowsGame1
                 {
                     if ((CharRect.Y + CharRect.Height) > MapRect.Y)
                     {
-                        txVect.Y = MapRect.Y - txture.Height;
+                        
+                        if (Movement == Direction.Up)
+                        {
+                            Movement = Direction.None;
+                        }
+                        else
+                        {
+                            txVect.Y = MapRect.Y - txture.Height;    
+                        }
                         if ((CharRect.Y + CharRect.Height + (GravityValue * 2) < MapRect.Y + MapRect.Height) && (Movement == Direction.Right))
                         {
                             Console.WriteLine("HammerTime!" + gameTime.TotalGameTime.Seconds);
@@ -433,7 +441,7 @@ namespace WindowsGame1
                 //spriteBatch.Draw(txture, t//xVect, Color.White);
                 txtAnim.Draw(spriteBatch);
                 map.Draw(spriteBatch);
-
+            
                 spriteBatch.End();
 
                 base.Draw(gameTime);

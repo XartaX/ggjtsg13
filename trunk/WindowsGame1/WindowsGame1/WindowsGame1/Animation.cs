@@ -18,13 +18,14 @@ namespace WindowsGame1
         Color color;
         Rectangle sourceRect;
         Rectangle destRect;
+        Single Scale;
         public int frameWidth;
         public int frameHeigth;
         public bool Active;
         public bool Looping;
         public Vector2 Position;
 
-        public void Initialize(Texture2D texture, Vector2 Position, int frameWidth, int frameHeigth, int frameCount, int frameTime, Color colour, bool Looping)
+        public void Initialize(Texture2D texture, Vector2 Position, int frameWidth, int frameHeigth, int ScreenWidth, int ScreenHeigth, int frameCount, int frameTime, Color colour, bool Looping, int Percentage)
         {
             this.color = colour;
             this.frameWidth = frameWidth;
@@ -34,14 +35,14 @@ namespace WindowsGame1
             this.Looping = Looping;
             this.Position = Position;
             Spritestrip = texture;
-
+            Scale = (float)((double)Percentage / (double)100);//Casting shit'n yo
             elapsedTime = 0;
             currentFrame = 0;
             Active = true;
 
 
             sourceRect = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeigth);
-            destRect = new Rectangle((int)Position.X, (int)Position.Y, frameWidth, frameHeigth);
+            destRect = new Rectangle((int)Position.X, (int)Position.Y, (int)(ScreenWidth * 0.01 * Percentage), (int)(ScreenHeigth * 0.01 * Percentage));
         }
 
         public void Update(GameTime gameTime)
@@ -72,7 +73,7 @@ namespace WindowsGame1
 
             destRect.X = (int)Position.X;
             destRect.Y = (int)Position.Y;
-            destRect.Width = frameWidth;
+            destRect.Width =  frameWidth;
             destRect.Height = frameHeigth;
 
 
@@ -120,7 +121,7 @@ namespace WindowsGame1
             if (Active)
             {
 
-                spritebatch.Draw(Spritestrip, destRect, sourceRect, Color.White);
+                spritebatch.Draw(Spritestrip, Position ,sourceRect, Color.White,0,new Vector2(0,0),Scale, SpriteEffects.None, 1);
             }
 
         }
