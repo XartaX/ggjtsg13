@@ -17,7 +17,6 @@ namespace WindowsGame1
         Backgrounds splitter = new Backgrounds();
         Objects staticObjects = new Objects();
 
-
         public void Initialize(Texture2D Black, ContentManager Content, int ScreenWidth, int ScreenHeight)
         {
             this.Black = Black;
