@@ -28,8 +28,7 @@ namespace WindowsGame1
 
             //vineWall = Content.Load<Texture2D>("vine-wall_204x320");
             splitter.Initialize(Content, "Foreground_tutorial/TutorialMap-foreground__", ScreenWidth, 0, 16);
-            staticObjects.Initialize(0, 1);
-            staticObjects.addObject(Content, "Elements/interactive/sheet/object__01", 1240, 280, ScreenWidth, ScreenHeight);
+            staticObjects.addObject(Content, "Elements/interactive/sheet/object__01", 1240, 285, ScreenWidth, ScreenHeight);
 
             for (int i = 0; i < 100; i++)
             {

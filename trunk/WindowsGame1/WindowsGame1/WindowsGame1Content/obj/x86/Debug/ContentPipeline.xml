@@ -218,13 +218,22 @@
       <Time>2013-01-26T16:43:12.1899037+01:00</Time>
     </Item>
     <Item>
-      <Source>tutorial_objects\vine-wall_204x320.png</Source>
-      <Name>tutorial_objects\vine-wall_204x320</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Source>Fonts\Lucida Console.spritefont</Source>
+      <Name>Fonts\Lucida Console</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\tutorial_objects\vine-wall_204x320.xnb</Output>
-      <Time>2013-01-26T17:16:10.2120401+01:00</Time>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Fonts\Lucida Console.xnb</Output>
+      <Time>2013-01-26T21:30:29.4508186+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\TestFont.spritefont</Source>
+      <Name>Fonts\TestFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Fonts\TestFont.xnb</Output>
+      <Time>2013-01-26T21:30:29.4528187+01:00</Time>
     </Item>
     <Item>
       <Source>Elements\interactive\fruit-fire123x128.png</Source>
@@ -270,6 +279,33 @@
       <Options>None</Options>
       <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\object__01.xnb</Output>
       <Time>2013-01-26T16:31:26.9425658+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Elements\interactive\sheet\vine-wall_204x320.png</Source>
+      <Name>Elements\interactive\sheet\vine-wall_204x320</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\vine-wall_204x320.xnb</Output>
+      <Time>2013-01-26T21:30:28.7777801+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Elements\interactive\Vine-wall.png</Source>
+      <Name>Elements\interactive\Vine-wall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\Vine-wall.xnb</Output>
+      <Time>2013-01-26T21:30:30.8949012+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Elements\interactive\water_1604x433.png</Source>
+      <Name>Elements\interactive\water_1604x433</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\water_1604x433.xnb</Output>
+      <Time>2013-01-26T21:30:30.8999015+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
