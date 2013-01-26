@@ -35,14 +35,14 @@ namespace WindowsGame1
             }
 
 
-            StartX = 300;
-            StartY = 300;
-            for (int i = 0; i < 60; i++)
-            {
-                Wall.Add(new Vector2(StartX, StartY));
-                StartY -= 5;
+            //StartX = 300;
+            //StartY = 300;
+            //for (int i = 0; i < 60; i++)
+            //{
+            //    Wall.Add(new Vector2(StartX, StartY));
+            //    StartY -= 5;
                 
-            }
+            //}
 
         }
 

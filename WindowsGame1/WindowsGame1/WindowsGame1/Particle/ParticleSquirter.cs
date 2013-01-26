@@ -35,7 +35,7 @@ namespace WindowsGame1.Particle
         private void runParticleMovement()
         {
             if(total<2000 & emitFlag)
-                total += 100;
+                total += 0;
 
             int SafeIndex = -1;
             for (int particle = 0; particle < particles.Count; particle++)
