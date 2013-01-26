@@ -9,7 +9,7 @@ using WindowsGame1.View;
 
 namespace WindowsGame1
 {
-    class Animation
+    public class Animation
     {
         Texture2D Spritestrip;
         int elapsedTime;
@@ -41,7 +41,6 @@ namespace WindowsGame1
             currentFrame = 0;
             Active = true;
 
-
             sourceRect = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeigth);
             destRect = new Rectangle((int)Position.X, (int)Position.Y, (int)(ScreenWidth * 0.01 * Percentage), (int)(ScreenHeigth * 0.01 * Percentage));
         }
@@ -70,6 +69,10 @@ namespace WindowsGame1
             sourceRect.Width = frameWidth;
             sourceRect.Height = frameHeigth;
         }
+        public void updatePos(Vector2 pos)
+        {
+            this.Position = pos;
+        }
 
         public void ChangeFrame()
         {
@@ -88,7 +91,8 @@ namespace WindowsGame1
         public void Draw(SpriteBatch spritebatch)
         {
             if (Active)
-                spritebatch.Draw(Spritestrip, Position, sourceRect, Color.White, 0, new Vector2(0, 0), Scale, SpriteEffects.None, 1);
+                spritebatch.Draw(Spritestrip, Position, sourceRect, Color.White, 
+                    0, new Vector2(0, 0), Scale, SpriteEffects.None, 1);
         }
     }
 }
