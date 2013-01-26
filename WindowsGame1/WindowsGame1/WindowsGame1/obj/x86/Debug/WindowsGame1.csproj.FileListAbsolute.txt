@@ -88,3 +88,5 @@ C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x8
 C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__14.xnb
 C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__15.xnb
 C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Foreground_tutorial\TutorialMap-foreground__16.xnb
+C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Fonts\Lucida Console.xnb
+C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Fonts\TestFont.xnb

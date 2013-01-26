@@ -23,7 +23,7 @@ namespace WindowsGame1
     {
         Random random = new Random();
         GraphicsDeviceManager graphics;
-        enum state {playing, pause, menu, gameOver};
+        enum state { playing, pause, menu, gameOver };
         state playState = state.menu;
         int mouseX;
         int mouseY;
@@ -31,7 +31,7 @@ namespace WindowsGame1
 
         //Menu buttons
         Texture2D play;
-       
+
         //Sprite Text
         SpriteFont spriteFont;
 
@@ -60,15 +60,17 @@ namespace WindowsGame1
         //Location of Emitter
         Vector3 SpritePosi = Vector3.Zero;
 
-        bool bFullScreen = false;
+        bool bFullScreen = true;
         public int ScreenHeight, ScreenWidth;
         int frameRate = 0, frameCounter = 0;
         TimeSpan elapsedTime = TimeSpan.Zero;
 
+        float pst10Xangle, pst10Yangle;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            IsFixedTimeStep = true;//Ulåst fps
             Content.RootDirectory = "Content";
             InitGraphicsMode();
         }
@@ -82,7 +84,6 @@ namespace WindowsGame1
             graphics.PreferredBackBufferHeight = ScreenHeight;
             graphics.IsFullScreen = bFullScreen;
             graphics.PreferMultiSampling = true;
-
             graphics.ApplyChanges();
         }
 
@@ -94,6 +95,8 @@ namespace WindowsGame1
         /// </summary>
         protected override void Initialize()
         {
+            pst10Xangle = ScreenWidth * 0.1f;
+            pst10Yangle = ScreenHeight * 0.1f;
             // TODO: Add your initialization logic here
             IsJumping = false;
             txtAnim = new Animation();
@@ -157,8 +160,9 @@ namespace WindowsGame1
             play = Content.Load<Texture2D>("Elements/Particles/Water/DarkBlue");
 
             particleEngine = new ParticleSquirter(ParticleTex, new Vector3((float)random.Next(500), (float)random.Next(500), (float)random.Next(500)));
-            /*
+            
             spriteFont = Content.Load<SpriteFont>("Fonts/TestFont");
+            /*
             SoundEmber = Content.Load<SoundEffect>("Sound/Ember");
             soundEffectInstance = SoundEmber.CreateInstance();*/
         }
@@ -171,39 +175,6 @@ namespace WindowsGame1
         {
             // TODO: Unload any non ContentManager content here
         }
-        ParticleSquirter p1, p2, p3, p4;
-        private void runFaun()
-        {
-            p1 = new ParticleSquirter(ParticleTex, new Vector3(200, 300, 0));
-            p1.Shei = ScreenHeight;
-            p1.Swid = ScreenWidth;
-            p1.emitFlag = true;
-
-        }
-        private void runFaun2()
-        {
-            p2 = new ParticleSquirter(ParticleTex, new Vector3(400, 500, 0));
-            p2.Shei = ScreenHeight;
-            p2.Swid = ScreenWidth;
-            p2.emitFlag = true;
-
-        }
-        private void runFaun3()
-        {
-            p3 = new ParticleSquirter(ParticleTex, new Vector3(600, 450, 0));
-            p3.Shei = ScreenHeight;
-            p3.Swid = ScreenWidth;
-            p3.emitFlag = true;
-
-        }
-        private void runFaun4()
-        {
-            p4 = new ParticleSquirter(ParticleTex, new Vector3(900, 300, 0));
-            p4.Shei = ScreenHeight;
-            p4.Swid = ScreenWidth;
-            p4.emitFlag = true;
-
-        }
         bool once = false;
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -211,34 +182,23 @@ namespace WindowsGame1
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
-        {            
+        {
             // move camera with keyboard
             MoveCamera();
             // cap the camera to the world width/height.
             CapCameraPosition();
 
-            if (p1 != null)
-                p1.Update();
-            if (p2 != null)
-                p2.Update();
-            if (p3 != null)
-                p3.Update();
-            if (p4 != null)
-                p4.Update();
-            if (!once)
-            {
-                Thread th = new Thread(new ThreadStart(runFaun));
-                th.Start();
-                Thread th2 = new Thread(new ThreadStart(runFaun2));
-                th2.Start();
-                Thread th3 = new Thread(new ThreadStart(runFaun3));
-                th3.Start();
-                Thread th4 = new Thread(new ThreadStart(runFaun4));
-                th4.Start();
-                once = true;
-            }
             UpdateInput(gameTime);
-            
+            elapsedTime += gameTime.ElapsedGameTime;
+
+            if (elapsedTime > TimeSpan.FromSeconds(1))
+            {
+                elapsedTime -= TimeSpan.FromSeconds(1);
+                frameRate = frameCounter;
+                frameCounter = 0;
+            }
+            //SoundUpdate();
+
             // TODO: Add your update logic here
 
             //Collision detection
@@ -275,7 +235,6 @@ namespace WindowsGame1
             if (CollisionDetection(CharRect.X + CharRect.Width, CharRect.Y + (CharRect.Height / 2)))//middle right
             {
                 Crashdirection[1] = true;
-
             }
             if (CollisionDetection(CharRect.X, CharRect.Y + CharRect.Height))//bottom left
             {
@@ -378,7 +337,7 @@ namespace WindowsGame1
 
             IsGravity = true;
 
-            if      (key.IsKeyDown(Keys.Right)&&!Crashdirection[1])
+            if (key.IsKeyDown(Keys.Right)&&!Crashdirection[1])
             {
                 txtAnim.Position.Y += 1;
                 txtAnim.Update(gameTime, true);
@@ -404,7 +363,7 @@ namespace WindowsGame1
                 this.Exit();
             }
 
-            if (key.IsKeyDown(Keys.Space))
+            if (key.IsKeyDown(Keys.Space) || playState == state.menu)
             {
                 particleEngine.emitFlag = true;
             }
@@ -412,17 +371,17 @@ namespace WindowsGame1
             {
                 particleEngine.emitFlag = false;
             }
-                float SpeedEmiter = 5, x1 = 0, y1 = 0;
-                if (key.IsKeyDown(Keys.W))
-                    y1 -= SpeedEmiter;
-                if (key.IsKeyDown(Keys.S))
-                    y1 += SpeedEmiter;
-                if (key.IsKeyDown(Keys.D))
-                    x1 += SpeedEmiter;
-                if (key.IsKeyDown(Keys.A))
-                    x1 -= SpeedEmiter;
-                SpritePosi += new Vector3(x1, y1, 0.0f);
-            
+            float SpeedEmiter = 5, x1 = 0, y1 = 0;
+            if (key.IsKeyDown(Keys.W))
+                y1 -= SpeedEmiter;
+            if (key.IsKeyDown(Keys.S))
+                y1 += SpeedEmiter;
+            if (key.IsKeyDown(Keys.D))
+                x1 += SpeedEmiter;
+            if (key.IsKeyDown(Keys.A))
+                x1 -= SpeedEmiter;
+            SpritePosi += new Vector3(x1, y1, 0.0f);
+
             if (SpritePosi.X >= ScreenWidth)
             {
                 SpritePosi = new Vector3(0.0f, SpritePosi.Y, 0.0f);
@@ -439,7 +398,7 @@ namespace WindowsGame1
             {
                 SpritePosi = new Vector3(SpritePosi.X, (float)ScreenHeight, 0.0f);
             }
-            particleEngine.EmitterLocation = SpritePosi;
+            particleEngine.EmitterLocation = new Vector3(mouseX,mouseY,0);
             particleEngine.frameRate = frameRate;
             particleEngine.Update();
             particleEngine.Shei = ScreenHeight;
@@ -459,27 +418,24 @@ namespace WindowsGame1
         protected override void Draw(GameTime gameTime)
         {
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend,
-                SamplerState.AnisotropicClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                       
+            frameCounter++;
+            spriteBatch.Begin();
+
             //spriteBatch.Draw(txture, t//xVect, Microsoft.Xna.Framework.Color.White);
             if (playState == state.menu)
             {
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
                 spriteBatch.Draw(play, new Microsoft.Xna.Framework.Rectangle(900, 500, 100, 100), Microsoft.Xna.Framework.Color.White);
-                spriteBatch.Draw(play, new Microsoft.Xna.Framework.Rectangle(mouseX, mouseY, 20, 20), Microsoft.Xna.Framework.Color.White);
+                particleEngine.Draw(spriteBatch);
+                
             }
 
             if (playState == state.playing)
             {
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Gray);
-                
+
                 particleEngine.Draw(spriteBatch);
-                p1.Draw(spriteBatch);
-                p2.Draw(spriteBatch);
-                p3.Draw(spriteBatch);
-                p4.Draw(spriteBatch);
-                
+
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
                 particleEngine.Draw(spriteBatch);
                 // TODO: Add your drawing code here
@@ -489,20 +445,24 @@ namespace WindowsGame1
 
                 txtAnim.Draw(spriteBatch);
                 map.Draw(spriteBatch);
-           
-                splitter.Draw(camera);
-            }
 
+                splitter.Draw(camera);
                 foreach (SceneNode node in nodeList)
                 {
                     camera.DrawNode(node);
                 }
-                spriteBatch.End();
-                base.Draw(gameTime);    
+            }
+
+            spriteBatch.DrawString(spriteFont,
+                 "FPS: " + frameRate,
+                new Vector2(pst10Xangle, ScreenHeight - pst10Yangle),
+               Microsoft.Xna.Framework.Color.OrangeRed);
+            spriteBatch.End();
+            base.Draw(gameTime);
         }
-            
-        }
-        
-        //private Camera camera;
+
     }
+
+    //private Camera camera;
+}
 
