@@ -4,3 +4,5 @@ Content\Elements\Particles\Water\DarkBlue.xnb
 Content\Elements\Particles\Water\Blue.xnb
 Content\Elements\Particles\Water\LightBlue.xnb
 Content\Solids\Square.xnb
+Content\spritesheets\base_Jump_200x200px.xnb
+Content\spritesheets\base_Walk_200x200px.xnb
