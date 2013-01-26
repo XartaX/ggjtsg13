@@ -109,6 +109,8 @@
   <ItemGroup>
     <Compile Include="Animation.cs" />
     <Compile Include="Map1.cs" />
+    <Compile Include="Particle\ParticleSquirter.cs" />
+    <Compile Include="Particle\ParticleStat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
