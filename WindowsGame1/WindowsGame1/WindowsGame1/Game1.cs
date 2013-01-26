@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using WindowsGame1.Particle;
 using System.Threading;
+using WindowsGame1.View;
 
 namespace WindowsGame1
 {
@@ -103,8 +104,13 @@ namespace WindowsGame1
         /// all of your content.
         /// </summary>
         Texture2D knappImg;
+        private int worldWidth;
+        private int worldHeight;
+        private int maxSpriteNum;
+        private List<SceneNode> nodeList;
         protected override void LoadContent()
         {
+            maxSpriteNum = 100;
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             txture = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
@@ -118,6 +124,19 @@ namespace WindowsGame1
             ParticleTex.Add(Content.Load<Texture2D>("Elements/Particles/Water/Blue"));
             ParticleTex.Add(Content.Load<Texture2D>("Elements/Particles/Water/LightBlue"));
             ParticleTex.Add(Content.Load<Texture2D>("Solids/Square"));
+
+            camera = new Camera(spriteBatch);
+            nodeList = new List<SceneNode>();
+            worldHeight = 4000;
+            worldWidth = 4000;
+            Random randNums = new Random();
+            for (int i = 0; i < maxSpriteNum; i++)
+            {
+                SceneNode node = new SceneNode(knappImg, new Vector2(randNums.Next(worldWidth), randNums.Next(worldHeight)));
+                nodeList.Add(node);
+            }
+            // put camera in middle of world
+            camera.Position = new Vector2(0, 0);
 
             //Load terrain
             splitter.Initialize(Content, "Foreground_tutorial/TutorialMap-foreground__0", ScreenWidth, 0, 4);
@@ -181,7 +200,12 @@ namespace WindowsGame1
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
-        {
+        {            
+            // move camera with keyboard
+            MoveCamera();
+            // cap the camera to the world width/height.
+            CapCameraPosition();
+
             if (p1 != null)
                 p1.Update();
             if (p2 != null)
@@ -316,6 +340,54 @@ namespace WindowsGame1
 
             base.Update(gameTime);
         }
+        private void CapCameraPosition()
+        {
+            Vector2 cameraPosition = camera.Position;
+            if (cameraPosition.X > worldWidth - graphics.GraphicsDevice.Viewport.Width)
+            {
+                cameraPosition.X = worldWidth - graphics.GraphicsDevice.Viewport.Width;
+            }
+            if (cameraPosition.X < 0)
+            {
+                cameraPosition.X = 0;
+            }
+            if (cameraPosition.Y > worldHeight - graphics.GraphicsDevice.Viewport.Height)
+            {
+                cameraPosition.Y = worldHeight - graphics.GraphicsDevice.Viewport.Height;
+            }
+            if (cameraPosition.Y < 0)
+            {
+                cameraPosition.Y = 0;
+            }
+            camera.Position = cameraPosition;
+        }
+
+        private void MoveCamera()
+        {
+            // make keyboard move the camera
+            KeyboardState ks = Keyboard.GetState();
+            Keys[] keys = ks.GetPressedKeys();
+            float speed = 5.0f;
+            foreach (Keys key in keys)
+            {
+                switch (key)
+                {
+                    case Keys.W:
+                        camera.Translate(new Vector2(0, -speed));
+                        break;
+                    case Keys.D:
+                        camera.Translate(new Vector2(speed, 0));
+                        break;
+                    case Keys.S:
+                        camera.Translate(new Vector2(0, speed));
+                        break;
+                    case Keys.A:
+                        camera.Translate(new Vector2(-speed, 0));
+                        break;
+                }
+            }
+        }
+
         protected void UpdateInput()
         {
             KeyboardState key = Keyboard.GetState();
@@ -418,29 +490,32 @@ namespace WindowsGame1
         protected override void Draw(GameTime gameTime)
         {
 
-            particleEngine.Draw(spriteBatch);
-            p1.Draw(spriteBatch);
-            p2.Draw(spriteBatch);
-            p3.Draw(spriteBatch);
-            p4.Draw(spriteBatch);
-            // TODO: Add your drawing code here
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend,
+                SamplerState.AnisotropicClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                       
             //spriteBatch.Draw(txture, t//xVect, Color.White);
-            txtAnim.Draw(spriteBatch);
             if (playState == state.menu)
             {
-                GraphicsDevice.Clear(Color.Black); 
+                GraphicsDevice.Clear(Color.Black);
                 spriteBatch.Draw(play, new Rectangle(900, 500, 100, 100), Color.White);
                 spriteBatch.Draw(play, new Rectangle(mouseX, mouseY, 20, 20), Color.White);
-               
             }
 
             if (playState == state.playing)
             {
                 GraphicsDevice.Clear(Color.Gray);
-                //particleEngine.Draw(spriteBatch);
+                
+                particleEngine.Draw(spriteBatch);
+                p1.Draw(spriteBatch);
+                p2.Draw(spriteBatch);
+                p3.Draw(spriteBatch);
+                p4.Draw(spriteBatch);
+                
+                GraphicsDevice.Clear(Color.CornflowerBlue);
+                particleEngine.Draw(spriteBatch);
                 // TODO: Add your drawing code here
                 //spriteBatch.Draw(txture, t//xVect, Color.White);
+                txtAnim.Draw(camera);
                 //spriteBatch.Draw(foreground, new Vector2(2, 2), Color.White);
                 
                 txtAnim.Draw(spriteBatch);
@@ -449,8 +524,15 @@ namespace WindowsGame1
                 splitter.Draw(spriteBatch);
             }
 
+                foreach (SceneNode node in nodeList)
+                {
+                    camera.DrawNode(node);
+                }
+            }
             spriteBatch.End();
             base.Draw(gameTime);
         }
+        
+        private Camera camera;
     }
 }

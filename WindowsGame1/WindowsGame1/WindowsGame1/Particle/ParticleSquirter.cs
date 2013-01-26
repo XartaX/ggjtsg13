@@ -96,10 +96,6 @@ namespace WindowsGame1.Particle
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend,
-                SamplerState.AnisotropicClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                       
             for (int index = 0; index < particles.Count; index++)
             {
                 particles[index].Draw(spriteBatch);
@@ -110,7 +106,6 @@ namespace WindowsGame1.Particle
                 0, new Vector2(1.0f, 1.0f), 5.0f, SpriteEffects.None, 0f);
 
 
-            spriteBatch.End();
 
         }
     }

@@ -115,6 +115,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="View\Camera.cs" />
+    <Compile Include="View\SceneNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

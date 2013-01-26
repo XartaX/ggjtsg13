@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using WindowsGame1.View;
 
 namespace WindowsGame1
 {
@@ -115,13 +116,14 @@ namespace WindowsGame1
         }
 
 
-        public void Draw(SpriteBatch spritebatch)
+        public void Draw(Camera spritebatch)
         {
 
             if (Active)
             {
-
-                spritebatch.Draw(Spritestrip, Position ,sourceRect, Color.White,0,new Vector2(0,0),Scale, SpriteEffects.None, 1);
+                SceneNode node = new SceneNode(Spritestrip,Position);
+                spritebatch.DrawNode(node);
+                
             }
 
         }
