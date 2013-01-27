@@ -29,7 +29,7 @@ namespace WindowsGame1
             //vineWall = Content.Load<Texture2D>("vine-wall_204x320");
             splitter.Initialize(Content, "Foreground_tutorial/TutorialMap-foreground__", ScreenWidth, 0, 16);
             Objects.addObject(Content, "Elements/interactive/sheet/object__01", 1240, 285, ScreenWidth, ScreenHeight, 204, 320, 100, 10);
-            Objects.addObject(Content, "Elements/interactive/sheet/object__02", 2800, 420, ScreenWidth, ScreenHeight, 430, 350, 100, 4);
+            Objects.addObject(Content, "Elements/interactive/sheet/object__02", 2800, 420, ScreenWidth, ScreenHeight, 430, 350, 150, 4);
             for (int i = 0; i < 10; i++)
             {
                 paths.Add("Elements/interactive/sheet/boiling-water/boil-water_" + (i + 1).ToString().PadLeft(2, '0'));
