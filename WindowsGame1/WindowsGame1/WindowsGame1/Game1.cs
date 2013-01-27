@@ -217,7 +217,8 @@ namespace WindowsGame1
                 FireEmitterWCY > 285 && FireEmitterWCY < 605)
             {
                 if (map.vineDestroyed == false)
-                {   Console.WriteLine("Success!");
+                {   
+                    Console.WriteLine("Success!");
                     map.vineDestroyed = true;
                 }
                 shootTime = 0;

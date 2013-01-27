@@ -61,7 +61,7 @@ namespace WindowsGame1
                      {
                          if (Looping == false)
                          {
-                             Animate = false;
+                             Active = false;
                              return;
                          }
                          currentFrame = 0;
