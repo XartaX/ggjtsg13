@@ -32,6 +32,7 @@ namespace WindowsGame1.Particle
             textures = Textures;
             particles = new List<ParticleStat>();
         }
+        public bool exploding = false;
         private void runParticleMovement()
         {
             if (total < 10000 & emitFlag)
@@ -49,6 +50,7 @@ namespace WindowsGame1.Particle
                 }
                 else
                 {
+                    particles[particle].exploding = exploding;
                     if (particles[particle].TTL <= 0)
                     {
                         particles.RemoveAt(particle);
@@ -78,6 +80,7 @@ namespace WindowsGame1.Particle
             runonce = false;
             runParticleMovement();
         }
+        public float Spread = 1;
         private void GenerateNewParticle()
         {
             /* velocity begynner i 4 kvadrant, så trekkes fra 1 
@@ -92,7 +95,7 @@ namespace WindowsGame1.Particle
                 );
 
             int ttl = random.Next(25);
-            Vector3.Divide(ref velocity, 1, out velocity);
+            Vector3.Divide(ref velocity, Spread, out velocity);
             pcount++;
             particles.Add(new ParticleStat(textures[0], EmitterLocation, velocity, new Color(125, 125, 125, 1), 1.0f, ttl, Shei, Swid));
         }

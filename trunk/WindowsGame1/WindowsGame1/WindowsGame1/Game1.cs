@@ -53,7 +53,7 @@ namespace WindowsGame1
         System.Drawing.Bitmap Collisionbmp;
 
         //Particle land
-        ParticleSquirter particleEngine,BallParticle;
+        ParticleSquirter particleEngine,FireParticle;
         List<Texture2D> WaterParticleTexture = new List<Texture2D>();
         List<Texture2D> FireParticleTexture = new List<Texture2D>();
         //Sound Engine
@@ -118,6 +118,7 @@ namespace WindowsGame1
         /// </summary>
         private int worldWidth;
         private int worldHeight;
+        List<Texture2D> StoryBoard = new List<Texture2D>();
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -148,6 +149,9 @@ namespace WindowsGame1
             FireParticleTexture.Add(Content.Load<Texture2D>("Elements/Particles/Fire/RedFire"));
             FireParticleTexture.Add(Content.Load<Texture2D>("Solids/Square"));
 
+            for(int a = 1; a < 18;a++){
+            StoryBoard.Add(Content.Load<Texture2D>("storyboard/intro/intro_"+a.ToString().PadLeft(2,'0')));
+            }
 
             camera = new Camera(spriteBatch);
             worldHeight = 5000;
@@ -159,12 +163,12 @@ namespace WindowsGame1
             play = Content.Load<Texture2D>("Solids/Square");
 
             particleEngine = new ParticleSquirter(WaterParticleTexture, new Vector3((float)random.Next(500), (float)random.Next(500), (float)random.Next(500)));
-            BallParticle = new ParticleSquirter(FireParticleTexture, new Vector3((float)random.Next(500), (float)random.Next(500), (float)random.Next(500)));
-            BallParticle.EmitterLocation = new Vector3(MainCharracter.Position.X + SpriteMoover, MainCharracter.Position.Y, 0);
-            BallParticle.frameRate = frameRate;
-            BallParticle.Shei = ScreenHeight;
-            BallParticle.Swid = ScreenWidth;
-            BallParticle.emitFlag = true;
+            FireParticle = new ParticleSquirter(FireParticleTexture, new Vector3((float)random.Next(500), (float)random.Next(500), (float)random.Next(500)));
+            FireParticle.EmitterLocation = new Vector3(MainCharracter.Position.X + SpriteMoover, MainCharracter.Position.Y, 0);
+            FireParticle.frameRate = frameRate;
+            FireParticle.Shei = ScreenHeight;
+            FireParticle.Swid = ScreenWidth;
+            FireParticle.emitFlag = true;
 
             spriteFont = Content.Load<SpriteFont>("Fonts/TestFont");
             /*
@@ -279,19 +283,13 @@ namespace WindowsGame1
         }
         private bool CollisionDetection(int PosX, int PosY)
         {
-        //    Console.Clear();
-        //    Console.WriteLine(Collisionbmp.GetPixel(PosX, PosY).R);
-            //if (Collisionmap[PosX ,PosY] == System.Drawing.Color.White)
-            if (Collisionbmp.GetPixel(PosX ,PosY).R==255)
-            {
-                //Console.WriteLine("XXXXXXXXXXXXXXX");
+            if (PosX > 0 && PosY > 0 && PosX < Collisionbmp.Width && PosY < Collisionbmp.Height)
+                if (Collisionbmp.GetPixel(PosX, PosY).R == 255)//Collision true
+                    return true;
+                else//Collision false
+                    return false;
+            else 
                 return true;
-            }
-            else
-            {
-                //Console.WriteLine("-------------------");
-                return false;
-            }
         }
         private void CapCameraPosition()
         {
@@ -316,6 +314,9 @@ namespace WindowsGame1
         }
 
         float speed = 5.0f;
+        bool shoot =  false;
+        bool ShootInProgress = false;
+        int shootTime;
         protected void UpdateInput(GameTime gameTime)
         {
             KeyboardState key = Keyboard.GetState();
@@ -339,7 +340,7 @@ namespace WindowsGame1
                 MainCharracter.Position.X += 1;
                 MainCharracter.Update(gameTime);
                 IsGravity = true;
-                if (SpriteMoover >= 0)
+                if (SpriteMoover >= 0 && !ShootInProgress)
                 {
                     SpriteMoover -= 3;
                 }
@@ -351,7 +352,7 @@ namespace WindowsGame1
                 MainCharracter.Animate = true;
                 MainCharracter.Update(gameTime);
                 IsGravity = true;
-                if (SpriteMoover <= 200)
+                if (SpriteMoover <= 200 && !ShootInProgress)
                 {
                     SpriteMoover += 3;
                 }
@@ -376,6 +377,10 @@ namespace WindowsGame1
                 GravityValue = 0;
                 MainCharracter.Position.Y -= 2.5f;
                 MainCharracter.Update(gameTime);
+                if (ShootInProgress)
+                {
+                    FireParticle.EmitterLocation += new Vector3(0, 2.5f, 0);
+                }
             }
             else
             {
@@ -388,18 +393,60 @@ namespace WindowsGame1
                 camera.Translate(new Vector2(0, speed + speed));
                 MainCharracter.Position.Y += 2.5f;
                 MainCharracter.Update(gameTime);
+                if (ShootInProgress)
+                {
+                    FireParticle.EmitterLocation += new Vector3(0, -2.5f, 0);
+                }
             }
 
-            BallParticle.EmitterLocation = new Vector3(MainCharracter.Position.X + SpriteMoover, MainCharracter.Position.Y, 0);
             // Allows the game to exit
             if (key.IsKeyDown(Keys.Escape))
             {
                 particleEngine.exit = true;
-                BallParticle.exit = true;
+                FireParticle.exit = true;
                 this.Exit();
             }
+            if (shoot && key.IsKeyUp(Keys.Space))
+            {
+                shoot = false;
+                ShootInProgress = true;
+                shootTime = 100;
+            }
+            if (ShootInProgress)
+            {
+                shootTime--;
+                FireParticle.EmitterLocation += new Vector3(5, 0, 0);
+                if (shootTime == 0)
+                {
+                    ShootInProgress = false;
+                    ShootExplode = true;
+                    ExplodeCount = 7;
+                    FireParticle.exploding = true;
+                    FireParticle.Spread = (float)(1 / 5d);
+                }
+            }
+            else if (shootTime == 0 && ShootExplode)
+            {
+                ExplodeCount--;
+                if (ExplodeCount == 0)
+                {
 
-            if (key.IsKeyDown(Keys.Space) || playState == state.menu)
+                    ShootExplode = false;
+                    FireParticle.exploding = false;
+                    FireParticle.Spread = 1f;
+                }
+            }
+            else
+            {
+                FireParticle.EmitterLocation = new Vector3(MainCharracter.Position.X + SpriteMoover, MainCharracter.Position.Y, 0);
+            }
+
+            if (key.IsKeyDown(Keys.Space) && !shoot && !ShootExplode && !ShootInProgress)
+            {
+                shoot = true;
+                particleEngine.emitFlag = true;
+            }
+            else if (playState == state.menu)
             {
                 particleEngine.emitFlag = true;
             }
@@ -434,15 +481,39 @@ namespace WindowsGame1
             {
                 SpritePosi = new Vector3(SpritePosi.X, (float)ScreenHeight, 0.0f);
             }
-            BallParticle.Update();
+            FireParticle.Update();
 
             particleEngine.EmitterLocation = new Vector3(mouseX,mouseY,0);
             particleEngine.frameRate = frameRate;
             particleEngine.Update();
             particleEngine.Shei = ScreenHeight;
             particleEngine.Swid = ScreenWidth;
+            if (key.IsKeyDown(Keys.Enter) && playState == state.menu)
+            {
+                progressBoard = true;
+            }
+            if (key.IsKeyUp(Keys.Enter) && progressBoard && playState == state.menu)
+            {
+                if (StoryBoard.Count< storyCount + 2)
+                {
 
+                    playState = state.playing;
+                }
+                else
+                {
+                    storyCount++;
+                    progressBoard = false;
+                }
+
+            }
+            if (key.IsKeyDown(Keys.Escape) && playState == state.menu)
+            {
+                playState = state.playing;
+            }
         }
+        bool progressBoard = false;
+        bool ShootExplode = false;
+        int ExplodeCount = 0;
         public void Gravity(bool fall)
         {
             if (fall && !CrashDirection[2])
@@ -458,6 +529,7 @@ namespace WindowsGame1
                     
                 }
         }
+        int storyCount = 0;
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -471,15 +543,13 @@ namespace WindowsGame1
             if (playState == state.menu)
             {
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
-                spriteBatch.Draw(play, new Microsoft.Xna.Framework.Rectangle(900, 500, 100, 100), Microsoft.Xna.Framework.Color.White);
+                spriteBatch.Draw(StoryBoard[storyCount], new Microsoft.Xna.Framework.Rectangle(0, 0, ScreenWidth, ScreenHeight), Color.White);
                 particleEngine.Draw(spriteBatch);
                 
             }
 
             if (playState == state.playing)
             {
-                GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Gray);
-                BallParticle.Draw(spriteBatch);
                 particleEngine.Draw(spriteBatch);
 
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
@@ -493,6 +563,7 @@ namespace WindowsGame1
 
                 //splitter.Draw(camera);
                 map.Draw(spriteBatch, camera);
+                FireParticle.Draw(spriteBatch);
             }
 
             spriteBatch.DrawString(spriteFont,

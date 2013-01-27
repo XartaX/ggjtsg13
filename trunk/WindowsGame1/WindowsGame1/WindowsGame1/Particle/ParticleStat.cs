@@ -30,6 +30,7 @@ namespace WindowsGame1.Particle
         }
         int iWidth;
         int iHeight;
+        public bool exploding = false;
         public bool IsSmoke = false;
         public bool IsRed = false;
         public bool p1 = false, p2 = false;
@@ -62,16 +63,20 @@ namespace WindowsGame1.Particle
             {
                 Position += a;
                 
-                if (TTL == 150)
+                if (TTL == 1)
                 {
                     IsRed = true;
                     //color = new Color(TTL, TTL, TTL, 1);
                 }
-                if (TTL == 50)
+                if (TTL == 5)
                 {
                     IsSmoke = true;
                     IsRed = false;
                     //color = new Color(TTL, TTL, TTL, 1);
+                }
+                if (exploding)
+                {
+                    Size += 0.7f;
                 }
                 if (IsSmoke)
                 {
@@ -80,7 +85,6 @@ namespace WindowsGame1.Particle
                         Texture = textures[2];
                         p2 = true;
                     }
-                    Size += 0.5f;
                 }
                 else if (IsRed && Size <= 5)
                 {
@@ -89,7 +93,7 @@ namespace WindowsGame1.Particle
                         Texture = textures[1];
                         p1 = true;
                     }
-                    Size += 0.3f;
+                    //Size += 0.1f;
                 }
             }
             Velocity = new Vector3(SaveVelocity.X, SaveVelocity.Y - (float)0.01, 0.0f); //Pop
