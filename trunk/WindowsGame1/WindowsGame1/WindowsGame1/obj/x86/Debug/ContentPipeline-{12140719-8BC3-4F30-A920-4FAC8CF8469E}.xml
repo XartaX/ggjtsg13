@@ -647,7 +647,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_15.xnb</Output>
-      <Time>2013-01-27T11:20:54.1734467+01:00</Time>
+      <Time>2013-01-27T14:42:23.7524677+01:00</Time>
     </Item>
     <Item>
       <Source>storyboard\intro\intro_16.png</Source>
@@ -656,7 +656,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_16.xnb</Output>
-      <Time>2013-01-27T11:20:54.2044672+01:00</Time>
+      <Time>2013-01-27T14:42:23.7724793+01:00</Time>
     </Item>
     <Item>
       <Source>storyboard\intro\intro_17.png</Source>
@@ -665,7 +665,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_17.xnb</Output>
-      <Time>2013-01-27T11:20:54.2144739+01:00</Time>
+      <Time>2013-01-27T14:42:23.7834869+01:00</Time>
     </Item>
     <Item>
       <Source>Elements\interactive\sheet\object__05.png</Source>
@@ -675,6 +675,24 @@
       <Options>None</Options>
       <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\object__05.xnb</Output>
       <Time>2013-01-27T12:32:18.1941561+01:00</Time>
+    </Item>
+    <Item>
+      <Source>spritesheets\base_Walk_left.png</Source>
+      <Name>spritesheets\base_Walk_left</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\spritesheets\base_Walk_left.xnb</Output>
+      <Time>2013-01-27T11:20:54.0483634+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\gameOver_2000x1500.png</Source>
+      <Name>storyboard\gameOver_2000x1500</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\gameOver_2000x1500.xnb</Output>
+      <Time>2013-01-27T14:42:23.7304557+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

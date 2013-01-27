@@ -454,15 +454,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Elements\interactive\sheet\object__07.png">
-      <Name>object__07</Name>
+    <Compile Include="spritesheets\base_Walk_left.png">
+      <Name>base_Walk_left</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Elements\interactive\sheet\object__08.png">
-      <Name>object__08</Name>
+    <Compile Include="storyboard\gameOver_2000x1500.png">
+      <Name>gameOver_2000x1500</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

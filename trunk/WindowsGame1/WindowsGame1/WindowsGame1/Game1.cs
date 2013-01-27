@@ -22,8 +22,8 @@ namespace WindowsGame1
     {
         Random random = new Random();
         GraphicsDeviceManager graphics;
-        enum state { playing, pause, menu, gameOver };
-        state playState = state.menu;
+        enum state { playing, pause, menu, gameOver, story };
+        state playState = state.story;
         int mouseX;
         int mouseY;
         int FireEmitterWCX;
@@ -68,7 +68,7 @@ namespace WindowsGame1
 
         //SETTINGS
         bool bFullScreen =false;
-        bool Godmode = true;
+        bool Godmode = false;
         public int ScreenHeight, ScreenWidth;
         int frameRate = 0, frameCounter = 0;
         TimeSpan elapsedTime = TimeSpan.Zero;
@@ -124,6 +124,7 @@ namespace WindowsGame1
         private int worldWidth;
         private int worldHeight;
         List<Texture2D> StoryBoard = new List<Texture2D>();
+        Texture2D txtureRight, txtureLeft, GameOver;
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -136,8 +137,10 @@ namespace WindowsGame1
             Console.WriteLine("Finished");
             graphics.IsFullScreen = bFullScreen;
             graphics.ApplyChanges();
-
-            txture = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
+            txtureRight = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
+            txture = txtureRight;
+            GameOver = Content.Load<Texture2D>("storyboard/gameOver_2000x1500");
+            txtureLeft = Content.Load<Texture2D>("spritesheets/base_Walk_left");
             vineWall = Content.Load<Texture2D>("Elements/interactive/sheet/object__01");
             Black = Content.Load<Texture2D>("black");
             MainCharracter.Initialize(txture, new Vector2(150, 375), 200, 200, ScreenWidth, ScreenHeight, 4, 150, Microsoft.Xna.Framework.Color.White, true, 100);
@@ -202,7 +205,7 @@ namespace WindowsGame1
         {
             vineWallVect2 = camera.ApplyTransformations(vineWallVect);
 
-            //Console.WriteLine("X: " + FireEmitterWCX +"   Y: " + FireEmitterWCY);
+            Console.WriteLine("X: " + FireEmitterWCX +"   Y: " + FireEmitterWCY);
 
             FireEmitterWCX = (int)(FireParticle.EmitterLocation.X + camera.Position.X);
             FireEmitterWCY = (int)(FireParticle.EmitterLocation.Y + camera.Position.Y);
@@ -221,24 +224,19 @@ namespace WindowsGame1
                 {   
                     Console.WriteLine("Success!");
                     map.vineDestroyed = true;
+                    shootTime = 0;
                 }
-                shootTime = 0;
             }
             //pillar
             if (FireEmitterWCX > 980 && FireEmitterWCX < 1180 &&
                 FireEmitterWCY > 1690 && FireEmitterWCY < 2080)
             {
-
-               
-               
                 if (map.pillarDestroyed == false)
                 {
-                    map.destroyPillar();
-
-                    map.pillarShotCount++;
-                    Console.WriteLine("shot"+map.pillarShotCount);
+                    Console.WriteLine("Success!");
+                    map.pillarDestroyed = true;
+                    shootTime = 0;
                 }
-                shootTime = 0;
             }
             KeyboardState key = Keyboard.GetState();
             int CharX, CharY,CharOffset = 0;
@@ -274,6 +272,12 @@ namespace WindowsGame1
             else
             {
                 CharMoveL = true;
+            }
+            //Toxic
+            if (CharX > 2800 && CharX < 3650 &&
+                CharY > 4370 && CharY < 4650)
+            {
+                playState = state.gameOver;
             }
 
             // cap the camera to the world width/height.
@@ -389,8 +393,7 @@ namespace WindowsGame1
             }
             camera.Position = cameraPosition;
         }
-        
-               bool bulletUsed = false;
+
         float speed = 5.0f;
         bool shoot =  false;
         bool ShootInProgress = false;
@@ -414,6 +417,7 @@ namespace WindowsGame1
 
             if (key.IsKeyDown(Keys.D) && !CrashDirection[1] && CharMoveR)
             {
+                MainCharracter.Spritestrip = txtureRight;
                 WasRightLastDirection = true;
 
                 if (camera.Position.X+ScreenWidth > 5000-10)
@@ -437,6 +441,7 @@ namespace WindowsGame1
             }
             if (key.IsKeyDown(Keys.A) && !CrashDirection[3] && CharMoveL)
             {
+                    MainCharracter.Spritestrip = txtureLeft;
                 WasRightLastDirection = false;
                 if (camera.Position.X < 10)
                 {
@@ -529,20 +534,18 @@ namespace WindowsGame1
             }
             else if (shootTime == 0 && ShootExplode)
             {
-
                 ExplodeCount--;
                 if (ExplodeCount == 0)
                 {
-                   
                     ShootExplode = false;
                     FireParticle.exploding = false;
                     FireParticle.Spread = 1f;
-                    bulletUsed = true;
-                    
                 }
             }
             else
             {
+                ShootExplode = false;
+                FireParticle.exploding = false;
                 FireParticle.Spread = 1f;
                 FireParticle.EmitterLocation = new Vector3(MainCharracter.Position.X + SpriteMoover, MainCharracter.Position.Y, 0);
             }
@@ -594,15 +597,19 @@ namespace WindowsGame1
             particleEngine.Update();
             particleEngine.Shei = ScreenHeight;
             particleEngine.Swid = ScreenWidth;
-            if (key.IsKeyDown(Keys.Enter) && playState == state.menu)
+            if (key.IsKeyDown(Keys.Enter) && playState == state.story)
             {
                 progressBoard = true;
             }
-            if (key.IsKeyUp(Keys.Enter) && progressBoard && playState == state.menu)
+            if (mouse.LeftButton == ButtonState.Pressed)
             {
+                btnpress = true;
+            }
+            if ((mouse.LeftButton == ButtonState.Released && btnpress) || key.IsKeyUp(Keys.Enter) && progressBoard && playState == state.story)
+            {
+                btnpress = false;
                 if (StoryBoard.Count< storyCount + 2)
                 {
-
                     playState = state.playing;
                 }
                 else
@@ -612,11 +619,12 @@ namespace WindowsGame1
                 }
 
             }
-            if (key.IsKeyDown(Keys.F1) && playState == state.menu)
+            if (key.IsKeyDown(Keys.F1) && playState == state.story)
             {
                 playState = state.playing;
             }
         }
+        bool btnpress = false;
         bool progressBoard = false;
         bool ShootExplode = false;
         int ExplodeCount = 0;
@@ -646,7 +654,14 @@ namespace WindowsGame1
             frameCounter++;
             spriteBatch.Begin();
 
-            if (playState == state.menu)
+            if (playState == state.gameOver)
+            {
+                GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
+                spriteBatch.Draw(GameOver, new Microsoft.Xna.Framework.Rectangle(0, 0, ScreenWidth, ScreenHeight), Color.White);
+                particleEngine.Draw(spriteBatch);
+                
+            }
+            if (playState == state.story)
             {
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
                 spriteBatch.Draw(StoryBoard[storyCount], new Microsoft.Xna.Framework.Rectangle(0, 0, ScreenWidth, ScreenHeight), Color.White);

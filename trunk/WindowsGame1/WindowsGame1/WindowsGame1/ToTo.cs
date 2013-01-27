@@ -11,7 +11,7 @@ namespace WindowsGame1
 {
     public class ToTo
     {
-        Texture2D Spritestrip;
+        public Texture2D Spritestrip;
         int elapsedTime;
         int frameTime;
         int frameCount;
