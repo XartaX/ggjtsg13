@@ -61,7 +61,7 @@ namespace WindowsGame1
                      {
                          if (Looping == false)
                          {
-                             Active = false;
+                             Animate = false;
                              return;
                          }
                          currentFrame = 0;
@@ -74,6 +74,10 @@ namespace WindowsGame1
             sourceRect.Width = frameWidth;
             sourceRect.Height = frameHeigth;
         }
+        public void setFrame(int frame)
+        {
+            currentFrame = frame;
+        }
         public void updatePos(Vector2 pos)
         {
             this.Position = pos;
@@ -84,6 +88,7 @@ namespace WindowsGame1
             if (Active)
                 spritebatch.Draw(Spritestrip, Position, sourceRect, Color.White, 
                     0, new Vector2(0, 0), Scale, SpriteEffects.None, 1);
+            
         }
     }
 }
