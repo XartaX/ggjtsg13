@@ -26,13 +26,9 @@ namespace WindowsGame1
         
         Vector2 temp = new Vector2();
 
-        public int speed;
         public int counter = 0;
         public int counter2 = 0;
         
-
-        
-      
          public void addObject(ContentManager content, String texturePath, int locationX, int locationY, int ScreenWidth, int ScreenHeight, int objectWidth, int objectHeight, int frameTime, int frameCount)
          {
                  texture.Add(content.Load<Texture2D>(texturePath));
