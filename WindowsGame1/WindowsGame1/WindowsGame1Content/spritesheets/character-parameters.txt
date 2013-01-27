@@ -1,0 +1,5 @@
+Common animation speed(miliseconds): 150
+
+For turn animation: 200-250
+
+All are 200x200px
