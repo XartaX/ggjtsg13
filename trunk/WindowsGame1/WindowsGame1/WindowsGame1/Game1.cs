@@ -207,12 +207,24 @@ namespace WindowsGame1
             FireEmitterWCY = (int)(FireParticle.EmitterLocation.Y + camera.Position.Y);
 
             //animation-triggers
+            //vine
             if (FireEmitterWCX > 1240 && FireEmitterWCX < 1444 &&
                 FireEmitterWCY > 285 && FireEmitterWCY < 605)
             {
                 if (map.vineDestroyed == false)
                 {   Console.WriteLine("Success!");
                     map.vineDestroyed = true;
+                }
+                shootTime = 0;
+            }
+            //pillar
+            if (FireEmitterWCX > 980 && FireEmitterWCX < 1180 &&
+                FireEmitterWCY > 1690 && FireEmitterWCY < 2080)
+            {
+                if (map.pillarDestroyed == false)
+                {
+                    Console.WriteLine("Success!");
+                    map.pillarDestroyed = true;
                 }
                 shootTime = 0;
             }
