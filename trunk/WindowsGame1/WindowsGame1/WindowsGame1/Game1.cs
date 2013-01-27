@@ -42,7 +42,10 @@ namespace WindowsGame1
         Vector2 vineWallVect2;
         ToTo MainCharracter;
         Map1 map;
-        bool IsGravity = true;
+        TimeSpan AirTime;
+        bool IsGravity;
+        bool IsJumping;
+        Keys Movement;
         int GravityValue;
         Camera camera;
         bool[] CrashDirection;
@@ -61,7 +64,7 @@ namespace WindowsGame1
         Vector3 SpritePosi = Vector3.Zero;
 
         //SETTINGS
-        bool bFullScreen =false;
+        bool bFullScreen =true;
         bool Godmode = false;
         public int ScreenHeight, ScreenWidth;
         int frameRate = 0, frameCounter = 0;
@@ -105,6 +108,7 @@ namespace WindowsGame1
             map = new Map1();
             GravityValue = 5;
             CrashDirection = new bool[7] { false, false, false, false, false, false, false };
+            AirTime = TimeSpan.Zero;
             base.Initialize();
         }
 
@@ -202,7 +206,7 @@ namespace WindowsGame1
             }
             //SoundUpdate();
 
-            // TODO: Add your update logic here
+            // TODO: Add your update illogic here
 
             //Collision detection
             Microsoft.Xna.Framework.Rectangle CharRect = new Microsoft.Xna.Framework.Rectangle((int)(MainCharracter.Position.X+camera.Position.X), (int)(MainCharracter.Position.Y+camera.Position.Y), txture.Width/4, txture.Height);
@@ -224,6 +228,9 @@ namespace WindowsGame1
                 if (CollisionDetection(CharRect.X + 110, CharRect.Y + 85))//Upper left
                 {
                     CrashDirection[0] = true;
+                    IsGravity = true;
+                    GravityValue = 5;
+                    IsJumping = false;
 
                 }
                 if (CollisionDetection(CharRect.X + 160, CharRect.Y + 125))//Over
@@ -351,11 +358,30 @@ namespace WindowsGame1
             }
             if (key.IsKeyDown(Keys.W) && !CrashDirection[0])
             {
-                camera.Translate(new Vector2(0, -speed - speed));
-                IsGravity = true;
+                if (gameTime.TotalGameTime - AirTime > TimeSpan.FromSeconds(1) && !IsJumping && CrashDirection[2])
+                {
+                    
+                        IsJumping = true;
+                        
+                    AirTime = gameTime.TotalGameTime;
+                }
+                
+
+                
+            }
+            if (IsJumping && (gameTime.TotalGameTime - AirTime < TimeSpan.FromSeconds(1)))
+            {
+                camera.Translate(new Vector2(0, -speed));
+                //IsGravity = false;
+                GravityValue = 0;
                 MainCharracter.Position.Y -= 2.5f;
                 MainCharracter.Update(gameTime);
-                
+            }
+            else
+            {
+                IsJumping = false;
+                IsGravity = true;
+                GravityValue = 5;
             }
             if (key.IsKeyDown(Keys.S) && !CrashDirection[2])
             {
