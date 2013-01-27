@@ -100,9 +100,7 @@ namespace WindowsGame1
         {
             if (Active)
             {
-                    
               spritebatch.Draw(tex, Position, Color.White);
-                
             }
         }
 
