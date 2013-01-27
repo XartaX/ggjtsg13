@@ -677,22 +677,22 @@
       <Time>2013-01-27T04:14:43.223055+01:00</Time>
     </Item>
     <Item>
-      <Source>Elements\interactive\sheet\object__07.png</Source>
-      <Name>Elements\interactive\sheet\object__07</Name>
+      <Source>spritesheets\base_Walk_left.png</Source>
+      <Name>spritesheets\base_Walk_left</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\object__07.xnb</Output>
-      <Time>2013-01-27T04:14:43.625078+01:00</Time>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\spritesheets\base_Walk_left.xnb</Output>
+      <Time>2013-01-27T09:17:27.4389888+01:00</Time>
     </Item>
     <Item>
-      <Source>Elements\interactive\sheet\object__08.png</Source>
-      <Name>Elements\interactive\sheet\object__08</Name>
+      <Source>storyboard\gameOver_2000x1500.png</Source>
+      <Name>storyboard\gameOver_2000x1500</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\object__08.xnb</Output>
-      <Time>2013-01-27T04:14:43.2010538+01:00</Time>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\gameOver_2000x1500.xnb</Output>
+      <Time>2013-01-27T14:43:50.5300775+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
