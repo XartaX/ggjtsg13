@@ -72,3 +72,4 @@ Content\storyboard\intro\intro_14.xnb
 Content\storyboard\intro\intro_15.xnb
 Content\storyboard\intro\intro_16.xnb
 Content\storyboard\intro\intro_17.xnb
+Content\Elements\interactive\sheet\object__05.xnb

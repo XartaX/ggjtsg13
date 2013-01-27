@@ -197,3 +197,4 @@ D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug
 D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_15.xnb
 D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_16.xnb
 D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_17.xnb
+D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\object__05.xnb

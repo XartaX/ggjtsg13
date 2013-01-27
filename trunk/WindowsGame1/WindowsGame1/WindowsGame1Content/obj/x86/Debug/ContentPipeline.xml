@@ -667,6 +667,15 @@
       <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_17.xnb</Output>
       <Time>2013-01-27T09:17:45.29301+01:00</Time>
     </Item>
+    <Item>
+      <Source>Elements\interactive\sheet\object__05.png</Source>
+      <Name>Elements\interactive\sheet\object__05</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\object__05.xnb</Output>
+      <Time>2013-01-27T04:14:43.223055+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
