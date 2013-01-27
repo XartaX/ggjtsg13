@@ -92,7 +92,7 @@ namespace WindowsGame1.Particle
             int ttl = random.Next(200);
             Vector3.Divide(ref velocity, 5, out velocity);
             pcount++;
-            particles.Add(new ParticleStat(textures[0], EmitterLocation, velocity, new Color(100, 100, 100, 1), 1.0f, ttl, Shei, Swid));
+            particles.Add(new ParticleStat(textures[0], EmitterLocation, velocity, new Color(125, 125, 125, 1), 1.0f, ttl, Shei, Swid));
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -102,7 +102,7 @@ namespace WindowsGame1.Particle
             }
 
 
-            spriteBatch.Draw(textures[3], new Vector2(EmitterLocation.X, EmitterLocation.Y), new Rectangle(0, 0, 1, 1), new Color(100, 100, 100, 1),
+            spriteBatch.Draw(textures[3], new Vector2(EmitterLocation.X, EmitterLocation.Y), new Rectangle(0, 0, 1, 1), Color.Transparent,
                 0, new Vector2(1.0f, 1.0f), 5.0f, SpriteEffects.None, 0f);
 
 
