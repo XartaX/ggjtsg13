@@ -31,6 +31,8 @@ Content\Elements\interactive\sheet\vine-wall_204x320.xnb
 Content\Elements\interactive\Vine-wall.xnb
 Content\Elements\interactive\water_1604x433.xnb
 Content\Elements\interactive\sheet\object__02.xnb
+Content\Fonts\Lucida Console.xnb
+Content\Fonts\TestFont.xnb
 Content\Elements\interactive\sheet\boiling-water\boil-water_01.xnb
 Content\Elements\interactive\sheet\boiling-water\boil-water_02.xnb
 Content\Elements\interactive\sheet\boiling-water\boil-water_03.xnb
@@ -44,5 +46,12 @@ Content\Elements\interactive\sheet\boiling-water\boil-water_10.xnb
 Content\Elements\Particles\Fire\Core.xnb
 Content\Elements\Particles\Fire\RedFire.xnb
 Content\Elements\Particles\Fire\Smoke.xnb
-Content\Fonts\Lucida Console.xnb
-Content\Fonts\TestFont.xnb
+Content\Elements\interactive\sheet\toxic-pool\toxic-pool_01.xnb
+Content\Elements\interactive\sheet\toxic-pool\toxic-pool_02.xnb
+Content\Elements\interactive\sheet\toxic-pool\toxic-pool_03.xnb
+Content\Elements\interactive\sheet\toxic-pool\toxic-pool_04.xnb
+Content\Elements\interactive\sheet\toxic-pool\toxic-pool_05.xnb
+Content\Elements\interactive\sheet\toxic-pool\toxic-pool_06.xnb
+Content\Elements\interactive\sheet\flower.xnb
+Content\Elements\interactive\sheet\object__03.xnb
+Content\Elements\interactive\sheet\object__04.xnb
