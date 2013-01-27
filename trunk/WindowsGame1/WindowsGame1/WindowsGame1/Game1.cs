@@ -206,6 +206,11 @@ namespace WindowsGame1
             FireEmitterWCX = (int)(FireParticle.EmitterLocation.X + camera.Position.X);
             FireEmitterWCY = (int)(FireParticle.EmitterLocation.Y + camera.Position.Y);
 
+            if (Collisionbmp.GetPixel(FireEmitterWCX, FireEmitterWCY).R == 255)
+            {
+                shootTime = 0;
+            }
+
             //animation-triggers
             //vine
             if (FireEmitterWCX > 1240 && FireEmitterWCX < 1444 &&
@@ -235,7 +240,7 @@ namespace WindowsGame1
                 CharOffset = 175;
             }
             CharX = (int)(MainCharracter.Position.X + camera.Position.X + CharOffset);
-            CharY = (int)(MainCharracter.Position.Y + camera.Position.Y);
+            CharY = (int)(MainCharracter.Position.Y + camera.Position.Y + 58);
             if (CharX > 1240 && CharX < 1444 &&
                 CharY > 285 && CharY < 605)
             {
@@ -274,11 +279,7 @@ namespace WindowsGame1
             //0     Upwards
             //1     Right
             //2     Downwards
-            //3     Letf
-            //Console.Clear();
-            //Console.WriteLine("Char.X :"+CharRect.X+" Char.Y: "+CharRect.Y);
-            //Console.WriteLine("Char.X2 :" + CharRect.X + CharRect.Width+ " Char.Y2: " + CharRect.Y+CharRect.Height);
-            //Console.WriteLine("1");
+            //3     Left
 
             if (!Godmode)
             {
@@ -334,6 +335,7 @@ namespace WindowsGame1
 
             base.Update(gameTime);
         }
+        bool WasRightLastDirection = true;
         private bool CollisionDetection(int PosX, int PosY)
         {
             if (PosX > 0 && PosY > 0 && PosX < Collisionbmp.Width && PosY < Collisionbmp.Height)
@@ -389,6 +391,7 @@ namespace WindowsGame1
 
             if (key.IsKeyDown(Keys.D) && !CrashDirection[1] && CharMoveR)
             {
+                WasRightLastDirection = true;
                 camera.Translate(new Vector2(speed, 0));
                 MainCharracter.Position.X += 1;
                 MainCharracter.Update(gameTime);
@@ -400,8 +403,9 @@ namespace WindowsGame1
             }
             if (key.IsKeyDown(Keys.A) && !CrashDirection[3])
             {
-                camera.Translate(new Vector2(-speed, 0));
-                MainCharracter.Position.X -= 1;
+                WasRightLastDirection = false;
+                camera.Translate(new Vector2(-(speed+1), 0));
+                MainCharracter.Position.X -= 1 - +1;
                 MainCharracter.Animate = true;
                 MainCharracter.Update(gameTime);
                 IsGravity = true;
@@ -468,7 +472,10 @@ namespace WindowsGame1
             if (ShootInProgress)
             {
                 shootTime--;
+                if(WasRightLastDirection)
                 FireParticle.EmitterLocation += new Vector3(5, 0, 0);
+                else
+                    FireParticle.EmitterLocation += new Vector3(-5, 0, 0);
                 if (shootTime <= 0)
                 {
                     ShootInProgress = false;
@@ -483,7 +490,6 @@ namespace WindowsGame1
                 ExplodeCount--;
                 if (ExplodeCount == 0)
                 {
-
                     ShootExplode = false;
                     FireParticle.exploding = false;
                     FireParticle.Spread = 1f;
@@ -491,6 +497,7 @@ namespace WindowsGame1
             }
             else
             {
+                FireParticle.Spread = 1f;
                 FireParticle.EmitterLocation = new Vector3(MainCharracter.Position.X + SpriteMoover, MainCharracter.Position.Y, 0);
             }
 
