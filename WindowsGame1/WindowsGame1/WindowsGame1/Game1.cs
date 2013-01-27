@@ -62,7 +62,7 @@ namespace WindowsGame1
 
         //SETTINGS
         bool bFullScreen =false;
-        bool Godmode = true;
+        bool Godmode = false;
         public int ScreenHeight, ScreenWidth;
         int frameRate = 0, frameCounter = 0;
         TimeSpan elapsedTime = TimeSpan.Zero;

@@ -141,7 +141,6 @@ C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\bin\x8
 C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.exe
 C:\Users\Angeland\Desktop\ggjtsg13\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb
-D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.csprojResolveAssemblyReference.cache
 D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Fire\Core.xnb
 D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Fire\RedFire.xnb
 D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\Particles\Fire\Smoke.xnb
