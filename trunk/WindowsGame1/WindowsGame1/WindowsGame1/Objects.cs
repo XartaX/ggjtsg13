@@ -16,7 +16,7 @@ namespace WindowsGame1
 
         // list"2" versions are for animations stored as different images (not single sheets)
         List<Texture2D> texture = new List<Texture2D>();
-        List<Texture2D> texture2 = new List<Texture2D>();
+        List<Texture2D> texture2;
         List<Vector2> positions = new List<Vector2>();
         List<Vector2> positions2 = new List<Vector2>();
         List<Animation> animations = new List<Animation>();
@@ -49,20 +49,16 @@ namespace WindowsGame1
             animations2.Add(new Animation_multipleTextures());
             positions2.Add(new Vector2(locationX, locationY));
             animations2[counter2].Initialize(positions2[counter2], objectWidth, objectHeight, ScreenWidth, ScreenHeight, frameCount, frameTime, Microsoft.Xna.Framework.Color.White, true, 100);
+            animations2[counter2].Animate = true;
             exists2.Add(true);
-
-            int textureCount = 0;
+            texture2 = new List<Texture2D>();
 
             for (int i = 0; i < texturePath.Count; i++)
             {
                 texture2.Add(content.Load<Texture2D>(texturePath[i]));
-                textureCount++;
+                animations2[counter2].addTexture(texture2[i]);
             }
-            
-            for (int i = 0; i < textureCount; i++)
-            {
-                animations2[counter2].addTexture(texture2[counter2+i]);
-            }
+
              counter2++;
         }
 
@@ -82,7 +78,7 @@ namespace WindowsGame1
              else 
                  for (int i = 0; i < animations2.Count; i++)
                      if (i == input)
-                         animations2[i].Update(gt, true);
+                         animations2[i].Update(gt);
          }
 
          public void Update(GameTime gt)

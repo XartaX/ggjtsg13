@@ -61,8 +61,8 @@ namespace WindowsGame1
         Vector3 SpritePosi = Vector3.Zero;
 
         //SETTINGS
-        bool bFullScreen =true;
-        bool Godmode = false;
+        bool bFullScreen =false;
+        bool Godmode = true;
         public int ScreenHeight, ScreenWidth;
         int frameRate = 0, frameCounter = 0;
         TimeSpan elapsedTime = TimeSpan.Zero;
