@@ -26,6 +26,9 @@ namespace WindowsGame1
         state playState = state.menu;
         int mouseX;
         int mouseY;
+        int FireEmitterWCX;
+        int FireEmitterWCY;
+        Vector2 FireEmitterWC;
         //Backgrounds splitter = new Backgrounds();
 
         //Menu buttons
@@ -64,7 +67,7 @@ namespace WindowsGame1
         Vector3 SpritePosi = Vector3.Zero;
 
         //SETTINGS
-        bool bFullScreen =true;
+        bool bFullScreen =false;
         bool Godmode = false;
         public int ScreenHeight, ScreenWidth;
         int frameRate = 0, frameCounter = 0;
@@ -110,6 +113,8 @@ namespace WindowsGame1
             CrashDirection = new bool[7] { false, false, false, false, false, false, false };
             AirTime = TimeSpan.Zero;
             base.Initialize();
+            FireEmitterWC = camera.ApplyTransformations(new Vector2(FireParticle.EmitterLocation.X, FireParticle.EmitterLocation.Y));
+
         }
 
         /// <summary>
@@ -169,6 +174,7 @@ namespace WindowsGame1
             FireParticle.Shei = ScreenHeight;
             FireParticle.Swid = ScreenWidth;
             FireParticle.emitFlag = true;
+            
 
             spriteFont = Content.Load<SpriteFont>("Fonts/TestFont");
             /*
@@ -190,11 +196,26 @@ namespace WindowsGame1
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        ///
         protected override void Update(GameTime gameTime)
         {
             vineWallVect2 = camera.ApplyTransformations(vineWallVect);
 
-           
+            Console.WriteLine("X: " + FireEmitterWCX +"   Y: " + FireEmitterWCY);
+
+            FireEmitterWCX = (int)(FireParticle.EmitterLocation.X + camera.Position.X);
+            FireEmitterWCY = (int)(FireParticle.EmitterLocation.Y + camera.Position.Y);
+
+            //animation-triggers
+            if (FireEmitterWCX > 1240 && FireEmitterWCX < 1444 &&
+                FireEmitterWCY > 285 && FireEmitterWCY < 605)
+            {
+                if (map.vineDestroyed == false)
+                {   Console.WriteLine("Success!");
+                    map.vineDestroyed = true;
+                }
+                shootTime = 0;
+            }
 
             // cap the camera to the world width/height.
             CapCameraPosition();
@@ -416,7 +437,7 @@ namespace WindowsGame1
             {
                 shootTime--;
                 FireParticle.EmitterLocation += new Vector3(5, 0, 0);
-                if (shootTime == 0)
+                if (shootTime <= 0)
                 {
                     ShootInProgress = false;
                     ShootExplode = true;

@@ -56,11 +56,17 @@ namespace WindowsGame1
                 elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
                 if (elapsedTime > frameTime)
                 {
-                    currentFrame++;
-                    if (currentFrame == frameCount)
-                    {
-                        currentFrame = 0;
-                    }
+                     currentFrame++;
+                     if (currentFrame == frameCount)
+                     {
+                         if (Looping == false)
+                         {
+                             Animate = false;
+                             return;
+                         }
+                         currentFrame = 0;
+
+                     }
                     elapsedTime = 0;
                 }
             }
@@ -71,20 +77,6 @@ namespace WindowsGame1
         public void updatePos(Vector2 pos)
         {
             this.Position = pos;
-        }
-
-        public void ChangeFrame()
-        {
-            if (!Active)
-            {
-                return;
-            }
-            currentFrame++;
-            if (currentFrame == frameCount)
-            {
-                currentFrame = 0;
-            }
-            sourceRect = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeigth);
         }
 
         public void Draw(SpriteBatch spritebatch)
