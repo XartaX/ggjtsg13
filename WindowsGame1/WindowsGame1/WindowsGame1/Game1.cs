@@ -190,7 +190,7 @@ namespace WindowsGame1
         {
             // TODO: Unload any non ContentManager content here
         }
-        bool once = false;
+        bool once = false, CharMoveR = true;
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -215,6 +215,26 @@ namespace WindowsGame1
                     map.vineDestroyed = true;
                 }
                 shootTime = 0;
+            }
+            KeyboardState key = Keyboard.GetState();
+            int CharX, CharY,CharOffset = 0;
+            if (key.IsKeyDown(Keys.D))
+            {
+                CharOffset = 175;
+            }
+            CharX = (int)(MainCharracter.Position.X + camera.Position.X + CharOffset);
+            CharY = (int)(MainCharracter.Position.Y + camera.Position.Y);
+            if (CharX > 1240 && CharX < 1444 &&
+                CharY > 285 && CharY < 605)
+            {
+                if (!map.vineDestroyed)
+                {
+                    CharMoveR = false;
+                }
+            }
+            else
+            {
+                CharMoveR = true;
             }
 
             // cap the camera to the world width/height.
@@ -353,9 +373,9 @@ namespace WindowsGame1
                 }
             }
 
-            
 
-            if (key.IsKeyDown(Keys.D) && !CrashDirection[1])
+
+            if (key.IsKeyDown(Keys.D) && !CrashDirection[1] && CharMoveR)
             {
                 camera.Translate(new Vector2(speed, 0));
                 MainCharracter.Position.X += 1;
@@ -527,7 +547,7 @@ namespace WindowsGame1
                 }
 
             }
-            if (key.IsKeyDown(Keys.Escape) && playState == state.menu)
+            if (key.IsKeyDown(Keys.F1) && playState == state.menu)
             {
                 playState = state.playing;
             }
