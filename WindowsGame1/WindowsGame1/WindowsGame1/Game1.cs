@@ -62,7 +62,9 @@ namespace WindowsGame1
         //Location of Emitter
         Vector3 SpritePosi = Vector3.Zero;
 
-        bool bFullScreen = false;
+        //SETTINGS
+        bool bFullScreen =true;
+        bool Godmode = false;
         public int ScreenHeight, ScreenWidth;
         int frameRate = 0, frameCounter = 0;
         TimeSpan elapsedTime = TimeSpan.Zero;
@@ -107,7 +109,7 @@ namespace WindowsGame1
             map = new Map1();
             Movement = Keys.None;
             GravityValue = 1;
-            Crashdirection = new bool[4] {false, false, false, false};
+            Crashdirection = new bool[7] { false, false, false, false, false, false, false };
             base.Initialize();
         }
 
@@ -236,27 +238,51 @@ namespace WindowsGame1
             //Console.WriteLine("Char.X :"+CharRect.X+" Char.Y: "+CharRect.Y);
             //Console.WriteLine("Char.X2 :" + CharRect.X + CharRect.Width+ " Char.Y2: " + CharRect.Y+CharRect.Height);
             //Console.WriteLine("1");
-            if(CollisionDetection(CharRect.X+110,CharRect.Y+85))//Upper left
+
+            if (!Godmode)
             {
-                Crashdirection[0] = true;
+                if (CollisionDetection(CharRect.X + 110, CharRect.Y + 85))//Upper left
+                {
+                    Crashdirection[0] = true;
 
+                }
+                if (CollisionDetection(CharRect.X + 160, CharRect.Y + 125))//Over
+                {
+                    Crashdirection[1] = true;
+
+                }
+                if (CollisionDetection(CharRect.X + 100, CharRect.Y + 200))//Right
+                {
+                    Crashdirection[2] = true;
+
+                }
+                if (CollisionDetection(CharRect.X + 50, CharRect.Y + 135))//Under
+                {
+                    Crashdirection[3] = true;
+
+                }
+                if (CollisionDetection(CharRect.X + 120, CharRect.Y + 200))//left
+                {
+                    IsGravity = false;
+                    //Crashdirection[3] = true;
+                    txtAnim.Position.Y -= 2.5f;
+                    txtAnim.Update(gameTime);
+                    Crashdirection[4] = true;
+                }
+                if (CollisionDetection(CharRect.X + 80, CharRect.Y + 200))//left
+                {
+
+                    IsGravity = false;
+                    //Crashdirection[3] = true;
+                    txtAnim.Position.Y -= 2.5f;
+                    txtAnim.Update(gameTime);
+                    Crashdirection[4] = true;
+                }
             }
-            if (CollisionDetection(CharRect.X+160, CharRect.Y+125))//Upper left
+            else
             {
-                Crashdirection[1] = true;
-
+                IsGravity = false;
             }
-            if (CollisionDetection(CharRect.X+100, CharRect.Y+200))//Upper left
-            {
-                Crashdirection[2] = true;
-
-            }
-            if (CollisionDetection(CharRect.X+50, CharRect.Y+135))//Upper left
-            {
-                Crashdirection[3] = true;
-
-            }
-
 
 
             Gravity(IsGravity);
@@ -318,13 +344,14 @@ namespace WindowsGame1
                 }
             }
 
-            IsGravity = true;
+            
 
             if (key.IsKeyDown(Keys.D) && !Crashdirection[1])
             {
                 camera.Translate(new Vector2(speed, 0));
                 txtAnim.Position.X += 1;
                 txtAnim.Update(gameTime);
+                IsGravity = true;
             }
             else if (key.IsKeyDown(Keys.A) && !Crashdirection[3])
             {
@@ -332,12 +359,20 @@ namespace WindowsGame1
                 txtAnim.Position.X -= 1;
                 txtAnim.Animate = true;
                 txtAnim.Update(gameTime);
+                IsGravity = true;
                 
             }
             else if (key.IsKeyDown(Keys.W) && !Crashdirection[0])
             {
-                        camera.Translate(new Vector2(0, -speed));
-                IsGravity = false;
+                camera.Translate(new Vector2(0, -speed));
+                if (Crashdirection[4])
+                {
+                    IsGravity = false;
+                }
+                else
+                {
+                    IsGravity = true;
+                }
                 txtAnim.Position.Y -= 2.5f;
                 txtAnim.Update(gameTime);
                 
@@ -348,6 +383,7 @@ namespace WindowsGame1
                 IsGravity = false;
                 txtAnim.Position.Y -= 2.5f;
                 txtAnim.Update(gameTime);
+                IsGravity = true;
             }
             else
                 txtAnim.Animate = false;
