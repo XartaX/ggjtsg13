@@ -190,13 +190,14 @@ namespace WindowsGame1
         {
             // TODO: Unload any non ContentManager content here
         }
-        bool once = false, CharMoveR = true;
+        bool once = false, CharMoveR = true, CharMoveL = true;
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         ///
+        float lastCamY = 0;
         protected override void Update(GameTime gameTime)
         {
             vineWallVect2 = camera.ApplyTransformations(vineWallVect);
@@ -240,8 +241,10 @@ namespace WindowsGame1
             {
                 CharOffset = 175;
             }
+            else CharOffset = 0;
             CharX = (int)(MainCharracter.Position.X + camera.Position.X + CharOffset);
             CharY = (int)(MainCharracter.Position.Y + camera.Position.Y + 58);
+            //Vine
             if (CharX > 1240 && CharX < 1444 &&
                 CharY > 285 && CharY < 605)
             {
@@ -253,6 +256,19 @@ namespace WindowsGame1
             else
             {
                 CharMoveR = true;
+            }
+            //pillar
+            if (CharX > 980 && CharX < 1180 &&
+                CharY > 1690 && CharY < 2080)
+            {
+                if (map.pillarDestroyed == false)
+                {
+                    CharMoveL = false;
+                }
+            }
+            else
+            {
+                CharMoveL = true;
             }
 
             // cap the camera to the world width/height.
@@ -393,8 +409,19 @@ namespace WindowsGame1
             if (key.IsKeyDown(Keys.D) && !CrashDirection[1] && CharMoveR)
             {
                 WasRightLastDirection = true;
-                camera.Translate(new Vector2(speed, 0));
-                MainCharracter.Position.X += 1;
+
+                if (camera.Position.X+ScreenWidth > 5000-10)
+                {
+                    MainCharracter.Position.X += (speed);
+                }
+                else
+                {
+                    camera.Translate(new Vector2(speed, 0));
+                    MainCharracter.Position.X += 0;
+                }
+                
+                lastCamY = camera.Position.Y;
+                MainCharracter.Animate = true;
                 MainCharracter.Update(gameTime);
                 IsGravity = true;
                 if (SpriteMoover >= 0 && !ShootInProgress)
@@ -402,11 +429,19 @@ namespace WindowsGame1
                     SpriteMoover -= 3;
                 }
             }
-            if (key.IsKeyDown(Keys.A) && !CrashDirection[3])
+            if (key.IsKeyDown(Keys.A) && !CrashDirection[3] && CharMoveL)
             {
                 WasRightLastDirection = false;
-                camera.Translate(new Vector2(-(speed+1), 0));
-                MainCharracter.Position.X -= 1 - +1;
+                if (camera.Position.X < 10)
+                {
+                    MainCharracter.Position.X -= (speed);
+                }
+                else
+                {
+                    camera.Translate(new Vector2(-speed, 0));
+                    MainCharracter.Position.X -= 0;
+                }
+                lastCamY = camera.Position.Y;   
                 MainCharracter.Animate = true;
                 MainCharracter.Update(gameTime);
                 IsGravity = true;
@@ -474,7 +509,7 @@ namespace WindowsGame1
             {
                 shootTime--;
                 if(WasRightLastDirection)
-                FireParticle.EmitterLocation += new Vector3(5, 0, 0);
+                    FireParticle.EmitterLocation += new Vector3(5, 0, 0);
                 else
                     FireParticle.EmitterLocation += new Vector3(-5, 0, 0);
                 if (shootTime <= 0)
