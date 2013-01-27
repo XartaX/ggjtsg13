@@ -58,6 +58,29 @@ namespace WindowsGame1
              counter2++;
         }
 
+         public void setFrame(int input, int type, int frame)
+         {
+             if (type==1)
+             {
+                 for (int i = 0; i < animations.Count; i++) 
+                 {
+                     if (i == input)
+                     {
+                         animations[i].setFrame(frame);
+                     }
+                 }
+             }
+             else
+             {
+                 for (int i = 0; i < animations2.Count; i++)
+                 {
+                     if (i == input)
+                     {
+                         animations2[i].setFrame(frame);
+                     }
+                 }
+             }
+         }
          public void startAnimation(int input, int type, bool loop)
          {
              

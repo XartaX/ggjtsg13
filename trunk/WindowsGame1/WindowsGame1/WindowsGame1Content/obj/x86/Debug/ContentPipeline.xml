@@ -647,7 +647,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_15.xnb</Output>
-      <Time>2013-01-27T09:17:45.2480074+01:00</Time>
+      <Time>2013-01-27T14:05:40.2930834+01:00</Time>
     </Item>
     <Item>
       <Source>storyboard\intro\intro_16.png</Source>
@@ -656,7 +656,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_16.xnb</Output>
-      <Time>2013-01-27T09:17:45.2560078+01:00</Time>
+      <Time>2013-01-27T14:05:40.3050841+01:00</Time>
     </Item>
     <Item>
       <Source>storyboard\intro\intro_17.png</Source>
@@ -665,7 +665,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_17.xnb</Output>
-      <Time>2013-01-27T09:17:45.29301+01:00</Time>
+      <Time>2013-01-27T14:05:40.3130846+01:00</Time>
     </Item>
     <Item>
       <Source>Elements\interactive\sheet\object__05.png</Source>

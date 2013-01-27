@@ -76,6 +76,11 @@ namespace WindowsGame1
             sourceRect.Width = frameWidth;
             sourceRect.Height = frameHeigth;
         }
+
+        public void setFrame(int frame)
+        {
+            currentFrame = frame;
+        }
         public void updatePos(Vector2 pos)
         {
             this.Position = pos;
