@@ -694,6 +694,24 @@
       <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\gameOver_2000x1500.xnb</Output>
       <Time>2013-01-27T14:43:50.5300775+01:00</Time>
     </Item>
+    <Item>
+      <Source>Elements\interactive\sheet\object__08.png</Source>
+      <Name>Elements\interactive\sheet\object__08</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\object__08.xnb</Output>
+      <Time>2013-01-27T04:14:43.2010538+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Elements\interactive\sheet\object__07.png</Source>
+      <Name>Elements\interactive\sheet\object__07</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\object__07.xnb</Output>
+      <Time>2013-01-27T04:14:43.625078+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
