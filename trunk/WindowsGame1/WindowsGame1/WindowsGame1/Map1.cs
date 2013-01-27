@@ -86,7 +86,7 @@ namespace WindowsGame1
             }
             if (pillarDestroyed == true)
             {
-                staticObjects.startAnimation(3, 1, false);
+                staticObjects.startAnimation(2, 1, false);
             }
             //TODO ==> Set to trigger
 
