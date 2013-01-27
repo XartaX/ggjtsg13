@@ -9,10 +9,9 @@ using WindowsGame1.View;
 
 namespace WindowsGame1
 {
-    class Animation_multipleTextures
+    public class ToTo
     {
-
-        List<Texture2D> Spritestrip = new List<Texture2D>();
+        Texture2D Spritestrip;
         int elapsedTime;
         int frameTime;
         int frameCount;
@@ -27,7 +26,7 @@ namespace WindowsGame1
         public bool Looping;
         public Vector2 Position;
 
-        public void Initialize(Vector2 Position, int frameWidth, int frameHeigth, int ScreenWidth, int ScreenHeigth, int frameCount, int frameTime, Color colour, bool Looping, int Percentage)
+        public void Initialize(Texture2D texture, Vector2 Position, int frameWidth, int frameHeigth, int ScreenWidth, int ScreenHeigth, int frameCount, int frameTime, Color colour, bool Looping, int Percentage)
         {
             this.color = colour;
             this.frameWidth = frameWidth;
@@ -36,7 +35,7 @@ namespace WindowsGame1
             this.frameTime = frameTime;
             this.Looping = Looping;
             this.Position = Position;
-            
+            Spritestrip = texture;
             Scale = (float)((double)Percentage / (double)100);//Casting shit'n yo
             elapsedTime = 0;
             currentFrame = 0;
@@ -45,19 +44,13 @@ namespace WindowsGame1
             sourceRect = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeigth);
             destRect = new Rectangle((int)Position.X, (int)Position.Y, (int)(ScreenWidth * 0.01 * Percentage), (int)(ScreenHeigth * 0.01 * Percentage));
         }
-
-        public void addTexture(Texture2D texture)
-        {
-            Spritestrip.Add(texture);
-        }
-
-        public void Update(GameTime gameTime, bool Animate)
+        public bool Animate = false;
+        public void Update(GameTime gameTime)
         {
             if (!Active)
             {
                 return;
             }
-
             if (Animate)
             {
                 elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -69,8 +62,6 @@ namespace WindowsGame1
                         currentFrame = 0;
                     }
                     elapsedTime = 0;
-                    Console.WriteLine(currentFrame);
-                    tex = Spritestrip[currentFrame];
                 }
             }
             sourceRect.X = currentFrame * frameWidth;
@@ -95,16 +86,12 @@ namespace WindowsGame1
             }
             sourceRect = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeigth);
         }
-        Texture2D tex;
+
         public void Draw(SpriteBatch spritebatch)
         {
             if (Active)
-            {
-                    
-              spritebatch.Draw(tex, Position, Color.White);
-                
-            }
+                spritebatch.Draw(Spritestrip, Position, sourceRect, Color.White, 
+                    0, new Vector2(0, 0), Scale, SpriteEffects.None, 1);
         }
-
     }
 }

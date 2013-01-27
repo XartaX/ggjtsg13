@@ -74,7 +74,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="backgrounds\" />
-    <Folder Include="Elements\Particles\Fire\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Solids\Square.png">
@@ -286,6 +285,23 @@
     </Compile>
     <Compile Include="Elements\interactive\sheet\boiling-water\boil-water_10.png">
       <Name>boil-water_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Elements\Particles\Fire\Core.png">
+      <Name>Core</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Elements\Particles\Fire\RedFire.png">
+      <Name>RedFire</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Elements\Particles\Fire\Smoke.png">
+      <Name>Smoke</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

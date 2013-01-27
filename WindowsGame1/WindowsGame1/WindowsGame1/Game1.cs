@@ -41,8 +41,7 @@ namespace WindowsGame1
         Vector2 vineWallVect;
         Vector2 vineWallVect2;
         Boolean IsJumping;
-        Animation txtAnim;
-        Animation vineWallAnim;
+        ToTo MainCharracter;
         Map1 map;
         bool IsGravity;
         Keys Movement;
@@ -53,8 +52,9 @@ namespace WindowsGame1
         System.Drawing.Bitmap Collisionbmp;
 
         //Particle land
-        ParticleSquirter particleEngine;
-        List<Texture2D> ParticleTex = new List<Texture2D>();
+        ParticleSquirter particleEngine,BallParticle;
+        List<Texture2D> WaterParticleTexture = new List<Texture2D>();
+        List<Texture2D> FireParticleTexture = new List<Texture2D>();
         //Sound Engine
         SoundEffectInstance soundEffectInstance;
         //Sounds
@@ -104,11 +104,10 @@ namespace WindowsGame1
             // TODO: Add your initialization logic here
             vineWallVect = new Vector2(1240, 285);
             IsJumping = false;
-            txtAnim = new Animation();
-            vineWallAnim = new Animation();
+            MainCharracter = new ToTo();
             map = new Map1();
             Movement = Keys.None;
-            GravityValue = 1;
+            GravityValue = 5;
             Crashdirection = new bool[7] { false, false, false, false, false, false, false };
             base.Initialize();
         }
@@ -132,14 +131,6 @@ namespace WindowsGame1
             string bmpPath = DI.FullName.Remove(DI.FullName.Length - 27) + "/WindowsGame1Content/backgrounds/TutorialMap_CollideZone.jpg";
             Collisionbmp = new System.Drawing.Bitmap(bmpPath);
 
-            //for (int y = 0; y < 5000; y++)
-            //{
-            //    for (int x = 0; x < 5000; x++)
-            //    {
-            //        Collisionmap[x,y] = Collisionbmp.GetPixel(x, y);
-            //    }
-            //    //Console.WriteLine("|");
-            //}
             Console.WriteLine("Finished");
             graphics.IsFullScreen = bFullScreen;
             graphics.ApplyChanges();
@@ -147,16 +138,20 @@ namespace WindowsGame1
             txture = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
             vineWall = Content.Load<Texture2D>("Elements/interactive/sheet/object__01");
             Black = Content.Load<Texture2D>("black");
-            txtAnim.Initialize(txture, new Vector2(150, 375), 200, 200, ScreenWidth, ScreenHeight, 4, 150, Microsoft.Xna.Framework.Color.White, true, 100);
+            MainCharracter.Initialize(txture, new Vector2(150, 375), 200, 200, ScreenWidth, ScreenHeight, 4, 150, Microsoft.Xna.Framework.Color.White, true, 100);
             //vineWallAnim.Initialize(vineWall, vineWallVect, 204, 320, ScreenWidth, ScreenHeight, 10, 100, Microsoft.Xna.Framework.Color.White, false, 100);
             map.Initialize(Black, Content, ScreenWidth, ScreenHeight);
             // TODO: use this.Content to load your game content here
             knappImg = Content.Load<Texture2D>("Solids/Square");
             //Particle
-            ParticleTex.Add(Content.Load<Texture2D>("Elements/Particles/Water/DarkBlue"));
-            ParticleTex.Add(Content.Load<Texture2D>("Elements/Particles/Water/Blue"));
-            ParticleTex.Add(Content.Load<Texture2D>("Elements/Particles/Water/LightBlue"));
-            ParticleTex.Add(Content.Load<Texture2D>("Solids/Square"));
+            WaterParticleTexture.Add(Content.Load<Texture2D>("Elements/Particles/Water/DarkBlue"));
+            WaterParticleTexture.Add(Content.Load<Texture2D>("Elements/Particles/Water/Blue"));
+            WaterParticleTexture.Add(Content.Load<Texture2D>("Elements/Particles/Water/LightBlue"));
+            WaterParticleTexture.Add(Content.Load<Texture2D>("Solids/Square"));
+            FireParticleTexture.Add(Content.Load<Texture2D>("Elements/Particles/Fire/Core"));
+            FireParticleTexture.Add(Content.Load<Texture2D>("Elements/Particles/Fire/Smoke"));
+            FireParticleTexture.Add(Content.Load<Texture2D>("Elements/Particles/Fire/RedFire"));
+            FireParticleTexture.Add(Content.Load<Texture2D>("Solids/Square"));
 
 
             camera = new Camera(spriteBatch);
@@ -172,15 +167,17 @@ namespace WindowsGame1
             // put camera in middle of world
             camera.Position = new Vector2(0, 0);
 
-            //Load terrain
-            //splitter.Initialize(Content, "Foreground_tutorial/TutorialMap-foreground__", ScreenWidth, 0, 16);
-            //foreground = Content.Load<Texture2D>("backgrounds/TutorialMap-Foreground");
-
             //Menu buttons
             play = Content.Load<Texture2D>("Solids/Square");
 
-            particleEngine = new ParticleSquirter(ParticleTex, new Vector3((float)random.Next(500), (float)random.Next(500), (float)random.Next(500)));
-            
+            particleEngine = new ParticleSquirter(WaterParticleTexture, new Vector3((float)random.Next(500), (float)random.Next(500), (float)random.Next(500)));
+            BallParticle = new ParticleSquirter(FireParticleTexture, new Vector3((float)random.Next(500), (float)random.Next(500), (float)random.Next(500)));
+            BallParticle.EmitterLocation = new Vector3(MainCharracter.Position.X, MainCharracter.Position.Y, 0);
+            BallParticle.frameRate = frameRate;
+            BallParticle.Shei = ScreenHeight;
+            BallParticle.Swid = ScreenWidth;
+            BallParticle.emitFlag = true;
+
             spriteFont = Content.Load<SpriteFont>("Fonts/TestFont");
             /*
             SoundEmber = Content.Load<SoundEffect>("Sound/Ember");
@@ -204,7 +201,6 @@ namespace WindowsGame1
         protected override void Update(GameTime gameTime)
         {
             vineWallVect2 = camera.ApplyTransformations(vineWallVect);
-            vineWallAnim.updatePos(vineWallVect2);
 
            
 
@@ -225,7 +221,7 @@ namespace WindowsGame1
             // TODO: Add your update logic here
 
             //Collision detection
-            Microsoft.Xna.Framework.Rectangle CharRect = new Microsoft.Xna.Framework.Rectangle((int)(txtAnim.Position.X+camera.Position.X), (int)(txtAnim.Position.Y+camera.Position.Y), txture.Width/4, txture.Height);
+            Microsoft.Xna.Framework.Rectangle CharRect = new Microsoft.Xna.Framework.Rectangle((int)(MainCharracter.Position.X+camera.Position.X), (int)(MainCharracter.Position.Y+camera.Position.Y), txture.Width/4, txture.Height);
             for (int i = 0; i < Crashdirection.Length; i++)
             {
                 Crashdirection[i] = false;
@@ -265,8 +261,8 @@ namespace WindowsGame1
                 {
                     IsGravity = false;
                     //Crashdirection[3] = true;
-                    txtAnim.Position.Y -= 2.5f;
-                    txtAnim.Update(gameTime);
+                    MainCharracter.Position.Y -= 2.5f;
+                    MainCharracter.Update(gameTime);
                     Crashdirection[4] = true;
                 }
                 if (CollisionDetection(CharRect.X + 80, CharRect.Y + 200))//left
@@ -274,8 +270,8 @@ namespace WindowsGame1
 
                     IsGravity = false;
                     //Crashdirection[3] = true;
-                    txtAnim.Position.Y -= 2.5f;
-                    txtAnim.Update(gameTime);
+                    MainCharracter.Position.Y -= 2.5f;
+                    MainCharracter.Update(gameTime);
                     Crashdirection[4] = true;
                 }
             }
@@ -349,49 +345,42 @@ namespace WindowsGame1
             if (key.IsKeyDown(Keys.D) && !Crashdirection[1])
             {
                 camera.Translate(new Vector2(speed, 0));
-                txtAnim.Position.X += 1;
-                txtAnim.Update(gameTime);
+                MainCharracter.Position.X += 1;
+                MainCharracter.Update(gameTime);
                 IsGravity = true;
             }
-            else if (key.IsKeyDown(Keys.A) && !Crashdirection[3])
+            if (key.IsKeyDown(Keys.A) && !Crashdirection[3])
             {
                 camera.Translate(new Vector2(-speed, 0));
-                txtAnim.Position.X -= 1;
-                txtAnim.Animate = true;
-                txtAnim.Update(gameTime);
+                MainCharracter.Position.X -= 1;
+                MainCharracter.Animate = true;
+                MainCharracter.Update(gameTime);
                 IsGravity = true;
                 
             }
-            else if (key.IsKeyDown(Keys.W) && !Crashdirection[0])
+            if (key.IsKeyDown(Keys.W) && !Crashdirection[0])
             {
-                camera.Translate(new Vector2(0, -speed));
-                if (Crashdirection[4])
-                {
-                    IsGravity = false;
-                }
-                else
-                {
-                    IsGravity = true;
-                }
-                txtAnim.Position.Y -= 2.5f;
-                txtAnim.Update(gameTime);
-                
-            }
-            else if (key.IsKeyDown(Keys.S) && !Crashdirection[2])
-            {
-                camera.Translate(new Vector2(0, speed));
+                camera.Translate(new Vector2(0, -speed-speed));
                 IsGravity = false;
-                txtAnim.Position.Y -= 2.5f;
-                txtAnim.Update(gameTime);
+                MainCharracter.Position.Y -= 2.5f;
+                MainCharracter.Update(gameTime);
+                
+            }
+            if (key.IsKeyDown(Keys.S) && !Crashdirection[2])
+            {
+                camera.Translate(new Vector2(0, speed+speed));
+                IsGravity = false;
+                MainCharracter.Position.Y += 2.5f;
+                MainCharracter.Update(gameTime);
                 IsGravity = true;
             }
-            else
-                txtAnim.Animate = false;
 
+            BallParticle.EmitterLocation = new Vector3(MainCharracter.Position.X, MainCharracter.Position.Y, 0);
             // Allows the game to exit
             if (key.IsKeyDown(Keys.Escape))
             {
                 particleEngine.exit = true;
+                BallParticle.exit = true;
                 this.Exit();
             }
 
@@ -430,19 +419,29 @@ namespace WindowsGame1
             {
                 SpritePosi = new Vector3(SpritePosi.X, (float)ScreenHeight, 0.0f);
             }
+            BallParticle.Update();
+
             particleEngine.EmitterLocation = new Vector3(mouseX,mouseY,0);
             particleEngine.frameRate = frameRate;
             particleEngine.Update();
             particleEngine.Shei = ScreenHeight;
             particleEngine.Swid = ScreenWidth;
+
         }
         public void Gravity(bool fall)
         {
             if (fall && !Crashdirection[2])
             {
-                Console.WriteLine("FREEEEEEEEEEEE FAAAAAALLIN!");
-                txtAnim.Position.Y += GravityValue;//Gravity
+                MainCharracter.Position.Y += GravityValue;
             }
+                if (MainCharracter.Position.Y > ScreenHeight / 2+50 && MainCharracter.Position.Y > ScreenHeight / 2 - 50)
+                {
+                    Console.WriteLine("CharY: " + MainCharracter.Position.Y);
+                    camera.Translate(new Vector2(0, GravityValue));
+                    
+                        MainCharracter.Position.Y -= GravityValue;
+                    
+                }
         }
         /// <summary>
         /// This is called when the game should draw itself.
@@ -465,17 +464,17 @@ namespace WindowsGame1
             if (playState == state.playing)
             {
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Gray);
-
+                BallParticle.Draw(spriteBatch);
                 particleEngine.Draw(spriteBatch);
 
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
                 particleEngine.Draw(spriteBatch);
                 // TODO: Add your drawing code here
                 //spriteBatch.Draw(txture, t//xVect, Microsoft.Xna.Framework.Color.White);
-                //txtAnim.Draw(camera);
+                //MainCharracter.Draw(camera);
                 //spriteBatch.Draw(foreground, new Vector2(2, 2), Microsoft.Xna.Framework.Color.White);
 
-                txtAnim.Draw(spriteBatch);
+                MainCharracter.Draw(spriteBatch);
                 //vineWallAnim.Draw(spriteBatch);
                 map.Draw(spriteBatch, camera);
 
