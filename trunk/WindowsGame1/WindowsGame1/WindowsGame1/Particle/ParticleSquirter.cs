@@ -34,8 +34,10 @@ namespace WindowsGame1.Particle
         }
         private void runParticleMovement()
         {
-            if(total<5000 & emitFlag)
-                total += 100;
+            if (total < 10000 & emitFlag)
+            {
+                total += 500;
+            }
 
             int SafeIndex = -1;
             for (int particle = 0; particle < particles.Count; particle++)
@@ -89,8 +91,8 @@ namespace WindowsGame1.Particle
                 ((float)random.NextDouble() * mover) - mover / 2
                 );
 
-            int ttl = random.Next(200);
-            Vector3.Divide(ref velocity, 5, out velocity);
+            int ttl = random.Next(25);
+            Vector3.Divide(ref velocity, 1, out velocity);
             pcount++;
             particles.Add(new ParticleStat(textures[0], EmitterLocation, velocity, new Color(125, 125, 125, 1), 1.0f, ttl, Shei, Swid));
         }

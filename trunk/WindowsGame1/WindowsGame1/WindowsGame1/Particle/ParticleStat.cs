@@ -41,24 +41,8 @@ namespace WindowsGame1.Particle
             SaveVelocity = Velocity; //Push
             TTL--;
             
-            if (Position.X >= iWidth)
-            {
-                Position = new Vector3(0.0f, Position.Y, 0.0f);
-            }
-            else if (Position.X <= 0)
-            {
-                Position = new Vector3((float)iWidth, Position.Y, 0.0f);
-            }
-            if (Position.Y >= iHeight)
-            {
-                Position = new Vector3(Position.X, 0.0f, 0.0f);
-            }
-            else if (Position.Y <= 0)
-            {
-                Position = new Vector3(Position.X, (float)iHeight, 0.0f);
-            }
             Vector3 a = new Vector3(Velocity.X,Velocity.Y,Velocity.Z);
-            Vector3.Multiply(ref a, 2/2, out a);
+            Vector3.Multiply(ref a, 2, out a);
             
 
 
@@ -96,17 +80,7 @@ namespace WindowsGame1.Particle
                         Texture = textures[2];
                         p2 = true;
                     }
-                    //Size += 0.3f;
-                    int gamble = random.Next(1, 10);
-                    
-                    if (gamble == 2)
-                        TTL += 5;
-                    else if (gamble == 3)
-                        TTL += 9;
-                    else if (gamble == 4 || gamble == 5)
-                        TTL += 1;
-                    else if (gamble == 9)
-                        TTL = 1;
+                    Size += 0.5f;
                 }
                 else if (IsRed && Size <= 5)
                 {
@@ -115,7 +89,7 @@ namespace WindowsGame1.Particle
                         Texture = textures[1];
                         p1 = true;
                     }
-                    Size += 0.1f;
+                    Size += 0.3f;
                 }
             }
             Velocity = new Vector3(SaveVelocity.X, SaveVelocity.Y - (float)0.01, 0.0f); //Pop
