@@ -69,6 +69,8 @@ namespace WindowsGame1
                         currentFrame = 0;
                     }
                     elapsedTime = 0;
+                    Console.WriteLine(currentFrame);
+                    tex = Spritestrip[currentFrame];
                 }
             }
             sourceRect.X = currentFrame * frameWidth;
@@ -93,16 +95,15 @@ namespace WindowsGame1
             }
             sourceRect = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeigth);
         }
-
+        Texture2D tex;
         public void Draw(SpriteBatch spritebatch)
         {
             if (Active)
             {
-                for (int i = 0; i < Spritestrip.Count; i++)
-                {
-                    spritebatch.Draw(Spritestrip[i], Position, sourceRect, Color.White,
+              
+                    spritebatch.Draw(tex, Position, sourceRect, Color.White,
                         0, new Vector2(0, 0), Scale, SpriteEffects.None, 1);
-                }
+                
             }
         }
 

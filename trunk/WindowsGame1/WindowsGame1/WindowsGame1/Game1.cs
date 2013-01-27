@@ -266,12 +266,12 @@ namespace WindowsGame1
         }
         private bool CollisionDetection(int PosX, int PosY)
         {
-            Console.Clear();
-            Console.WriteLine(Collisionbmp.GetPixel(PosX, PosY).R);
+        //    Console.Clear();
+        //    Console.WriteLine(Collisionbmp.GetPixel(PosX, PosY).R);
             //if (Collisionmap[PosX ,PosY] == System.Drawing.Color.White)
             if (Collisionbmp.GetPixel(PosX ,PosY).R==255)
             {
-                Console.WriteLine("XXXXXXXXXXXXXXX");
+                //Console.WriteLine("XXXXXXXXXXXXXXX");
                 return true;
             }
             else

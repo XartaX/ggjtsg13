@@ -29,7 +29,7 @@ namespace WindowsGame1
         public int speed;
         public int counter = 0;
         public int counter2 = 0;
-        public int textureCount = 0;
+        
 
         
       
@@ -51,18 +51,19 @@ namespace WindowsGame1
             animations2[counter2].Initialize(positions2[counter2], objectWidth, objectHeight, ScreenWidth, ScreenHeight, frameCount, frameTime, Microsoft.Xna.Framework.Color.White, true, 100);
             exists2.Add(true);
 
+            int textureCount = 0;
+
             for (int i = 0; i < texturePath.Count; i++)
             {
                 texture2.Add(content.Load<Texture2D>(texturePath[i]));
                 textureCount++;
             }
             
-            for (int i = 0; i < counter2; i++)
+            for (int i = 0; i < textureCount; i++)
             {
                 animations2[counter2].addTexture(texture2[counter2+i]);
             }
-
-                counter2++;
+             counter2++;
         }
 
          public void startAnimation(int input, int type)
@@ -146,7 +147,7 @@ namespace WindowsGame1
             }
             for (int i = 0; i < animations2.Count; i++)
             {
-                animations[i].Draw(SP);
+                animations2[i].Draw(SP);
             }
 
 
