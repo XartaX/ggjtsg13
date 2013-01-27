@@ -65,11 +65,13 @@ namespace WindowsGame1
             staticObjects.addObject(Content, "Elements/interactive/sheet/object__03", 1560, 4400, ScreenWidth, ScreenHeight, 410, 529, 100, 1);
             staticObjects.addObject(Content, "Elements/interactive/sheet/object__04", 980, 1690, ScreenWidth, ScreenHeight, 200, 390, 150, 10);
             staticObjects.addObject(Content, "Elements/interactive/sheet/object__05", 3300, 2200, ScreenWidth, ScreenHeight, 1604, 433, 100, 1);
+            staticObjects.addObject(Content, "Elements/interactive/sheet/object__07", 3750, 620, ScreenWidth, ScreenHeight, 100, 106, 100, 1);
+            staticObjects.addObject(Content, "Elements/interactive/sheet/object__08", 870, 4450, ScreenWidth, ScreenHeight, 125, 126, 100, 1);
             foregroundObjects.addObject(Content, "Elements/interactive/sheet/object__02", 2800, 420, ScreenWidth, ScreenHeight, 430, 350, 100, 4);
             addToStringList("Elements/interactive/sheet/boiling-water/boil-water_", 10);
             staticObjects.addObjectType2(Content, paths, 1580, 2170, ScreenWidth, ScreenHeight, 932, 251, 100, 10);
             addToStringList("Elements/interactive/sheet/toxic-pool/toxic-pool_", 6);
-            staticObjects.addObjectType2(Content, paths, 2800, 4370, ScreenWidth, ScreenHeight, 410, 529, 150, 6);
+            staticObjects.addObjectType2(Content, paths, 2800, 4370, ScreenWidth, ScreenHeight, 848, 280, 150, 6);
             for (int i = 0; i < 100; i++)
             {
                 Ground.Add(new Vector2(StartX, StartY));
