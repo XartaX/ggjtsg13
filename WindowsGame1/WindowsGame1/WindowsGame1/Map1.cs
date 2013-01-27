@@ -87,7 +87,7 @@ namespace WindowsGame1
            
             staticObjects.startAnimation(0, 2, false);
             staticObjects.startAnimation(1, 2, false); 
-            foregroundObjects.startAnimation(0, 1, false);
+            foregroundObjects.startAnimation(0, 1, true);
            
         }
 
