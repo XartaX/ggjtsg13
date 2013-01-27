@@ -62,7 +62,7 @@ namespace WindowsGame1
         //Location of Emitter
         Vector3 SpritePosi = Vector3.Zero;
 
-        bool bFullScreen =false;
+        bool bFullScreen =true;
         public int ScreenHeight, ScreenWidth;
         int frameRate = 0, frameCounter = 0;
         TimeSpan elapsedTime = TimeSpan.Zero;
@@ -130,17 +130,18 @@ namespace WindowsGame1
             string bmpPath = DI.FullName.Remove(DI.FullName.Length - 27) + "/WindowsGame1Content/backgrounds/TutorialMap_CollideZone.jpg";
             Collisionbmp = new System.Drawing.Bitmap(bmpPath);
 
-            for (int y = 0; y < 5000; y++)
-            {
-                for (int x = 0; x < 5000; x++)
-                {
-                    Collisionmap[x,y] = Collisionbmp.GetPixel(x, y);
-                }
-                //Console.WriteLine("|");
-            }
+            //for (int y = 0; y < 5000; y++)
+            //{
+            //    for (int x = 0; x < 5000; x++)
+            //    {
+            //        Collisionmap[x,y] = Collisionbmp.GetPixel(x, y);
+            //    }
+            //    //Console.WriteLine("|");
+            //}
             Console.WriteLine("Finished");
             graphics.IsFullScreen = bFullScreen;
             graphics.ApplyChanges();
+
             txture = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
             vineWall = Content.Load<Texture2D>("Elements/interactive/sheet/object__01");
             Black = Content.Load<Texture2D>("black");
@@ -229,57 +230,32 @@ namespace WindowsGame1
             //1     Right
             //2     Downwards
             //3     Letf
-            Console.Clear();
-            Console.WriteLine("Char.X :"+CharRect.X+" Char.Y: "+CharRect.Y);
-            Console.WriteLine("Char.X2 :" + CharRect.X + CharRect.Width+ " Char.Y2: " + CharRect.Y+CharRect.Height);
-            Console.WriteLine("1");
-            if(CollisionDetection(CharRect.X,CharRect.Y))//Upper left
-            {
-                Crashdirection[0] = true;
-                Crashdirection[3] = true;
-
-            }
-            Console.WriteLine("2");
-            if (CollisionDetection(CharRect.X+(CharRect.Width/2), CharRect.Y))//Upper Mid
+            //Console.Clear();
+            //Console.WriteLine("Char.X :"+CharRect.X+" Char.Y: "+CharRect.Y);
+            //Console.WriteLine("Char.X2 :" + CharRect.X + CharRect.Width+ " Char.Y2: " + CharRect.Y+CharRect.Height);
+            //Console.WriteLine("1");
+            if(CollisionDetection(CharRect.X+110,CharRect.Y+85))//Upper left
             {
                 Crashdirection[0] = true;
 
             }
-            Console.WriteLine("3");
-            if (CollisionDetection(CharRect.X + CharRect.Width, CharRect.Y))//Upper right
+            if (CollisionDetection(CharRect.X+160, CharRect.Y+125))//Upper left
             {
-                Crashdirection[0] = true;
-                Crashdirection[1] = true;
-            }
-            Console.WriteLine("4");
-            if (CollisionDetection(CharRect.X, CharRect.Y+(CharRect.Height/2)))//middle left
-            {
-                Crashdirection[3] = true;
-            }
-            Console.WriteLine("5");
-            if (CollisionDetection(CharRect.X + CharRect.Width, CharRect.Y + (CharRect.Height / 2)))//middle right
-            {
-                Crashdirection[1] = true;
-            }
-            Console.WriteLine("6");
-            if (CollisionDetection(CharRect.X, CharRect.Y + CharRect.Height))//bottom left
-            {
-                Crashdirection[2] = true;
-                Crashdirection[3] = true;
-
-            }
-            Console.WriteLine("7");
-            if (CollisionDetection(CharRect.X + (CharRect.Width / 2), CharRect.Y + CharRect.Height))//Bottom mid
-            {
-                Crashdirection[2] = true;
-            }
-            Console.WriteLine("8");
-            if (CollisionDetection(CharRect.X + CharRect.Width, CharRect.Y + CharRect.Height))//bottom right
-            {
-                Crashdirection[2] = true;
                 Crashdirection[1] = true;
 
             }
+            if (CollisionDetection(CharRect.X+100, CharRect.Y+200))//Upper left
+            {
+                Crashdirection[2] = true;
+
+            }
+            if (CollisionDetection(CharRect.X+50, CharRect.Y+135))//Upper left
+            {
+                Crashdirection[3] = true;
+
+            }
+
+
 
             Gravity(IsGravity);
 
@@ -288,15 +264,17 @@ namespace WindowsGame1
         }
         private bool CollisionDetection(int PosX, int PosY)
         {
-
-            if (Collisionmap[PosX ,PosY] == System.Drawing.Color.White)
+            Console.Clear();
+            Console.WriteLine(Collisionbmp.GetPixel(PosX, PosY).R);
+            //if (Collisionmap[PosX ,PosY] == System.Drawing.Color.White)
+            if (Collisionbmp.GetPixel(PosX ,PosY).R==255)
             {
                 Console.WriteLine("XXXXXXXXXXXXXXX");
                 return true;
             }
             else
             {
-                Console.WriteLine("-------------------");
+                //Console.WriteLine("-------------------");
                 return false;
             }
         }
@@ -339,14 +317,14 @@ namespace WindowsGame1
             }
 
             IsGravity = true;
-            
-            if (key.IsKeyDown(Keys.D))
+
+            if (key.IsKeyDown(Keys.D) && !Crashdirection[1])
             {
-                        camera.Translate(new Vector2(speed, 0));
+                camera.Translate(new Vector2(speed, 0));
                 txtAnim.Position.X += 1;
                 txtAnim.Update(gameTime);
             }
-            else if (key.IsKeyDown(Keys.A))
+            else if (key.IsKeyDown(Keys.A) && !Crashdirection[3])
             {
                 camera.Translate(new Vector2(-speed, 0));
                 txtAnim.Position.X -= 1;
@@ -354,7 +332,7 @@ namespace WindowsGame1
                 txtAnim.Update(gameTime);
                 
             }
-            else if (key.IsKeyDown(Keys.W))
+            else if (key.IsKeyDown(Keys.W) && !Crashdirection[0])
             {
                         camera.Translate(new Vector2(0, -speed));
                 IsGravity = false;
@@ -362,7 +340,7 @@ namespace WindowsGame1
                 txtAnim.Update(gameTime);
                 
             }
-            else if (key.IsKeyDown(Keys.Down) && !Crashdirection[2])
+            else if (key.IsKeyDown(Keys.S) && !Crashdirection[2])
             {
                 camera.Translate(new Vector2(0, speed));
                 IsGravity = false;
