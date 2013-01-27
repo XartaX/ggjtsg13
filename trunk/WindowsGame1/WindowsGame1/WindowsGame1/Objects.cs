@@ -62,7 +62,7 @@ namespace WindowsGame1
              counter2++;
         }
 
-         public void startAnimation(int input, int type)
+         public void startAnimation(int input, int type, bool loop)
          {
              
              if(type==1)
@@ -70,7 +70,10 @@ namespace WindowsGame1
                  {
                      if (i == input)
                      {
-
+                         if (loop == false)
+                         {
+                             animations[i].Looping = false;
+                         }
                          animations[i].Update(gt);
 
                      }
@@ -78,7 +81,13 @@ namespace WindowsGame1
              else 
                  for (int i = 0; i < animations2.Count; i++)
                      if (i == input)
+                     {
+                         if (loop == false)
+                         {
+                             animations2[i].Looping = false;
+                         }
                          animations2[i].Update(gt);
+                     }
          }
 
          public void Update(GameTime gt)

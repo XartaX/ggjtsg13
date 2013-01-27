@@ -514,6 +514,159 @@
       <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Elements\interactive\sheet\object__04.xnb</Output>
       <Time>2013-01-27T05:21:38.7507301+01:00</Time>
     </Item>
+    <Item>
+      <Source>storyboard\intro\intro_01.png</Source>
+      <Name>storyboard\intro\intro_01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_01.xnb</Output>
+      <Time>2013-01-27T09:17:45.3190114+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_02.png</Source>
+      <Name>storyboard\intro\intro_02</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_02.xnb</Output>
+      <Time>2013-01-27T09:17:45.1580022+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_03.png</Source>
+      <Name>storyboard\intro\intro_03</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_03.xnb</Output>
+      <Time>2013-01-27T09:17:45.1840037+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_04.png</Source>
+      <Name>storyboard\intro\intro_04</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_04.xnb</Output>
+      <Time>2013-01-27T09:17:45.2040049+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_05.png</Source>
+      <Name>storyboard\intro\intro_05</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_05.xnb</Output>
+      <Time>2013-01-27T09:17:45.2210058+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_06.png</Source>
+      <Name>storyboard\intro\intro_06</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_06.xnb</Output>
+      <Time>2013-01-27T09:17:45.2390069+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_07.png</Source>
+      <Name>storyboard\intro\intro_07</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_07.xnb</Output>
+      <Time>2013-01-27T09:17:45.2640083+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_08.png</Source>
+      <Name>storyboard\intro\intro_08</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_08.xnb</Output>
+      <Time>2013-01-27T09:17:45.2850095+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_09.png</Source>
+      <Name>storyboard\intro\intro_09</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_09.xnb</Output>
+      <Time>2013-01-27T09:17:45.3010104+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_10.png</Source>
+      <Name>storyboard\intro\intro_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_10.xnb</Output>
+      <Time>2013-01-27T09:17:45.3100109+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_11.png</Source>
+      <Name>storyboard\intro\intro_11</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_11.xnb</Output>
+      <Time>2013-01-27T09:17:45.1660027+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_12.png</Source>
+      <Name>storyboard\intro\intro_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_12.xnb</Output>
+      <Time>2013-01-27T09:17:45.1750032+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_13.png</Source>
+      <Name>storyboard\intro\intro_13</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_13.xnb</Output>
+      <Time>2013-01-27T09:17:45.2130054+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_14.png</Source>
+      <Name>storyboard\intro\intro_14</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_14.xnb</Output>
+      <Time>2013-01-27T09:17:45.2310064+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_15.png</Source>
+      <Name>storyboard\intro\intro_15</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_15.xnb</Output>
+      <Time>2013-01-27T09:17:45.2480074+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_16.png</Source>
+      <Name>storyboard\intro\intro_16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_16.xnb</Output>
+      <Time>2013-01-27T09:17:45.2560078+01:00</Time>
+    </Item>
+    <Item>
+      <Source>storyboard\intro\intro_17.png</Source>
+      <Name>storyboard\intro\intro_17</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Global game jam prosjekt\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\storyboard\intro\intro_17.xnb</Output>
+      <Time>2013-01-27T09:17:45.29301+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

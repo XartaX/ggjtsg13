@@ -18,6 +18,7 @@ namespace WindowsGame1
         Objects staticObjects = new Objects();
         Objects foregroundObjects = new Objects();
         List<String> paths;
+        public bool vineDestroyed=false;
 
         public void addToStringList(String bane, int antall)
         {
@@ -75,11 +76,18 @@ namespace WindowsGame1
         {
             staticObjects.Update(gt);
             foregroundObjects.Update(gt);
+
+            if (vineDestroyed == true)
+            {
+                staticObjects.startAnimation(0, 1, false);
+            }
+
             //TODO ==> Set to trigger
-            staticObjects.startAnimation(0, 1);
-            staticObjects.startAnimation(0, 2);
-            staticObjects.startAnimation(1, 2); 
-            foregroundObjects.startAnimation(0, 1);
+
+           
+            staticObjects.startAnimation(0, 2, false);
+            staticObjects.startAnimation(1, 2, false); 
+            foregroundObjects.startAnimation(0, 1, false);
            
         }
 
