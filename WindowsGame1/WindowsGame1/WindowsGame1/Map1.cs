@@ -19,6 +19,7 @@ namespace WindowsGame1
         Objects foregroundObjects = new Objects();
         List<String> paths;
         public bool vineDestroyed=false;
+        public bool pillarDestroyed = false;
 
         public void addToStringList(String bane, int antall)
         {
@@ -41,6 +42,7 @@ namespace WindowsGame1
             splitter.Initialize(Content, "Foreground_tutorial/TutorialMap-foreground__", ScreenWidth, 0, 16);
             staticObjects.addObject(Content, "Elements/interactive/sheet/object__01", 1240, 285, ScreenWidth, ScreenHeight, 204, 320, 100, 10);
             staticObjects.addObject(Content, "Elements/interactive/sheet/object__03", 1560, 4400, ScreenWidth, ScreenHeight, 410, 529, 100, 1);
+            staticObjects.addObject(Content, "Elements/interactive/sheet/object__04", 980, 1690, ScreenWidth, ScreenHeight, 200, 390, 150, 10);
             foregroundObjects.addObject(Content, "Elements/interactive/sheet/object__02", 2800, 420, ScreenWidth, ScreenHeight, 430, 350, 100, 4);
             addToStringList("Elements/interactive/sheet/boiling-water/boil-water_", 10);
             staticObjects.addObjectType2(Content, paths, 1580, 2170, ScreenWidth, ScreenHeight, 932, 251, 100, 10);
@@ -81,7 +83,10 @@ namespace WindowsGame1
             {
                 staticObjects.startAnimation(0, 1, false);
             }
-
+            if (pillarDestroyed == true)
+            {
+                staticObjects.startAnimation(3, 1, false);
+            }
             //TODO ==> Set to trigger
 
            
