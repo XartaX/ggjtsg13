@@ -68,7 +68,7 @@ namespace WindowsGame1
 
         //SETTINGS
         bool bFullScreen =false;
-        bool Godmode = false;
+        bool Godmode = true;
         public int ScreenHeight, ScreenWidth;
         int frameRate = 0, frameCounter = 0;
         TimeSpan elapsedTime = TimeSpan.Zero;
@@ -202,7 +202,7 @@ namespace WindowsGame1
         {
             vineWallVect2 = camera.ApplyTransformations(vineWallVect);
 
-            Console.WriteLine("X: " + FireEmitterWCX +"   Y: " + FireEmitterWCY);
+            //Console.WriteLine("X: " + FireEmitterWCX +"   Y: " + FireEmitterWCY);
 
             FireEmitterWCX = (int)(FireParticle.EmitterLocation.X + camera.Position.X);
             FireEmitterWCY = (int)(FireParticle.EmitterLocation.Y + camera.Position.Y);
@@ -228,10 +228,15 @@ namespace WindowsGame1
             if (FireEmitterWCX > 980 && FireEmitterWCX < 1180 &&
                 FireEmitterWCY > 1690 && FireEmitterWCY < 2080)
             {
+
+               
+               
                 if (map.pillarDestroyed == false)
                 {
-                    Console.WriteLine("Success!");
-                    map.pillarDestroyed = true;
+                    map.destroyPillar();
+
+                    map.pillarShotCount++;
+                    Console.WriteLine("shot"+map.pillarShotCount);
                 }
                 shootTime = 0;
             }
@@ -384,7 +389,8 @@ namespace WindowsGame1
             }
             camera.Position = cameraPosition;
         }
-
+        
+               bool bulletUsed = false;
         float speed = 5.0f;
         bool shoot =  false;
         bool ShootInProgress = false;
@@ -523,12 +529,16 @@ namespace WindowsGame1
             }
             else if (shootTime == 0 && ShootExplode)
             {
+
                 ExplodeCount--;
                 if (ExplodeCount == 0)
                 {
+                   
                     ShootExplode = false;
                     FireParticle.exploding = false;
                     FireParticle.Spread = 1f;
+                    bulletUsed = true;
+                    
                 }
             }
             else

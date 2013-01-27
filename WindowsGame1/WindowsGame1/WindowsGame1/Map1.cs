@@ -20,6 +20,7 @@ namespace WindowsGame1
         List<String> paths;
         public bool vineDestroyed=false;
         public bool pillarDestroyed = false;
+        public int pillarShotCount = 1;
 
         public void addToStringList(String bane, int antall)
         {
@@ -28,6 +29,26 @@ namespace WindowsGame1
             {
                 paths.Add(bane + (i + 1).ToString().PadLeft(2, '0'));
             }
+        }
+        int counter = 0;
+        public void destroyPillar()
+        {
+            if (pillarShotCount < 10)
+            {
+                Console.WriteLine("1");
+                staticObjects.setFrame(2, 1, 1);
+            }
+            else if (pillarShotCount <20)
+            {
+                Console.WriteLine("2");
+                staticObjects.setFrame(2, 1, 2);
+            }
+            else if (pillarShotCount <30)
+            {
+                Console.WriteLine("3");
+                pillarDestroyed = true;
+            }
+            
         }
 
         public void Initialize(Texture2D Black, ContentManager Content, int ScreenWidth, int ScreenHeight)

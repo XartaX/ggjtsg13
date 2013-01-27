@@ -62,21 +62,28 @@ namespace WindowsGame1
                          if (Looping == false)
                          {
                              Animate = false;
+                             Console.WriteLine(frameCount);
+                             setFrame(frameCount-1);
                              return;
                          }
-                         currentFrame = 0;
-
-                     }
+                         setFrame(0);
+                      }
                     elapsedTime = 0;
                 }
             }
             sourceRect.X = currentFrame * frameWidth;
+            //Console.WriteLine("rect: "+ sourceRect.X+"frame: "+currentFrame+"width: "+frameWidth);
             sourceRect.Width = frameWidth;
             sourceRect.Height = frameHeigth;
         }
+
+
         public void setFrame(int frame)
         {
             currentFrame = frame;
+            sourceRect.X = currentFrame * frameWidth;
+            //Console.WriteLine(sourceRect.X.ToString());
+            //Console.WriteLine("rect: " + sourceRect.X + "frame: " + currentFrame + "width: " + frameWidth);
         }
         public void updatePos(Vector2 pos)
         {
