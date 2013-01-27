@@ -62,7 +62,7 @@ namespace WindowsGame1
         //Location of Emitter
         Vector3 SpritePosi = Vector3.Zero;
 
-        bool bFullScreen =true;
+        bool bFullScreen = false;
         public int ScreenHeight, ScreenWidth;
         int frameRate = 0, frameCounter = 0;
         TimeSpan elapsedTime = TimeSpan.Zero;
@@ -203,10 +203,12 @@ namespace WindowsGame1
         {
             vineWallVect2 = camera.ApplyTransformations(vineWallVect);
             vineWallAnim.updatePos(vineWallVect2);
-            
+
+           
+
             // cap the camera to the world width/height.
             CapCameraPosition();
-
+            map.Update(gameTime);
             UpdateInput(gameTime);
             elapsedTime += gameTime.ElapsedGameTime;
 

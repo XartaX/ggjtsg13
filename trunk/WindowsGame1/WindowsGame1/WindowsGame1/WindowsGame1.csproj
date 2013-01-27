@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
+    <Compile Include="Animation_multipleTextures.cs" />
     <Compile Include="Background.cs" />
     <Compile Include="Map1.cs" />
     <Compile Include="Objects.cs" />
