@@ -67,7 +67,7 @@ namespace WindowsGame1
         Vector3 SpritePosi = Vector3.Zero;
 
         //SETTINGS
-        bool bFullScreen =false;
+        bool bFullScreen =true;
         bool Godmode = false;
         public int ScreenHeight, ScreenWidth;
         int frameRate = 0, frameCounter = 0;
@@ -131,12 +131,14 @@ namespace WindowsGame1
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Collisionmap = new System.Drawing.Color[5000,5000];
             DirectoryInfo DI = new DirectoryInfo(Environment.CurrentDirectory);
-            string bmpPath = DI.FullName.Remove(DI.FullName.Length - 27) + "/WindowsGame1Content/backgrounds/TutorialMap_CollideZone.jpg";
+            //string bmpPath = DI.FullName.Remove(DI.FullName.Length - 27) + "/WindowsGame1Content/backgrounds/TutorialMap_CollideZone.jpg";
+            string bmpPath = Path.GetFullPath("TutorialMap_CollideZone.jpg");//\\"TutorialMap_CollideZone.jpg");
+            //bmpPath = bmpPath.Remove(bmpPath.Length - 1) + "TutorialMap_CollideZone.jpg";
+            //string a= properti
             Collisionbmp = new System.Drawing.Bitmap(bmpPath);
 
             Console.WriteLine("Finished");
-            graphics.IsFullScreen = bFullScreen;
-            graphics.ApplyChanges();
+            
             txtureRight = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
             txture = txtureRight;
             GameOver = Content.Load<Texture2D>("storyboard/gameOver_2000x1500");
@@ -183,6 +185,8 @@ namespace WindowsGame1
             /*
             SoundEmber = Content.Load<SoundEffect>("Sound/Ember");
             soundEffectInstance = SoundEmber.CreateInstance();*/
+            graphics.IsFullScreen = bFullScreen;
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -336,7 +340,7 @@ namespace WindowsGame1
                 {
                     IsGravity = false;
                     //CrashDirection[3] = true;
-                    MainCharracter.Position.Y -= 2.5f;
+                    MainCharracter.Position.Y -= 0.5f;
                     MainCharracter.Update(gameTime);
                     CrashDirection[4] = true;
                 }
@@ -345,7 +349,7 @@ namespace WindowsGame1
 
                     IsGravity = false;
                     //CrashDirection[3] = true;
-                    MainCharracter.Position.Y -= 2.5f;
+                    MainCharracter.Position.Y -= 0.5f;
                     MainCharracter.Update(gameTime);
                     CrashDirection[4] = true;
                 }
