@@ -33,17 +33,17 @@ namespace WindowsGame1
         int counter = 0;
         public void destroyPillar()
         {
-            if (pillarShotCount < 10)
+            if (pillarShotCount < 11)
             {
                 Console.WriteLine("1");
                 staticObjects.setFrame(2, 1, 1);
             }
-            else if (pillarShotCount <20)
+            else if (pillarShotCount <21)
             {
                 Console.WriteLine("2");
                 staticObjects.setFrame(2, 1, 2);
             }
-            else if (pillarShotCount <30)
+            else if (pillarShotCount <31)
             {
                 Console.WriteLine("3");
                 pillarDestroyed = true;
