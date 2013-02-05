@@ -37,13 +37,25 @@ namespace WindowsGame1
         //Sprite Text
         SpriteFont spriteFont;
 
+        //General Game Objects
         SpriteBatch spriteBatch;
-        Texture2D txture;
         Texture2D vineWall;
-        Texture2D Black;
         Vector2 vineWallVect;
         Vector2 vineWallVect2;
+        Texture2D Black;
+        private int worldWidth;
+        private int worldHeight;
+
+        //Fullscreen Textures
+        List<Texture2D> StoryBoard = new List<Texture2D>();
+        Texture2D GameOver;
+
+        //Charracter
         ToTo MainCharracter;
+        Texture2D[] MainCharracterTextureActive;
+        Texture2D[] MainCharracterTextureBase,MainCharracterTextureWater,MainCharracterTextureLeaf, MainCharracterTextureFire;
+
+
         Map1 map;
         TimeSpan AirTime;
         bool IsGravity;
@@ -67,7 +79,7 @@ namespace WindowsGame1
         Vector3 SpritePosi = Vector3.Zero;
 
         //SETTINGS
-        bool bFullScreen =false;
+        bool bFullScreen =true;
         bool Godmode = true;
         public int ScreenHeight, ScreenWidth;
         int frameRate = 0, frameCounter = 0;
@@ -121,10 +133,6 @@ namespace WindowsGame1
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
-        private int worldWidth;
-        private int worldHeight;
-        List<Texture2D> StoryBoard = new List<Texture2D>();
-        Texture2D txtureRight, txtureLeft, GameOver;
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -139,13 +147,25 @@ namespace WindowsGame1
 
             Console.WriteLine("Finished");
             
-            txtureRight = Content.Load<Texture2D>("spritesheets/base_Walk_200x200px");
-            txture = txtureRight;
+            //MainCharracter Textures
+            //Base Skill
+            MainCharracterTextureBase = new Texture2D[]{Content.Load<Texture2D>("spritesheets/Base_Walk_Right"),Content.Load<Texture2D>("spritesheets/Base_Walk_Left")};
+            /*
+             //NOT IMPLEMENTED YET
+            //Leaf Skill
+            MainCharracterTextureWater = new Texture2D[]{Content.Load<Texture2D>("spritesheets/Water_Walk_Right"), Content.Load<Texture2D>("spritesheets/Water_Walk_Left")}
+            //Leaf Skill
+            MainCharracterTextureLeaf = new Texture2D[]{Content.Load<Texture2D>("spritesheets/Leaf_Walk_Right"), Content.Load<Texture2D>("spritesheets/Leaf_Walk_Left")}
+             */
+            //Fire Skill
+            MainCharracterTextureFire = new Texture2D[]{Content.Load<Texture2D>("spritesheets/Flame_Walk_Right"),Content.Load<Texture2D>("spritesheets/Flame_Walk_Left")};
+
+            MainCharracterTextureActive = MainCharracterTextureFire;
+
             GameOver = Content.Load<Texture2D>("storyboard/gameOver_2000x1500");
-            txtureLeft = Content.Load<Texture2D>("spritesheets/base_Walk_left");
             vineWall = Content.Load<Texture2D>("Elements/interactive/sheet/object__01");
             Black = Content.Load<Texture2D>("black");
-            MainCharracter.Initialize(txture, new Vector2(150, 375), 200, 200, ScreenWidth, ScreenHeight, 4, 150, Microsoft.Xna.Framework.Color.White, true, 100);
+            MainCharracter.Initialize(MainCharracterTextureFire[0], new Vector2(150, 375), 200, 200, ScreenWidth, ScreenHeight, 4, 150, Microsoft.Xna.Framework.Color.White, true, 100);
             //vineWallAnim.Initialize(vineWall, vineWallVect, 204, 320, ScreenWidth, ScreenHeight, 10, 100, Microsoft.Xna.Framework.Color.White, false, 100);
             map.Initialize(Black, Content, ScreenWidth, ScreenHeight);
             // TODO: use this.Content to load your game content here
@@ -302,7 +322,7 @@ namespace WindowsGame1
             // TODO: Add your update illogic here
 
             //Collision detection
-            Microsoft.Xna.Framework.Rectangle CharRect = new Microsoft.Xna.Framework.Rectangle((int)(MainCharracter.Position.X+camera.Position.X), (int)(MainCharracter.Position.Y+camera.Position.Y), txture.Width/4, txture.Height);
+            Microsoft.Xna.Framework.Rectangle CharRect = new Microsoft.Xna.Framework.Rectangle((int)(MainCharracter.Position.X + camera.Position.X), (int)(MainCharracter.Position.Y + camera.Position.Y), MainCharracterTextureActive[0].Width / 4, MainCharracterTextureActive[0].Height);
             for (int i = 0; i < CrashDirection.Length; i++)
             {
                 CrashDirection[i] = false;
@@ -314,11 +334,11 @@ namespace WindowsGame1
 
             if (!Godmode)
             {
+                    GravityValue = 5;
                 if (CollisionDetection(CharRect.X + 110, CharRect.Y + 85))//Upper left
                 {
                     CrashDirection[0] = true;
                     IsGravity = true;
-                    GravityValue = 5;
                     IsJumping = false;
 
                 }
@@ -335,13 +355,15 @@ namespace WindowsGame1
                 if (CollisionDetection(CharRect.X + 50, CharRect.Y + 135))//Under
                 {
                     CrashDirection[3] = true;
+                    IsGravity = false;
+                    MainCharracter.Position.Y -= 1f;
 
                 }
                 if (CollisionDetection(CharRect.X + 120, CharRect.Y + 200))//left
                 {
                     IsGravity = false;
-                    //CrashDirection[3] = true;
-                    MainCharracter.Position.Y -= 0.5f;
+                    MainCharracter.Position.Y -= 1f;
+                    GravityValue = 0;
                     MainCharracter.Update(gameTime);
                     CrashDirection[4] = true;
                 }
@@ -349,8 +371,8 @@ namespace WindowsGame1
                 {
 
                     IsGravity = false;
-                    //CrashDirection[3] = true;
-                    MainCharracter.Position.Y -= 0.5f;
+                    MainCharracter.Position.Y -= 1f;
+                    GravityValue = 0;
                     MainCharracter.Update(gameTime);
                     CrashDirection[4] = true;
                 }
@@ -422,7 +444,7 @@ namespace WindowsGame1
 
             if (key.IsKeyDown(Keys.D) && !CrashDirection[1] && CharMoveR)
             {
-                MainCharracter.Spritestrip = txtureRight;
+                setMainCharracterTextureActive(0);
                 WasRightLastDirection = true;
 
                 if (camera.Position.X+ScreenWidth > 5000-10)
@@ -446,7 +468,7 @@ namespace WindowsGame1
             }
             if (key.IsKeyDown(Keys.A) && !CrashDirection[3] && CharMoveL)
             {
-                    MainCharracter.Spritestrip = txtureLeft;
+                setMainCharracterTextureActive(1);
                 WasRightLastDirection = false;
                 if (camera.Position.X < 10)
                 {
@@ -455,7 +477,6 @@ namespace WindowsGame1
                 else
                 {
                     camera.Translate(new Vector2(-speed, 0));
-                    MainCharracter.Position.X -= 0;
                 }
                 lastCamY = camera.Position.Y;   
                 MainCharracter.Animate = true;
@@ -643,10 +664,15 @@ namespace WindowsGame1
                 {
                     Console.WriteLine("CharY: " + MainCharracter.Position.Y);
                     camera.Translate(new Vector2(0, GravityValue));
-                    
-                        MainCharracter.Position.Y -= GravityValue;
-                    
+                        MainCharracter.Position.Y -= GravityValue;                   
                 }
+        }
+        void setMainCharracterTextureActive(int Index)
+        {
+            if (MainCharracter.Spritestrip != MainCharracterTextureActive[Index])
+            {
+                MainCharracter.Spritestrip = MainCharracterTextureActive[Index];
+            }
         }
         int storyCount = 0;
         /// <summary>
@@ -680,7 +706,7 @@ namespace WindowsGame1
 
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
                 // TODO: Add your drawing code here
-                //spriteBatch.Draw(txture, t//xVect, Microsoft.Xna.Framework.Color.White);
+                //spriteBatch.Draw(MainCharracterTextureActive, t//xVect, Microsoft.Xna.Framework.Color.White);
                 //MainCharracter.Draw(camera);
                 //spriteBatch.Draw(foreground, new Vector2(2, 2), Microsoft.Xna.Framework.Color.White);
 
@@ -692,10 +718,11 @@ namespace WindowsGame1
                 FireParticle.Draw(spriteBatch);
             }
 
+            /*
             spriteBatch.DrawString(spriteFont,
                  "FPS: " + frameRate,
                 new Vector2(pst10Xangle, ScreenHeight - pst10Yangle),
-               Microsoft.Xna.Framework.Color.OrangeRed);
+               Microsoft.Xna.Framework.Color.OrangeRed);*/
             spriteBatch.End();
             base.Draw(gameTime);
         }
