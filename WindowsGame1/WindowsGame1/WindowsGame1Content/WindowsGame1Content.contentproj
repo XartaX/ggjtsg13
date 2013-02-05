@@ -88,8 +88,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="spritesheets\base_Walk_200x200px.png">
-      <Name>base_Walk_200x200px</Name>
+    <Compile Include="spritesheets\Base_Walk_Right.png">
+      <Name>Base_Walk_Right</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -454,8 +454,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="spritesheets\base_Walk_left.png">
-      <Name>base_Walk_left</Name>
+    <Compile Include="spritesheets\Base_Walk_Left.png">
+      <Name>Base_Walk_Left</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -477,6 +477,20 @@
   <ItemGroup>
     <Compile Include="Elements\interactive\sheet\object__07.png">
       <Name>object__07</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="spritesheets\Flame_Walk_Right.png">
+      <Name>Flame_Walk_Right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="spritesheets\Flame_Walk_Left.png">
+      <Name>Flame_Walk_Left</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
