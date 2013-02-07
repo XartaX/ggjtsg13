@@ -41,8 +41,6 @@ namespace WindowsGame1
         SpriteBatch spriteBatch;
         Texture2D vineWall;
         Vector2 vineWallVect;
-        Vector2 vineWallVect2;
-        Texture2D Black;
         private int worldWidth;
         private int worldHeight;
 
@@ -55,6 +53,7 @@ namespace WindowsGame1
         Texture2D[] MainCharracterTextureActive;
         Texture2D[] MainCharracterTextureBase,MainCharracterTextureWater,MainCharracterTextureLeaf, MainCharracterTextureFire;
 
+        bool once = false, CharMoveR = true, CharMoveL = true;
 
         Map1 map;
         TimeSpan AirTime;
@@ -80,7 +79,7 @@ namespace WindowsGame1
 
         //SETTINGS
         bool bFullScreen =true;
-        bool Godmode = true;
+        bool Godmode = false;
         public int ScreenHeight, ScreenWidth;
         int frameRate = 0, frameCounter = 0;
         TimeSpan elapsedTime = TimeSpan.Zero;
@@ -97,14 +96,15 @@ namespace WindowsGame1
 
         private void InitGraphicsMode()
         {
+            //GRAPHICS
             DisplayMode dm = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode;
             ScreenHeight = dm.Height;
             ScreenWidth = dm.Width;
             graphics.PreferredBackBufferWidth = ScreenWidth;
             graphics.PreferredBackBufferHeight = ScreenHeight;
-            
             graphics.PreferMultiSampling = true;
-            //graphics.ApplyChanges();
+            graphics.IsFullScreen = bFullScreen;
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -137,16 +137,13 @@ namespace WindowsGame1
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Collisionmap = new System.Drawing.Color[5000,5000];
-            DirectoryInfo DI = new DirectoryInfo(Environment.CurrentDirectory);
-            //string bmpPath = DI.FullName.Remove(DI.FullName.Length - 27) + "/WindowsGame1Content/backgrounds/TutorialMap_CollideZone.jpg";
-            string bmpPath = Path.GetFullPath("TutorialMap_CollideZone.jpg");//\\"TutorialMap_CollideZone.jpg");
-            //bmpPath = bmpPath.Remove(bmpPath.Length - 1) + "TutorialMap_CollideZone.jpg";
-            //string a= properti
-            Collisionbmp = new System.Drawing.Bitmap(bmpPath);
 
-            Console.WriteLine("Finished");
-            
+            //Creates the Collision map, uses color collision
+            Collisionmap    = new System.Drawing.Color[5000,5000];
+            DirectoryInfo DI= new DirectoryInfo(Environment.CurrentDirectory);
+            string bmpPath  = Path.GetFullPath("TutorialMap_CollideZone.jpg");
+            Collisionbmp    = new System.Drawing.Bitmap(bmpPath);
+                        
             //MainCharracter Textures
             //Base Skill
             MainCharracterTextureBase = new Texture2D[]{Content.Load<Texture2D>("spritesheets/Base_Walk_Right"),Content.Load<Texture2D>("spritesheets/Base_Walk_Left")};
@@ -159,16 +156,9 @@ namespace WindowsGame1
              */
             //Fire Skill
             MainCharracterTextureFire = new Texture2D[]{Content.Load<Texture2D>("spritesheets/Flame_Walk_Right"),Content.Load<Texture2D>("spritesheets/Flame_Walk_Left")};
-
             MainCharracterTextureActive = MainCharracterTextureFire;
-
-            GameOver = Content.Load<Texture2D>("storyboard/gameOver_2000x1500");
-            vineWall = Content.Load<Texture2D>("Elements/interactive/sheet/object__01");
-            Black = Content.Load<Texture2D>("black");
             MainCharracter.Initialize(MainCharracterTextureFire[0], new Vector2(150, 375), 200, 200, ScreenWidth, ScreenHeight, 4, 150, Microsoft.Xna.Framework.Color.White, true, 100);
-            //vineWallAnim.Initialize(vineWall, vineWallVect, 204, 320, ScreenWidth, ScreenHeight, 10, 100, Microsoft.Xna.Framework.Color.White, false, 100);
-            map.Initialize(Black, Content, ScreenWidth, ScreenHeight);
-            // TODO: use this.Content to load your game content here
+
             //Particle
             WaterParticleTexture.Add(Content.Load<Texture2D>("Elements/Particles/Water/DarkBlue"));
             WaterParticleTexture.Add(Content.Load<Texture2D>("Elements/Particles/Water/Blue"));
@@ -179,19 +169,7 @@ namespace WindowsGame1
             FireParticleTexture.Add(Content.Load<Texture2D>("Elements/Particles/Fire/RedFire"));
             FireParticleTexture.Add(Content.Load<Texture2D>("Solids/Square"));
 
-            for(int a = 1; a < 18;a++){
-            StoryBoard.Add(Content.Load<Texture2D>("storyboard/intro/intro_"+a.ToString().PadLeft(2,'0')));
-            }
-
-            camera = new Camera(spriteBatch);
-            worldHeight = 5000;
-            worldWidth = 5000;
-            // put camera in middle of world
-            camera.Position = new Vector2(0, 0);
-
-            //Menu buttons
-            play = Content.Load<Texture2D>("Solids/Square");
-
+            //Particle Engine
             particleEngine = new ParticleSquirter(WaterParticleTexture, new Vector3((float)random.Next(500), (float)random.Next(500), (float)random.Next(500)));
             FireParticle = new ParticleSquirter(FireParticleTexture, new Vector3((float)random.Next(500), (float)random.Next(500), (float)random.Next(500)));
             FireParticle.EmitterLocation = new Vector3(MainCharracter.Position.X + SpriteMoover, MainCharracter.Position.Y, 0);
@@ -199,14 +177,34 @@ namespace WindowsGame1
             FireParticle.Shei = ScreenHeight;
             FireParticle.Swid = ScreenWidth;
             FireParticle.emitFlag = true;
-            
+
+            //Map Textures
+            GameOver = Content.Load<Texture2D>("storyboard/gameOver_2000x1500");
+            map.Initialize(Content, ScreenWidth, ScreenHeight);
+
+            //Add storyboard content
+            for(int a = 1; a < 18;a++)
+            {
+                StoryBoard.Add(Content.Load<Texture2D>("storyboard/intro/intro_"+a.ToString().PadLeft(2,'0')));
+            }
+
+            //Sets up the camera
+            camera = new Camera(spriteBatch);
+            //Put camera in middle of world
+            camera.Position = new Vector2(0, 0);
+            //Sets the world size
+            worldHeight = 5000;
+            worldWidth = 5000;
+
+            //Menu buttons
+            play = Content.Load<Texture2D>("Solids/Square");
 
             spriteFont = Content.Load<SpriteFont>("Fonts/TestFont");
             /*
             SoundEmber = Content.Load<SoundEffect>("Sound/Ember");
             soundEffectInstance = SoundEmber.CreateInstance();*/
-            graphics.IsFullScreen = bFullScreen;
-            graphics.ApplyChanges();
+            //graphics.IsFullScreen = bFullScreen;
+            //graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -217,7 +215,7 @@ namespace WindowsGame1
         {
             // TODO: Unload any non ContentManager content here
         }
-        bool once = false, CharMoveR = true, CharMoveL = true;
+        
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -227,20 +225,21 @@ namespace WindowsGame1
         float lastCamY = 0;
         protected override void Update(GameTime gameTime)
         {
-            vineWallVect2 = camera.ApplyTransformations(vineWallVect);
+            //Gets the key stat which is used in the update method
+            KeyboardState key = Keyboard.GetState();
 
+            //Sets the particles spawn location
             Console.WriteLine("X: " + FireEmitterWCX +"   Y: " + FireEmitterWCY);
-
             FireEmitterWCX = (int)(FireParticle.EmitterLocation.X + camera.Position.X);
             FireEmitterWCY = (int)(FireParticle.EmitterLocation.Y + camera.Position.Y);
 
+            //collision test for the particle against the map
             if (Collisionbmp.GetPixel(FireEmitterWCX, FireEmitterWCY).R == 255)
             {
                 shootTime = 0;
             }
 
-            //animation-triggers
-            //vine
+            //Collision test for the particle against the vine plant
             if (FireEmitterWCX > 1240 && FireEmitterWCX < 1444 &&
                 FireEmitterWCY > 285 && FireEmitterWCY < 605)
             {
@@ -251,7 +250,7 @@ namespace WindowsGame1
                     shootTime = 0;
                 }
             }
-            //pillar
+            //Collision test for the particle against the pillar
             if (FireEmitterWCX > 980 && FireEmitterWCX < 1180 &&
                 FireEmitterWCY > 1690 && FireEmitterWCY < 2080)
             {
@@ -263,15 +262,20 @@ namespace WindowsGame1
                     shootTime = 0;
                 }
             }
-            KeyboardState key = Keyboard.GetState();
-            int CharX, CharY,CharOffset = 0;
+            ///I was here!
+            int CharX, CharY,CharOffset;
             if (key.IsKeyDown(Keys.D))
             {
                 CharOffset = 175;
             }
-            else CharOffset = 0;
+            else
+            {
+                CharOffset = 0;
+            }
+
             CharX = (int)(MainCharracter.Position.X + camera.Position.X + CharOffset);
             CharY = (int)(MainCharracter.Position.Y + camera.Position.Y + 58);
+
             //Vine
             if (CharX > 1240 && CharX < 1444 &&
                 CharY > 285 && CharY < 605)
