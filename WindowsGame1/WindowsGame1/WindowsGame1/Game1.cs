@@ -53,6 +53,14 @@ namespace WindowsGame1
         Texture2D[] MainCharracterTextureActive;
         Texture2D[] MainCharracterTextureBase,MainCharracterTextureWater,MainCharracterTextureLeaf, MainCharracterTextureFire;
 
+        //Used in UpdateInput
+        float speed = 5.0f;
+        bool shoot = false;
+        bool ShootInProgress = false;
+
+        int shootTime;
+
+
         bool once = false, CharMoveR = true, CharMoveL = true;
 
         Map1 map;
@@ -86,6 +94,8 @@ namespace WindowsGame1
 
         float pst10Xangle, pst10Yangle;
         int SpriteMoover =100;
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -262,7 +272,7 @@ namespace WindowsGame1
                     shootTime = 0;
                 }
             }
-            ///I was here!
+            ///Gets the Characters real position relative to the world map
             int CharX, CharY,CharOffset;
             if (key.IsKeyDown(Keys.D))
             {
@@ -276,7 +286,7 @@ namespace WindowsGame1
             CharX = (int)(MainCharracter.Position.X + camera.Position.X + CharOffset);
             CharY = (int)(MainCharracter.Position.Y + camera.Position.Y + 58);
 
-            //Vine
+            //Collision test for the character against the vine plant
             if (CharX > 1240 && CharX < 1444 &&
                 CharY > 285 && CharY < 605)
             {
@@ -289,7 +299,7 @@ namespace WindowsGame1
             {
                 CharMoveR = true;
             }
-            //pillar
+            //Collision test for the character against the pillar
             if (CharX > 980 && CharX < 1180 &&
                 CharY > 1690 && CharY < 2080)
             {
@@ -302,14 +312,14 @@ namespace WindowsGame1
             {
                 CharMoveL = true;
             }
-            //Toxic
+            //Collision test for the character against the Toxic pool(tm)
             if (CharX > 2800 && CharX < 3650 &&
                 CharY > 4370 && CharY < 4650)
             {
                 playState = state.gameOver;
             }
 
-            // cap the camera to the world width/height.
+            //Cap the camera to the world width/height.
             CapCameraPosition();
             map.Update(gameTime);
             UpdateInput(gameTime);
@@ -325,7 +335,7 @@ namespace WindowsGame1
 
             // TODO: Add your update illogic here
 
-            //Collision detection
+            //Collision detection for the character against the map
             Microsoft.Xna.Framework.Rectangle CharRect = new Microsoft.Xna.Framework.Rectangle((int)(MainCharracter.Position.X + camera.Position.X), (int)(MainCharracter.Position.Y + camera.Position.Y), MainCharracterTextureActive[0].Width / 4, MainCharracterTextureActive[0].Height);
             for (int i = 0; i < CrashDirection.Length; i++)
             {
@@ -339,31 +349,34 @@ namespace WindowsGame1
             if (!Godmode)
             {
                     GravityValue = 5;
-                if (CollisionDetection(CharRect.X + 110, CharRect.Y + 85))//Upper left
+                //Quadratic hitbox
+                if (CollisionDetection(CharRect.X + 110, CharRect.Y + 85))//Upper hitbox
                 {
                     CrashDirection[0] = true;
                     IsGravity = true;
                     IsJumping = false;
 
                 }
-                if (CollisionDetection(CharRect.X + 160, CharRect.Y + 125))//Over
+                if (CollisionDetection(CharRect.X + 160, CharRect.Y + 130))//Right hitbo
                 {
                     CrashDirection[1] = true;
 
                 }
-                if (CollisionDetection(CharRect.X + 100, CharRect.Y + 200))//Right
+                if (CollisionDetection(CharRect.X + 100, CharRect.Y + 200))//Bottom hitbox
                 {
                     CrashDirection[2] = true;
 
                 }
-                if (CollisionDetection(CharRect.X + 50, CharRect.Y + 135))//Under
+                if (CollisionDetection(CharRect.X + 50, CharRect.Y + 130))//Left hitbox
                 {
                     CrashDirection[3] = true;
                     IsGravity = false;
                     MainCharracter.Position.Y -= 1f;
 
                 }
-                if (CollisionDetection(CharRect.X + 120, CharRect.Y + 200))//left
+
+                //Two-points hitbox to prevent characther to not clip through upwards hills
+                if (CollisionDetection(CharRect.X + 120, CharRect.Y + 200))//Rigth bottom hitbox
                 {
                     IsGravity = false;
                     MainCharracter.Position.Y -= 1f;
@@ -371,7 +384,7 @@ namespace WindowsGame1
                     MainCharracter.Update(gameTime);
                     CrashDirection[4] = true;
                 }
-                if (CollisionDetection(CharRect.X + 80, CharRect.Y + 200))//left
+                if (CollisionDetection(CharRect.X + 80, CharRect.Y + 200))//Left bottom hitbox
                 {
 
                     IsGravity = false;
@@ -394,15 +407,21 @@ namespace WindowsGame1
         }
         bool WasRightLastDirection = true;
         private bool CollisionDetection(int PosX, int PosY)
-        {
+        {   //Prevents the next test to not test outside of the given picture
             if (PosX > 0 && PosY > 0 && PosX < Collisionbmp.Width && PosY < Collisionbmp.Height)
+            {   //Checks if a pixel in the collisionmap is white, checks only red as checking blue and green would be redundant
                 if (Collisionbmp.GetPixel(PosX, PosY).R == 255)//Collision true
                     return true;
+            
                 else//Collision false
                     return false;
-            else 
+            }
+            else
+            {
                 return true;
+            }
         }
+        //This is responsible for keeping the camera within the borders of the drawn map
         private void CapCameraPosition()
         {
             Vector2 cameraPosition = camera.Position;
@@ -425,10 +444,10 @@ namespace WindowsGame1
             camera.Position = cameraPosition;
         }
 
-        float speed = 5.0f;
-        bool shoot =  false;
-        bool ShootInProgress = false;
-        int shootTime;
+        //float speed = 5.0f;
+        //bool shoot =  false;
+        //bool ShootInProgress = false;
+        //int shootTime;
         protected void UpdateInput(GameTime gameTime)
         {
             KeyboardState key = Keyboard.GetState();
@@ -436,6 +455,8 @@ namespace WindowsGame1
             mouseX = mouse.X;
             mouseY = mouse.Y;
 
+            //Starts the game if player clicks on the given retangle.
+            //Is supposed to work only when player is in menu, but no limit is set. yet.
             if (mouse.LeftButton == ButtonState.Pressed)
             {
                 if (mouse.X > 900 && mouse.X < 1000 && mouse.Y > 500 && mouse.Y < 600)
@@ -445,7 +466,7 @@ namespace WindowsGame1
             }
 
 
-
+            //Moves left
             if (key.IsKeyDown(Keys.D) && !CrashDirection[1] && CharMoveR)
             {
                 setMainCharracterTextureActive(0);
@@ -470,6 +491,7 @@ namespace WindowsGame1
                     SpriteMoover -= 3;
                 }
             }
+            //Moves Right
             if (key.IsKeyDown(Keys.A) && !CrashDirection[3] && CharMoveL)
             {
                 setMainCharracterTextureActive(1);
@@ -491,6 +513,7 @@ namespace WindowsGame1
                     SpriteMoover += 3;
                 }
             }
+            //Jumps
             if (key.IsKeyDown(Keys.W) && !CrashDirection[0])
             {
                 if (gameTime.TotalGameTime - AirTime > TimeSpan.FromSeconds(1) && !IsJumping && CrashDirection[2])
@@ -504,6 +527,8 @@ namespace WindowsGame1
 
                 
             }
+
+            //Makes the character jump, could potentially be moved back to the update method
             if (IsJumping && (gameTime.TotalGameTime - AirTime < TimeSpan.FromSeconds(1)))
             {
                 camera.Translate(new Vector2(0, -speed));
@@ -522,6 +547,8 @@ namespace WindowsGame1
                 IsGravity = true;
                 GravityValue = 5;
             }
+
+            //Makes the character go down, might be redundant?
             if (key.IsKeyDown(Keys.S) && !CrashDirection[2])
             {
                 camera.Translate(new Vector2(0, speed + speed));
@@ -540,6 +567,8 @@ namespace WindowsGame1
                 FireParticle.exit = true;
                 this.Exit();
             }
+
+            //Shooting mechanic
             if (shoot && key.IsKeyUp(Keys.Space))
             {
                 shoot = false;
@@ -733,6 +762,6 @@ namespace WindowsGame1
 
     }
 
-    //private Camera camera;
+    
 }
 
