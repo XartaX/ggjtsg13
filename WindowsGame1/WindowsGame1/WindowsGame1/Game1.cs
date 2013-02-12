@@ -22,18 +22,21 @@ namespace WindowsGame1
     {
         Random random = new Random();
         GraphicsDeviceManager graphics;
-        enum state { playing, pause, menu, gameOver, story };
-        state playState = state.story;
+        
+        public PlayState playState = PlayState.story;
         int mouseX;
         int mouseY;
-        int FireEmitterWCX;
-        int FireEmitterWCY;
+        public int FireEmitterWCX;
+        public int FireEmitterWCY;
         Vector2 FireEmitterWC;
         //Backgrounds splitter = new Backgrounds();
 
+        CollisionDetection Collision = new CollisionDetection();
+        CapCameraPosition CapCamera = new CapCameraPosition();
+        Input UserInput = new Input();
         //Menu buttons
         Texture2D play;
-
+    
         //Sprite Text
         SpriteFont spriteFont;
 
@@ -49,7 +52,7 @@ namespace WindowsGame1
         Texture2D GameOver;
 
         //Charracter
-        ToTo MainCharracter;
+        public ToTo MainCharracter;
         Texture2D[] MainCharracterTextureActive;
         Texture2D[] MainCharracterTextureBase,MainCharracterTextureWater,MainCharracterTextureLeaf, MainCharracterTextureFire;
 
@@ -58,12 +61,12 @@ namespace WindowsGame1
         bool shoot = false;
         bool ShootInProgress = false;
 
-        int shootTime;
+        public int shootTime;
 
 
-        bool once = false, CharMoveR = true, CharMoveL = true;
+        public bool once = false, CharMoveR = true, CharMoveL = true;
 
-        Map1 map;
+        public Map1 map;
         TimeSpan AirTime;
         bool IsGravity;
         bool IsJumping;
@@ -72,12 +75,12 @@ namespace WindowsGame1
         Camera camera;
         bool[] CrashDirection;
         System.Drawing.Color[,] Collisionmap;
-        System.Drawing.Bitmap Collisionbmp;
+        public System.Drawing.Bitmap Collisionbmp;
 
         //Particle land
-        ParticleSquirter particleEngine,FireParticle;
-        List<Texture2D> WaterParticleTexture = new List<Texture2D>();
-        List<Texture2D> FireParticleTexture = new List<Texture2D>();
+        public ParticleSquirter particleEngine,FireParticle;
+        public List<Texture2D> WaterParticleTexture = new List<Texture2D>();
+        public List<Texture2D> FireParticleTexture = new List<Texture2D>();
         //Sound Engine
         SoundEffectInstance soundEffectInstance;
         //Sounds
@@ -95,7 +98,12 @@ namespace WindowsGame1
         float pst10Xangle, pst10Yangle;
         int SpriteMoover =100;
 
-
+        bool btnpress = false;
+        bool progressBoard = false;
+        bool ShootExplode = false;
+        int ExplodeCount = 0;
+        int storyCount = 0;
+        bool WasRightLastDirection = true;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -237,329 +245,6 @@ namespace WindowsGame1
         {
             //Gets the key stat which is used in the update method
             KeyboardState key = Keyboard.GetState();
-
-            //Sets the particles spawn location
-            Console.WriteLine("X: " + FireEmitterWCX +"   Y: " + FireEmitterWCY);
-            FireEmitterWCX = (int)(FireParticle.EmitterLocation.X + camera.Position.X);
-            FireEmitterWCY = (int)(FireParticle.EmitterLocation.Y + camera.Position.Y);
-
-            //collision test for the particle against the map
-            if (Collisionbmp.GetPixel(FireEmitterWCX, FireEmitterWCY).R == 255)
-            {
-                shootTime = 0;
-            }
-
-            //Collision test for the particle against the vine plant
-            if (FireEmitterWCX > 1240 && FireEmitterWCX < 1444 &&
-                FireEmitterWCY > 285 && FireEmitterWCY < 605)
-            {
-                if (map.vineDestroyed == false)
-                {   
-                    Console.WriteLine("Success!");
-                    map.vineDestroyed = true;
-                    shootTime = 0;
-                }
-            }
-            //Collision test for the particle against the pillar
-            if (FireEmitterWCX > 980 && FireEmitterWCX < 1180 &&
-                FireEmitterWCY > 1690 && FireEmitterWCY < 2080)
-            {
-                if (map.pillarDestroyed == false)
-                {
-                    Console.WriteLine("Success!");
-                    map.pillarShotCount++;
-                    map.destroyPillar();
-                    shootTime = 0;
-                }
-            }
-            ///Gets the Characters real position relative to the world map
-            int CharX, CharY,CharOffset;
-            if (key.IsKeyDown(Keys.D))
-            {
-                CharOffset = 175;
-            }
-            else
-            {
-                CharOffset = 0;
-            }
-
-            CharX = (int)(MainCharracter.Position.X + camera.Position.X + CharOffset);
-            CharY = (int)(MainCharracter.Position.Y + camera.Position.Y + 58);
-
-            //Collision test for the character against the vine plant
-            if (CharX > 1240 && CharX < 1444 &&
-                CharY > 285 && CharY < 605)
-            {
-                if (!map.vineDestroyed)
-                {
-                    CharMoveR = false;
-                }
-            }
-            else
-            {
-                CharMoveR = true;
-            }
-            //Collision test for the character against the pillar
-            if (CharX > 980 && CharX < 1180 &&
-                CharY > 1690 && CharY < 2080)
-            {
-                if (map.pillarDestroyed == false)
-                {
-                    CharMoveL = false;
-                }
-            }
-            else
-            {
-                CharMoveL = true;
-            }
-            //Collision test for the character against the Toxic pool(tm)
-            if (CharX > 2800 && CharX < 3650 &&
-                CharY > 4370 && CharY < 4650)
-            {
-                playState = state.gameOver;
-            }
-
-            //Cap the camera to the world width/height.
-            CapCameraPosition();
-            map.Update(gameTime);
-            UpdateInput(gameTime);
-            elapsedTime += gameTime.ElapsedGameTime;
-
-            if (elapsedTime > TimeSpan.FromSeconds(1))
-            {
-                elapsedTime -= TimeSpan.FromSeconds(1);
-                frameRate = frameCounter;
-                frameCounter = 0;
-            }
-            //SoundUpdate();
-
-            // TODO: Add your update illogic here
-
-            //Collision detection for the character against the map
-            Microsoft.Xna.Framework.Rectangle CharRect = new Microsoft.Xna.Framework.Rectangle((int)(MainCharracter.Position.X + camera.Position.X), (int)(MainCharracter.Position.Y + camera.Position.Y), MainCharracterTextureActive[0].Width / 4, MainCharracterTextureActive[0].Height);
-            for (int i = 0; i < CrashDirection.Length; i++)
-            {
-                CrashDirection[i] = false;
-            }
-            //0     Upwards
-            //1     Right
-            //2     Downwards
-            //3     Left
-
-            if (!Godmode)
-            {
-                    GravityValue = 5;
-                //Quadratic hitbox
-                if (CollisionDetection(CharRect.X + 110, CharRect.Y + 85))//Upper hitbox
-                {
-                    CrashDirection[0] = true;
-                    IsGravity = true;
-                    IsJumping = false;
-
-                }
-                if (CollisionDetection(CharRect.X + 160, CharRect.Y + 130))//Right hitbo
-                {
-                    CrashDirection[1] = true;
-
-                }
-                if (CollisionDetection(CharRect.X + 100, CharRect.Y + 200))//Bottom hitbox
-                {
-                    CrashDirection[2] = true;
-
-                }
-                if (CollisionDetection(CharRect.X + 50, CharRect.Y + 130))//Left hitbox
-                {
-                    CrashDirection[3] = true;
-                    IsGravity = false;
-                    MainCharracter.Position.Y -= 1f;
-
-                }
-
-                //Two-points hitbox to prevent characther to not clip through upwards hills
-                if (CollisionDetection(CharRect.X + 120, CharRect.Y + 200))//Rigth bottom hitbox
-                {
-                    IsGravity = false;
-                    MainCharracter.Position.Y -= 1f;
-                    GravityValue = 0;
-                    MainCharracter.Update(gameTime);
-                    CrashDirection[4] = true;
-                }
-                if (CollisionDetection(CharRect.X + 80, CharRect.Y + 200))//Left bottom hitbox
-                {
-
-                    IsGravity = false;
-                    MainCharracter.Position.Y -= 1f;
-                    GravityValue = 0;
-                    MainCharracter.Update(gameTime);
-                    CrashDirection[4] = true;
-                }
-            }
-            else
-            {
-                IsGravity = false;
-            }
-
-
-            Gravity(IsGravity);
-
-
-            base.Update(gameTime);
-        }
-        bool WasRightLastDirection = true;
-        private bool CollisionDetection(int PosX, int PosY)
-        {   //Prevents the next test to not test outside of the given picture
-            if (PosX > 0 && PosY > 0 && PosX < Collisionbmp.Width && PosY < Collisionbmp.Height)
-            {   //Checks if a pixel in the collisionmap is white, checks only red as checking blue and green would be redundant
-                if (Collisionbmp.GetPixel(PosX, PosY).R == 255)//Collision true
-                    return true;
-            
-                else//Collision false
-                    return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        //This is responsible for keeping the camera within the borders of the drawn map
-        private void CapCameraPosition()
-        {
-            Vector2 cameraPosition = camera.Position;
-            if (cameraPosition.X > worldWidth - graphics.GraphicsDevice.Viewport.Width)
-            {
-                cameraPosition.X = worldWidth - graphics.GraphicsDevice.Viewport.Width;
-            }
-            if (cameraPosition.X < 0)
-            {
-                cameraPosition.X = 0;
-            }
-            if (cameraPosition.Y > worldHeight - graphics.GraphicsDevice.Viewport.Height)
-            {
-                cameraPosition.Y = worldHeight - graphics.GraphicsDevice.Viewport.Height;
-            }
-            if (cameraPosition.Y < 0)
-            {
-                cameraPosition.Y = 0;
-            }
-            camera.Position = cameraPosition;
-        }
-
-        //float speed = 5.0f;
-        //bool shoot =  false;
-        //bool ShootInProgress = false;
-        //int shootTime;
-        protected void UpdateInput(GameTime gameTime)
-        {
-            KeyboardState key = Keyboard.GetState();
-            MouseState mouse = Mouse.GetState();
-            mouseX = mouse.X;
-            mouseY = mouse.Y;
-
-            //Starts the game if player clicks on the given retangle.
-            //Is supposed to work only when player is in menu, but no limit is set. yet.
-            if (mouse.LeftButton == ButtonState.Pressed)
-            {
-                if (mouse.X > 900 && mouse.X < 1000 && mouse.Y > 500 && mouse.Y < 600)
-                {
-                    playState = state.playing;
-                }
-            }
-
-
-            //Moves left
-            if (key.IsKeyDown(Keys.D) && !CrashDirection[1] && CharMoveR)
-            {
-                setMainCharracterTextureActive(0);
-                WasRightLastDirection = true;
-
-                if (camera.Position.X+ScreenWidth > 5000-10)
-                {
-                    MainCharracter.Position.X += (speed);
-                }
-                else
-                {
-                    camera.Translate(new Vector2(speed, 0));
-                    MainCharracter.Position.X += 0;
-                }
-                
-                lastCamY = camera.Position.Y;
-                MainCharracter.Animate = true;
-                MainCharracter.Update(gameTime);
-                IsGravity = true;
-                if (SpriteMoover >= 0 && !ShootInProgress)
-                {
-                    SpriteMoover -= 3;
-                }
-            }
-            //Moves Right
-            if (key.IsKeyDown(Keys.A) && !CrashDirection[3] && CharMoveL)
-            {
-                setMainCharracterTextureActive(1);
-                WasRightLastDirection = false;
-                if (camera.Position.X < 10)
-                {
-                    MainCharracter.Position.X -= (speed);
-                }
-                else
-                {
-                    camera.Translate(new Vector2(-speed, 0));
-                }
-                lastCamY = camera.Position.Y;   
-                MainCharracter.Animate = true;
-                MainCharracter.Update(gameTime);
-                IsGravity = true;
-                if (SpriteMoover <= 200 && !ShootInProgress)
-                {
-                    SpriteMoover += 3;
-                }
-            }
-            //Jumps
-            if (key.IsKeyDown(Keys.W) && !CrashDirection[0])
-            {
-                if (gameTime.TotalGameTime - AirTime > TimeSpan.FromSeconds(1) && !IsJumping && CrashDirection[2])
-                {
-                    
-                        IsJumping = true;
-                        
-                    AirTime = gameTime.TotalGameTime;
-                }
-                
-
-                
-            }
-
-            //Makes the character jump, could potentially be moved back to the update method
-            if (IsJumping && (gameTime.TotalGameTime - AirTime < TimeSpan.FromSeconds(1)))
-            {
-                camera.Translate(new Vector2(0, -speed));
-                //IsGravity = false;
-                GravityValue = 0;
-                MainCharracter.Position.Y -= 2.5f;
-                MainCharracter.Update(gameTime);
-                if (ShootInProgress)
-                {
-                    FireParticle.EmitterLocation += new Vector3(0, 2.5f, 0);
-                }
-            }
-            else
-            {
-                IsJumping = false;
-                IsGravity = true;
-                GravityValue = 5;
-            }
-
-            //Makes the character go down, might be redundant?
-            if (key.IsKeyDown(Keys.S) && !CrashDirection[2])
-            {
-                camera.Translate(new Vector2(0, speed + speed));
-                MainCharracter.Position.Y += 2.5f;
-                MainCharracter.Update(gameTime);
-                if (ShootInProgress)
-                {
-                    FireParticle.EmitterLocation += new Vector3(0, -2.5f, 0);
-                }
-            }
-
             // Allows the game to exit
             if (key.IsKeyDown(Keys.Escape))
             {
@@ -567,126 +252,101 @@ namespace WindowsGame1
                 FireParticle.exit = true;
                 this.Exit();
             }
+            //Sets the particles spawn location
+            Console.WriteLine("X: " + FireEmitterWCX +"   Y: " + FireEmitterWCY);
+            FireEmitterWCX = (int)(FireParticle.EmitterLocation.X + camera.Position.X);
+            FireEmitterWCY = (int)(FireParticle.EmitterLocation.Y + camera.Position.Y);
+            //CollisionDetection.cs
+            Collision.CheckCollision
+                (
+                ref gameTime,
+                ref Collisionbmp,
+                ref FireEmitterWCX,
+                ref FireEmitterWCY,
+                ref shootTime,
+                ref map,
+                ref MainCharracter,
+                ref camera,
+                ref CharMoveR,
+                ref CharMoveL,
+                ref playState,
+                ref MainCharracterTextureActive,
+                ref CrashDirection,
+                ref Godmode,
+                ref GravityValue,
+                ref IsGravity,
+                ref IsJumping
+                );
+            //Cut collision1 --------------------------------------------------
+            //End cut--------------
+            //CapCameraPosition.cs
+            CapCamera.CapCameraPosition
+                (
+                   ref camera,
+                   ref worldWidth,
+                   ref worldHeight,
+                   graphics.GraphicsDevice.Viewport.Width,
+                   graphics.GraphicsDevice.Viewport.Height
+                );
+            map.Update(gameTime);
+            UserInput.UpdateInput
+                (
+                    ref gameTime,
+                    ref mouseX,
+                    ref mouseY,
+                    ref playState,
+                    ref  CrashDirection,
+                    ref WasRightLastDirection,
+                    ref CharMoveR,
+                    ref camera,
+                    ref ScreenWidth,
+                    ref MainCharracter,
+                    ref speed,
+                    ref lastCamY,
+                    ref IsGravity,
+                    ref SpriteMoover,
+                    ref ShootInProgress,
+                    ref CharMoveL,
+                    ref IsJumping,
+                    ref AirTime,
+                    ref GravityValue,
+                    ref FireParticle,
+                    ref particleEngine,
+                    ref shoot,
+                    ref shootTime,
+                    ref ShootExplode,
+                    ref ExplodeCount,
+                    ref SpritePosi,
+                    ref ScreenHeight,
+                    ref frameRate,
+                    ref progressBoard,
+                    ref btnpress,
+                    ref StoryBoard,
+                    ref storyCount,
+                    ref MainCharracterTextureActive
+                );
+            
+            elapsedTime += gameTime.ElapsedGameTime;
 
-            //Shooting mechanic
-            if (shoot && key.IsKeyUp(Keys.Space))
+            //FPS counter
+            //if (elapsedTime > TimeSpan.FromSeconds(1))
+            if (gameTime.TotalGameTime - elapsedTime > TimeSpan.FromSeconds(1))
             {
-                shoot = false;
-                ShootInProgress = true;
-                shootTime = 100;
+                elapsedTime = gameTime.TotalGameTime;
+                //elapsedTime -= TimeSpan.FromSeconds(1);
+                frameRate = frameCounter;
+                frameCounter = 0;
             }
-            if (ShootInProgress)
-            {
-                shootTime--;
-                if(WasRightLastDirection)
-                    FireParticle.EmitterLocation += new Vector3(5, 0, 0);
-                else
-                    FireParticle.EmitterLocation += new Vector3(-5, 0, 0);
-                if (shootTime <= 0)
-                {
-                    ShootInProgress = false;
-                    ShootExplode = true;
-                    ExplodeCount = 7;
-                    FireParticle.exploding = true;
-                    FireParticle.Spread = (float)(1 / 5d);
-                }
-            }
-            else if (shootTime == 0 && ShootExplode)
-            {
-                ExplodeCount--;
-                if (ExplodeCount == 0)
-                {
-                    ShootExplode = false;
-                    FireParticle.exploding = false;
-                    FireParticle.Spread = 1f;
-                }
-            }
-            else
-            {
-                ShootExplode = false;
-                FireParticle.exploding = false;
-                FireParticle.Spread = 1f;
-                FireParticle.EmitterLocation = new Vector3(MainCharracter.Position.X + SpriteMoover, MainCharracter.Position.Y, 0);
-            }
-
-            if (key.IsKeyDown(Keys.Space) && !shoot && !ShootExplode && !ShootInProgress)
-            {
-                shoot = true;
-                particleEngine.emitFlag = true;
-            }
-            else if (playState == state.menu)
-            {
-                particleEngine.emitFlag = true;
-            }
-            else
-            {
-                particleEngine.emitFlag = false;
-            }
-            float SpeedEmiter = 5, x1 = 0, y1 = 0;
-            if (key.IsKeyDown(Keys.W))
-                y1 -= SpeedEmiter;
-            if (key.IsKeyDown(Keys.S))
-                y1 += SpeedEmiter;
-            if (key.IsKeyDown(Keys.D))
-                x1 += SpeedEmiter;
-            if (key.IsKeyDown(Keys.A))
-                x1 -= SpeedEmiter;
-            SpritePosi += new Vector3(x1, y1, 0.0f);
-
-            if (SpritePosi.X >= ScreenWidth)
-            {
-                SpritePosi = new Vector3(0.0f, SpritePosi.Y, 0.0f);
-            }
-            else if (SpritePosi.X <= 0)
-            {
-                SpritePosi = new Vector3((float)ScreenWidth, SpritePosi.Y, 0.0f);
-            }
-            if (SpritePosi.Y >= ScreenHeight)
-            {
-                SpritePosi = new Vector3(SpritePosi.X, 0.0f, 0.0f);
-            }
-            else if (SpritePosi.Y <= 0)
-            {
-                SpritePosi = new Vector3(SpritePosi.X, (float)ScreenHeight, 0.0f);
-            }
-            FireParticle.Update();
-
-            particleEngine.EmitterLocation = new Vector3(mouseX,mouseY,0);
-            particleEngine.frameRate = frameRate;
-            particleEngine.Update();
-            particleEngine.Shei = ScreenHeight;
-            particleEngine.Swid = ScreenWidth;
-            if (key.IsKeyDown(Keys.Enter) && playState == state.story)
-            {
-                progressBoard = true;
-            }
-            if (mouse.LeftButton == ButtonState.Pressed)
-            {
-                btnpress = true;
-            }
-            if ((mouse.LeftButton == ButtonState.Released && btnpress) || key.IsKeyUp(Keys.Enter) && progressBoard && playState == state.story)
-            {
-                btnpress = false;
-                if (StoryBoard.Count< storyCount + 2)
-                {
-                    playState = state.playing;
-                }
-                else
-                {
-                    storyCount++;
-                    progressBoard = false;
-                }
-
-            }
-            if (key.IsKeyDown(Keys.F1) && playState == state.story)
-            {
-                playState = state.playing;
-            }
+            //SoundUpdate();
+            // TODO: Add your update illogic here
+            //Cut Collision2-------------------------
+            //End Collision2---------------------
+            Gravity(IsGravity);
+            base.Update(gameTime);
         }
-        bool btnpress = false;
-        bool progressBoard = false;
-        bool ShootExplode = false;
-        int ExplodeCount = 0;
+        
+
+
         public void Gravity(bool fall)
         {
             if (fall && !CrashDirection[2])
@@ -697,60 +357,46 @@ namespace WindowsGame1
                 {
                     Console.WriteLine("CharY: " + MainCharracter.Position.Y);
                     camera.Translate(new Vector2(0, GravityValue));
-                        MainCharracter.Position.Y -= GravityValue;                   
+                    MainCharracter.Position.Y -= GravityValue;                   
                 }
         }
-        void setMainCharracterTextureActive(int Index)
-        {
-            if (MainCharracter.Spritestrip != MainCharracterTextureActive[Index])
-            {
-                MainCharracter.Spritestrip = MainCharracterTextureActive[Index];
-            }
-        }
-        int storyCount = 0;
+
+        
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-
+            
             frameCounter++;
             spriteBatch.Begin();
 
-            if (playState == state.gameOver)
+            switch (playState)
             {
+                case PlayState.gameOver:
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
                 spriteBatch.Draw(GameOver, new Microsoft.Xna.Framework.Rectangle(0, 0, ScreenWidth, ScreenHeight), Color.White);
                 particleEngine.Draw(spriteBatch);
-                
-            }
-            if (playState == state.story)
-            {
+                break;
+
+                case PlayState.story:
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
                 spriteBatch.Draw(StoryBoard[storyCount], new Microsoft.Xna.Framework.Rectangle(0, 0, ScreenWidth, ScreenHeight), Color.White);
                 particleEngine.Draw(spriteBatch);
-                
-            }
+                break;
 
-            if (playState == state.playing)
-            {
+                case PlayState.playing:
                 particleEngine.Draw(spriteBatch);
-
                 GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
-                // TODO: Add your drawing code here
-                //spriteBatch.Draw(MainCharracterTextureActive, t//xVect, Microsoft.Xna.Framework.Color.White);
-                //MainCharracter.Draw(camera);
-                //spriteBatch.Draw(foreground, new Vector2(2, 2), Microsoft.Xna.Framework.Color.White);
-
                 MainCharracter.Draw(spriteBatch);
-                //vineWallAnim.Draw(spriteBatch);
-
-                //splitter.Draw(camera);
                 map.Draw(spriteBatch, camera);
                 FireParticle.Draw(spriteBatch);
+                // TODO: Add your drawing code here
+                //spriteBatch.Draw(MainCharracterTextureActive, t//xVect, Microsoft.Xna.Framework.Color.White);
+                //spriteBatch.Draw(foreground, new Vector2(2, 2), Microsoft.Xna.Framework.Color.White);
+                break;
             }
-
             /*
             spriteBatch.DrawString(spriteFont,
                  "FPS: " + frameRate,
@@ -759,9 +405,6 @@ namespace WindowsGame1
             spriteBatch.End();
             base.Draw(gameTime);
         }
-
     }
-
-    
 }
 
