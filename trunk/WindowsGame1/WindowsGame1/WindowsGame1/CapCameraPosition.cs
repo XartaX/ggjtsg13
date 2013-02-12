@@ -9,7 +9,7 @@ namespace WindowsGame1
 {
     class CapCameraPosition
     {
-       public void CapCameraPosition
+       public void CapCameraPos
            (
            ref Camera camera,
            ref int worldWidth,
