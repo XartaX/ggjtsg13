@@ -66,7 +66,7 @@ namespace WindowsGame1
 
         public bool once = false, CharMoveR = true, CharMoveL = true;
 
-        public Map1 map;
+        Map1 map;
         TimeSpan AirTime;
         bool IsGravity;
         bool IsJumping;
@@ -78,9 +78,9 @@ namespace WindowsGame1
         public System.Drawing.Bitmap Collisionbmp;
 
         //Particle land
-        public ParticleSquirter particleEngine,FireParticle;
-        public List<Texture2D> WaterParticleTexture = new List<Texture2D>();
-        public List<Texture2D> FireParticleTexture = new List<Texture2D>();
+        ParticleSquirter particleEngine,FireParticle;
+        List<Texture2D> WaterParticleTexture = new List<Texture2D>();
+        List<Texture2D> FireParticleTexture = new List<Texture2D>();
         //Sound Engine
         SoundEffectInstance soundEffectInstance;
         //Sounds
@@ -280,7 +280,7 @@ namespace WindowsGame1
             //Cut collision1 --------------------------------------------------
             //End cut--------------
             //CapCameraPosition.cs
-            CapCamera.CapCameraPosition
+            CapCamera.CapCameraPos
                 (
                    ref camera,
                    ref worldWidth,

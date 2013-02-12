@@ -137,24 +137,24 @@ namespace WindowsGame1
             {
                 GravityValue = 5;
                 //Quadratic hitbox
-                if (CollisionDetection(CharRect.X + 110, CharRect.Y + 85))//Upper hitbox
+                if (CollideDetect(CharRect.X + 110, CharRect.Y + 85))//Upper hitbox
                 {
                     CrashDirection[0] = true;
                     IsGravity = true;
                     IsJumping = false;
 
                 }
-                if (CollisionDetection(CharRect.X + 160, CharRect.Y + 130))//Right hitbo
+                if (CollideDetect(CharRect.X + 160, CharRect.Y + 130))//Right hitbo
                 {
                     CrashDirection[1] = true;
 
                 }
-                if (CollisionDetection(CharRect.X + 100, CharRect.Y + 200))//Bottom hitbox
+                if (CollideDetect(CharRect.X + 100, CharRect.Y + 200))//Bottom hitbox
                 {
                     CrashDirection[2] = true;
 
                 }
-                if (CollisionDetection(CharRect.X + 50, CharRect.Y + 130))//Left hitbox
+                if (CollideDetect(CharRect.X + 50, CharRect.Y + 130))//Left hitbox
                 {
                     CrashDirection[3] = true;
                     IsGravity = false;
@@ -163,7 +163,7 @@ namespace WindowsGame1
                 }
 
                 //Two-points hitbox to prevent characther to not clip through upwards hills
-                if (CollisionDetection(CharRect.X + 120, CharRect.Y + 200))//Rigth bottom hitbox
+                if (CollideDetect(CharRect.X + 120, CharRect.Y + 200))//Rigth bottom hitbox
                 {
                     IsGravity = false;
                     MainCharracter.Position.Y -= 1f;
@@ -171,7 +171,7 @@ namespace WindowsGame1
                     MainCharracter.Update(gameTime);
                     CrashDirection[4] = true;
                 }
-                if (CollisionDetection(CharRect.X + 80, CharRect.Y + 200))//Left bottom hitbox
+                if (CollideDetect(CharRect.X + 80, CharRect.Y + 200))//Left bottom hitbox
                 {
 
                     IsGravity = false;
@@ -189,7 +189,7 @@ namespace WindowsGame1
 
         }//End collision
 
-        private bool CollisionDetection(int PosX, int PosY)
+        private bool CollideDetect(int PosX, int PosY)
         {   //Prevents the next test to not test outside of the given picture
             if (PosX > 0 && PosY > 0 && PosX < Collisionbmp.Width && PosY < Collisionbmp.Height)
             {   //Checks if a pixel in the collisionmap is white, checks only red as checking blue and green would be redundant
